@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "exampledb",
+    "database": "pad_notes",
     "host": "localhost",
     "dialect": "mysql"
   },
