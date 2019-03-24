@@ -10,6 +10,16 @@ module.exports = function(app) {
       });
     });
   });
+  app.get("/signup", function(req, res){
+    res.render("signup");
+  })
+  
+  app.get("/login", function(req, res){
+    if(req.user){
+      res.render("Succesfully loged in already!");
+    }
+    res.render("login");
+  });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {

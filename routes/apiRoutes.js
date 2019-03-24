@@ -1,4 +1,5 @@
 var db = require("../models");
+var passport = require("../config/passport");
 
 module.exports = function(app) {
   // Get all examples
@@ -8,13 +9,27 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
+  // Route to handle login attempts. Using passport's local authentication strategy
+  // user will be served content based on wether the authentication was successful or not
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    
+    res.json("Login succesful!");
   });
-
+  //route for handling new user account creation requests. It will use the requirements and methods 
+  //given in the user.js model to attempt to insert a new user record into the Users table of the database
+  //if the user account is succesfully created, then the user will automatically be loged in via the '/login/' route
+  app.post("/signup", function(req, res){
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password 
+    }).then(function(){
+      res.redirect(307,  "/login")
+    }).catch(function(error){
+      console.log(error);
+      res.json(error);
+    })
+  })
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
