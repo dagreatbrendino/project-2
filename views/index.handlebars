@@ -1,33 +1,81 @@
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center">
+  <div class="container">
+    <img class="img-fluid mb-5 mx-auto" src="/public/img/notepad.png">
+    <h1 class="text-uppercase mb-0">Pad Notes</h1>
+    <hr class="star-light">
+    <h2 class="font-weight-light mb-0">Keep your home tasks organized</h2>
+  </div>
+</header>
+
 <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
+        {{!-- <h1>{{msg}}</h1> --}}
+        <br>
+        <br>
+        <div class="container">
+          <p>Pad Notes is a mobile app that helps you manage your household chores, bills, and grocery needs.
+            Create household groups to assign chores, join exisiting groups, request payments from roommates for bills,
+            and post which groceries are needed. </p>
+        </div>
+
+        <div class="container">
+          <div class="login form">
+            <form class="form-signin">
+
+
+              <div class="row">
+                <div class="col-8 offset-2">
+                  <script src="/js/login.js"></script>
+
+                  <form id="log-in" method="post">
+                    <div>
+                      <label>Email:</label>
+                      <input id="email" type="text" name="email" />
+                    </div>
+                    <div>
+                      <label>Password:</label>
+                      <input id="password" type="password" name="password" />
+                    </div>
+                    <div>
+                      <input type="submit" value="Log In" />
+                      <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="">Continue as
+                          guest</a></button>
+                      <p class="message">Not registered? <a href="#">Create an account</a></p>
+                    </div>
+                  </form>
+              </div>
+
+              {{!-- <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+              placeholder="Enter Example Text">
           </div>
           <div class="form-group">
             <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <textarea class="form-control" id="example-description" aria-describedby="example-description"
+              placeholder="Enter Example Description"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
+        </form> --}}
+              {{!-- <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="example/{{this.id}}">{{this.text}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
-          {{/each}}
-        </ul>
+          {{/each}} --}}
+              <br>
+              <br>
+              </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/index.js"></script>
