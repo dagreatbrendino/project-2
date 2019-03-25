@@ -11,18 +11,19 @@ module.exports = function(app) {
 
   // Route to handle login attempts. Using passport's local authentication strategy
   // user will be served content based on wether the authentication was successful or not
-  app.post("/login", passport.authenticate("local"), function(req, res) {
+  app.post("/user/login", passport.authenticate("local"), function(req, res) {
     
     res.json("Login succesful!");
   });
   //route for handling new user account creation requests. It will use the requirements and methods 
   //given in the user.js model to attempt to insert a new user record into the Users table of the database
   //if the user account is succesfully created, then the user will automatically be loged in via the '/login/' route
-  app.post("/signup", function(req, res){
+  app.post("/new-user/signup", function(req, res){
     console.log(req.body);
     db.User.create({
       email: req.body.email,
-      password: req.body.password 
+      password: req.body.password,
+      name: req.body.name
     }).then(function(){
       res.redirect(307,  "/login")
     }).catch(function(error){

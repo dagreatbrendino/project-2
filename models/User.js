@@ -14,8 +14,19 @@ module.exports = function(sequelize, DataTypes){
 
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                len: [8]
+            }
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [5,36]
+            }
         }
+
     },{
     hooks: {
         beforeCreate:  function(user) {
@@ -26,6 +37,16 @@ module.exports = function(sequelize, DataTypes){
     
     User.prototype.validPassword = function(password){
         return bcrypt.compareSync(password, this.password);
+    }
+    //associating the Users table to the Groups table. The user will be given a foreign key
+    //that references the group they join
+    User.associate = function(models){
+
+        User.belongsTo(models.Group, {
+            foreignKey:{
+                allowNull: true
+            }
+        });
     }
     return User
 }
