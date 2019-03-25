@@ -12,7 +12,7 @@ $(document).ready(function() {
             return;
         }
 
-        $.post("/login", {
+        $.post("/user/login", {
             email: user.email,
             password: user.password
         })

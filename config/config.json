@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "",
     "database": "pad_notes",
     "host": "localhost",
     "dialect": "mysql"

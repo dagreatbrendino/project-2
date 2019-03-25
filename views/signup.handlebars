@@ -1,17 +1,45 @@
-
 {{!-- html taken from passport api reference --}}
-<script src="/js/signup.js"></script>
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container">
+        <img class="img-fluid mb-5 mx-auto" src="/img/notepad.png" alt="logo" style="width:280px;">
+        <h1 class="text-uppercase mb-0">Pad Notes</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">Keep your home tasks organized</h2>
+    </div>
+</header>
 
-<form id="sign-up" method="post">
-    <div>
-        <label>Email:</label>
-        <input id="email" type="text" name="email"/>
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <br>
+
+                <div class="login form">
+                    <div class="row">
+                        <div class="col-8 offset-2">
+                            <form id="sign-up">
+                                <div>
+                                    <label>Email:</label>
+                                    <input id="email" type="text" name="email" />
+                                </div>
+                                <div>
+                                    <label>Password:</label>
+                                    <input id="password" type="password" name="password" />
+                                </div>
+                                <div>
+                                    <label>Name:</label>
+                                    <input id="name" type="text" name="name" />
+                                </div>
+                                <div>
+                                    <input type="submit" value="Sign Up" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Password:</label>
-        <input id="password" type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
-</form>
+</div>
