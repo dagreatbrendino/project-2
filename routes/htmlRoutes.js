@@ -1,5 +1,9 @@
 var db = require("../models");
 
+var path = require("path");
+
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -8,10 +12,14 @@ module.exports = function(app) {
   app.get("/signup", function(req, res){
     res.render("signup");
   })
-  
+  app.get("/home",isAuthenticated, function(req,res){
+    console.log("redirected")
+    res.render("home")
+  })
+
   app.get("/login", function(req, res){
     if(req.user){
-      res.render("Succesfully loged in already!");
+      res.redirect("/home");
     }
     res.render("login");
   });

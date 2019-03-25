@@ -17,8 +17,15 @@ $(document).ready(function(){
             email: newUser.email,
             password: newUser.password,
             name: newUser.name
-        }).then(function(data){
-            window.location.replace(data);
+        })
+        .then(function(data){
+            console.log("changing location")
+            window.location.assign("/home");
         }).catch(handleLoginErr)
     });
+
+    function handleLoginErr(err) {
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
+    }
 });
