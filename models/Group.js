@@ -16,6 +16,15 @@ module.exports = function(sequelize, DataTypes){
         Group.hasMany(models.User, {
 
         });
+        Group.hasMany(models.Chores, {
+
+        });
+        Group.hasMany(models.Grocery, {
+
+        });
+        Group.hasMany(models.Bills, {
+
+        });
     };
     return Group;
 }
