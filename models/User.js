@@ -46,7 +46,25 @@ module.exports = function(sequelize, DataTypes){
             foreignKey:{
                 allowNull: true
             }
+        }),
+
+        User.hasMany(models.Chores, {
+            foreignKey:{
+                allowNull: true
+            }
+        }),
+        User.hasMany(models.Grocery, {
+            foreignKey:{
+                allowNull: true
+            }
+        }),
+        User.hasMany(models.Bills, {
+            foreignKey:{
+                allowNull: true
+            }
         });
+
+
     }
     return User
 }
