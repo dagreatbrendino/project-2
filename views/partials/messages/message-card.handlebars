@@ -1,0 +1,9 @@
+<li class="message-item">
+    {{subject}}
+    {{body}}
+    {{recepientId}}
+    {{senderId}}
+    {{#if (isJoinRequest type)}}
+        <div>Group join request from {{senderName}} <button class="acceptRequest" data-messageId="{{id}}">Accept</button><button data-messageId="{{id}}">Ignore</button></div>
+    {{/if}}
+</li>

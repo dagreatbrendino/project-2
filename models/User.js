@@ -49,22 +49,14 @@ module.exports = function(sequelize, DataTypes){
         }),
 
         User.hasMany(models.Chore, {
-            foreignKey:{
-                allowNull: true
-            }
+
         }),
         User.hasMany(models.Grocery, {
-            foreignKey:{
-                allowNull: true
-            }
+
         }),
         User.hasMany(models.Bill, {
-            foreignKey:{
-                allowNull: true
-            }
+
         });
-
-
     }
     return User
 }

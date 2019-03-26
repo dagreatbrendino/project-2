@@ -14,9 +14,14 @@
             <div class="col-8 offset-2">
                 <br>
                 <br>
-                <p>Join an existing group or <a href="" class="btn btn-default btn-rounded mb-1 sign-up-btn"
-                        data-toggle="modal" data-target="#modalGroupCreate">create a new group</a></p>
-
+                <p>
+                    <a href="" class = "btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalGroupFind">
+                        Join an existing group
+                    </a> or 
+                    <a href="" class="btn btn-default btn-rounded mb-1 sign-up-btn" data-toggle="modal" data-target="#modalGroupCreate">
+                        create a new group
+                    </a>
+                </p>
                 <div class="modal fade" id="modalGroupCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -39,6 +44,37 @@
                             
                                     <!-- Login Button -->
                                     <button id="createGroupButton" class="btn btn-default">Create Group</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                                <div class="modal fade" id="modalGroupFind" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Join a Group</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="groupSearch">
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="text" id="group-name-search" class="form-control validate">
+                                        <label id="groupJoinLabel" data-error="wrong" data-success="right" for="defaultForm-email">Group Name</label>
+                                    </div>
+                                    <div id="groupResults">
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer d-flex justify-content-center">
+                            
+                                    <button id="searchGroupButton" class="btn btn-default">Search for Group</button>
                                 </div>
                             </form>
                             

@@ -16,7 +16,11 @@
         <form class="clearfix mb-4" action="POST"></form>
         <br>
         <br>
-        <p>Welcome to {{group.groupName}} {{user.name}}</p>
+        <ul class="burgers-list text-center">
+            {{#each messages}}
+            {{> messages/message-card}}
+            {{/each}}
+        </ul>
 
 
         <br>
@@ -25,3 +29,5 @@
     </div>
   </div>
 </div>
+
+<script src="js/messages.js"></script>
