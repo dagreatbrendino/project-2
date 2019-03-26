@@ -1,0 +1,54 @@
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container">
+        <img class="img-fluid mb-5 mx-auto" src="/img/notepad.png" alt="logo" style="width:280px;">
+        <h1 class="text-uppercase mb-0">Pad Notes</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">Keep your home tasks organized</h2>
+    </div>
+</header>
+<script  src="js/groupJoin.js"></script>
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <br>
+                <p>Join an existing group or <a href="" class="btn btn-default btn-rounded mb-1 sign-up-btn"
+                        data-toggle="modal" data-target="#modalGroupCreate">create a new group</a></p>
+
+                <div class="modal fade" id="modalGroupCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Create a Group</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="createGroup">
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="text" id="group-name" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Group Name</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                            
+                                    <!-- Login Button -->
+                                    <button id="createGroupButton" class="btn btn-default">Create Group</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

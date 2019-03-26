@@ -48,7 +48,7 @@ module.exports = function(sequelize, DataTypes){
             }
         }),
 
-        User.hasMany(models.Chores, {
+        User.hasMany(models.Chore, {
             foreignKey:{
                 allowNull: true
             }
@@ -58,7 +58,7 @@ module.exports = function(sequelize, DataTypes){
                 allowNull: true
             }
         }),
-        User.hasMany(models.Bills, {
+        User.hasMany(models.Bill, {
             foreignKey:{
                 allowNull: true
             }
