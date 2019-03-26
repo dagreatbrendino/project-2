@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes){
 
-    var Chores = sequelize.define("Chores", {
+    var Chore = sequelize.define("Chore", {
         chore: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -16,20 +16,20 @@ module.exports = function(sequelize, DataTypes){
         
     });
     //Associating the chores table with the user and group table 
-    Chores.associate = function(models){
+    Chore.associate = function(models){
 
-        Chores.belongsTo(models.User, {
+        Chore.belongsTo(models.User, {
             foreignKey:{
                 allowNull: false
             }
         });
 
-        Chores.belongsTo(models.Group, {
+        Chore.belongsTo(models.Group, {
             foreignKey:{
                 allowNull: false
             }
         });
     }
    
-    return Chores
+    return Chore
 }

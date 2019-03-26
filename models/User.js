@@ -48,23 +48,15 @@ module.exports = function(sequelize, DataTypes){
             }
         }),
 
-        User.hasMany(models.Chores, {
-            foreignKey:{
-                allowNull: true
-            }
+        User.hasMany(models.Chore, {
+
         }),
         User.hasMany(models.Grocery, {
-            foreignKey:{
-                allowNull: true
-            }
+
         }),
-        User.hasMany(models.Bills, {
-            foreignKey:{
-                allowNull: true
-            }
+        User.hasMany(models.Bill, {
+
         });
-
-
     }
     return User
 }

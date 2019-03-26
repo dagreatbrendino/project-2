@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes){
 
-    var Bills = sequelize.define("Bills", {
+    var Bill = sequelize.define("Bill", {
         listItem: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -30,14 +30,18 @@ module.exports = function(sequelize, DataTypes){
         
     });
     //Associating the bills table with the user and group table 
-    Bills.associate = function(models){
-
-        Bills.belongsTo(models.User, {
-            through: models.Group,
+    Bill.associate = function(models){
+        Bill.belongsTo(models.User, {
             foreignKey:{
-                allowNull: true
+                allowNull: false
+            }
+        });
+
+        Bill.belongsTo(models.Group, {
+            foreignKey:{
+                allowNull: false
             }
         });
     }
-    return Bills
+    return Bill
 }

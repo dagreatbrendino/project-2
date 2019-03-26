@@ -14,15 +14,22 @@ module.exports = function(sequelize, DataTypes){
     Group.associate = function(models) {
 
         Group.hasMany(models.User, {
-
+            
         });
-        Group.hasMany(models.Chores, {
+        Group.belongsTo(models.User, {
+            foreignKey: {
+                name: 'creatorId',
+                allowNull: false
+              },
+            constraints: false
+        })
+        Group.hasMany(models.Chore, {
 
         });
         Group.hasMany(models.Grocery, {
 
         });
-        Group.hasMany(models.Bills, {
+        Group.hasMany(models.Bill, {
 
         });
     };
