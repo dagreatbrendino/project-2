@@ -1,6 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
-
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+var op = db.sequelize.Op
 module.exports = function(app) {
   // Route to handle login attempts. Using passport's local authentication strategy
   // user will be served content based on wether the authentication was successful or not
@@ -70,14 +71,33 @@ module.exports = function(app) {
 
   })
 
-  app.get("/user/messages", function(req,res){
+  app.get("/messages",isAuthenticated, function(req,res){
     db.Message.findAll({
       where: {
-        recepeintId: req.user.id
+        recepientId: req.user.id
       }
     }).then(function(messageData){
-      res.json(messageData);
+      res.render("messages",{messages: messageData});
     })
+  })
+
+  app.get("/groups/:groupName", isAuthenticated, function(req, res){
+    console.log(req.params)
+    db.Group.findAll({
+      where:{
+        groupName: {
+          [op.like]: '%'+ req.params.groupName + '%'
+        }
+      }
+    }).then(function(groupData){
+      res.json(groupData)
+    })
+  })
+  app.get("/groups/", isAuthenticated, function(req, res){
+    db.Group.findAll({})
+      .then(function(groupData){
+        res.json(groupData)
+      })
   })
   
 };
