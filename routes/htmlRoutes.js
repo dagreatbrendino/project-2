@@ -12,6 +12,12 @@ module.exports = function(app) {
   app.get("/signup", function(req, res){
     res.render("signup");
   })
+  
+  //bec adding, might need to remove
+  app.get("/tasks", function(req, res) {
+    res.render("tasks");
+  })
+
   app.get("/home",isAuthenticated, function(req, res){
     console.log("redirected")
     console.log(req.user);
