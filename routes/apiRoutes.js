@@ -69,5 +69,15 @@ module.exports = function(app) {
       })
 
   })
+
+  app.get("/user/messages", function(req,res){
+    db.Message.findAll({
+      where: {
+        recepeintId: req.user.id
+      }
+    }).then(function(messageData){
+      res.json(messageData);
+    })
+  })
   
 };
