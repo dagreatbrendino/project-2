@@ -15,6 +15,17 @@ module.exports = function (seqeulize, DataTypes){
                 len: [5,50]
             }
         },
+        type: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        senderName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:{
+                len: [5]
+            }
+        }
     })
 
     Message.associate = function(models){

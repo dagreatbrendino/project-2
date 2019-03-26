@@ -20,12 +20,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+var hbsHelpers = exphbs.create({
+  helpers: {
+    isJoinRequest: function (type){
+        if (type === "join_request"){
+          return true;
+        }
+    }
+  },
+  defaultLayout: "main",
+  extname: ".handlebars"
+});
+app.engine( "handlebars", hbsHelpers.engine);
 app.set("view engine", "handlebars");
 
 // Routes

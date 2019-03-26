@@ -39,16 +39,14 @@ module.exports = function(app) {
         where: {
           id: req.user.id
         }
-      })
-        .then(function(userData){
+      }).then(function(userData){
           homeObject.user = userData
         })
       db.Group.findOne({
         where: {
           id: req.user.GroupId
         }
-      })
-        .then(function(groupData){
+      }).then(function(groupData){
           homeObject.group = groupData
           console.log(homeObject)
           res.render("home", homeObject);

@@ -72,12 +72,35 @@ module.exports = function(app) {
   })
 
   app.get("/messages",isAuthenticated, function(req,res){
+    var hdbsObj = {
+      messages: "",
+      users: ""
+    }
     db.Message.findAll({
       where: {
         recepientId: req.user.id
       }
     }).then(function(messageData){
-      res.render("messages",{messages: messageData});
+      hdbsObj.messages = messageData
+      })
+    db.User.findAll({
+      attributes: ['name'],
+    }).then(function(userData){
+      hdbsObj.users = userData
+      res.render("messages", hdbsObj);
+    });
+  })
+
+  app.post("/messages", isAuthenticated, function(req, res){
+    db.Message.create({
+      subject: req.body.subject,
+      body: req.body.body,
+      type: req.body.type,
+      senderName: req.user.name,
+      senderId: req.user.id,
+      recepientId: req.body.recepientId
+    }).then(function (data){
+      res.end();
     })
   })
 
@@ -98,6 +121,26 @@ module.exports = function(app) {
       .then(function(groupData){
         res.json(groupData)
       })
+  })
+
+  app.put("/request/join/accept", isAuthenticated, function(req, res){
+    db.Message.findOne({
+      where: {
+        id: req.body.id
+      }
+    }).then(function(messageData){
+      //just to make sure, check to see that the user's id is the same as the message's recepeint id
+      if(req.user.id === messageData.recepientId){
+        console.log("req gId ", req.user.GroupId)
+        db.User.update({
+          GroupId: req.user.GroupId
+        },{
+          where: {
+            id: messageData.senderId
+          }
+        });
+      }
+    })
   })
   
 };

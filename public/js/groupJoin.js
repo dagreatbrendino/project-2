@@ -53,5 +53,12 @@ $(document).ready(function() {
         console.log($(this));
         event.preventDefault()
         console.log("submitting request for ", $(this).data("creatorid"));
+        var groupCreatorId = $(this).data("creatorid");
+        $.post("/messages", {
+            subject: "New Group Join Request",
+            type: "join_request",
+            body: "some user is requsting to join the group",
+            recepientId: groupCreatorId
+        })
     })
 });
