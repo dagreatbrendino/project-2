@@ -103,7 +103,15 @@ module.exports = function(app) {
       res.end();
     })
   })
-
+  app.delete("/message/delete/:id", isAuthenticated, function(req, res){
+    db.Message.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(){
+      res.end()
+    })
+  })
   app.get("/groups/:groupName", isAuthenticated, function(req, res){
     console.log(req.params)
     db.Group.findAll({
@@ -138,6 +146,8 @@ module.exports = function(app) {
           where: {
             id: messageData.senderId
           }
+        }).then(function(userData){
+          res.end();
         });
       }
     })
