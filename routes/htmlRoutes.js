@@ -15,6 +15,7 @@ module.exports = function(app) {
     res.render("signup");
   })
   
+
   app.get("/login", function(req, res){
     if(req.user){
       res.redirect("/home");
@@ -23,6 +24,7 @@ module.exports = function(app) {
   });
 
   //Load home page for authenticated user
+
   app.get("/home",isAuthenticated, function(req, res){
     console.log("redirected")
     console.log(req.user);
@@ -89,4 +91,9 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
+    //bec adding, might need to remove
+  app.get("/tasks", function(req, res) {
+    res.render("tasks");
+  })
+
 };
