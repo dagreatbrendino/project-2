@@ -9,9 +9,20 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.render("index");
   });
+
+  //user Auth routes
   app.get("/signup", function(req, res){
     res.render("signup");
   })
+  
+  app.get("/login", function(req, res){
+    if(req.user){
+      res.redirect("/home");
+    }
+    res.render("login");
+  });
+
+  //Load home page for authenticated user
   app.get("/home",isAuthenticated, function(req, res){
     console.log("redirected")
     console.log(req.user);
@@ -22,41 +33,48 @@ module.exports = function(app) {
       chore: "",
       grocery: ""
     }
+    //If the user has a group send them to the group home page
     if (req.user.GroupId){
       db.User.findOne({
         where: {
           id: req.user.id
         }
-      })
-        .then(function(userData){
+      }).then(function(userData){
           homeObject.user = userData
         })
       db.Group.findOne({
         where: {
           id: req.user.GroupId
         }
-      })
-        .then(function(groupData){
+      }).then(function(groupData){
           homeObject.group = groupData
           console.log(homeObject)
           res.render("home", homeObject);
         })
 
     }
+    //otherwise send them to the page where they can request to join/create groups
     else{
       res.redirect("/groupJoin")
     }
   })
+  //route for page where users can join/create groups
   app.get("/groupJoin", isAuthenticated, function(req, res){
     res.render("groupJoin");
   });
+  //route for getting messages
+  // app.get("/message", isAuthenticated, function(req, res){
+  //   //finds all messages where the recepientId matches that of the authed user
+  //   db.Message.findAll({
+  //     where: {
+  //       recepientId: req.user.id
+  //     }
+  //   }).then(function(messageData){
+  //     console.log(messageData)
+  //     res.render("messages", {messages: messageData});
+  //   })
+  // })
 
-  app.get("/login", function(req, res){
-    if(req.user){
-      res.redirect("/home");
-    }
-    res.render("login");
-  });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
