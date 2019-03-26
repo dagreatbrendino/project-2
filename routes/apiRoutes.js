@@ -70,7 +70,7 @@ module.exports = function(app) {
       })
 
   })
-
+  //this route will return all messages for a user
   app.get("/messages",isAuthenticated, function(req,res){
     var hdbsObj = {
       messages: "",
@@ -90,7 +90,7 @@ module.exports = function(app) {
       res.render("messages", hdbsObj);
     });
   })
-
+  //this route allows for new messages to be created
   app.post("/messages", isAuthenticated, function(req, res){
     db.Message.create({
       subject: req.body.subject,
@@ -103,9 +103,18 @@ module.exports = function(app) {
       res.end();
     })
   })
-
+  //this route allows users to delete messages
+  app.delete("/message/delete/:id", isAuthenticated, function(req, res){
+    db.Message.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(){
+      res.end()
+    })
+  })
+  //this route will return groups who's names are similar to the passed group name
   app.get("/groups/:groupName", isAuthenticated, function(req, res){
-    console.log(req.params)
     db.Group.findAll({
       where:{
         groupName: {
@@ -116,14 +125,16 @@ module.exports = function(app) {
       res.json(groupData)
     })
   })
+  //this route will return all groups
   app.get("/groups/", isAuthenticated, function(req, res){
     db.Group.findAll({})
       .then(function(groupData){
         res.json(groupData)
       })
   })
-
+  //this route provides the user the ability to accept join requests in their messages
   app.put("/request/join/accept", isAuthenticated, function(req, res){
+    //first we find the message that triggered the route
     db.Message.findOne({
       where: {
         id: req.body.id
@@ -131,13 +142,15 @@ module.exports = function(app) {
     }).then(function(messageData){
       //just to make sure, check to see that the user's id is the same as the message's recepeint id
       if(req.user.id === messageData.recepientId){
-        console.log("req gId ", req.user.GroupId)
+        //update the groupId of the user who sent the join request
         db.User.update({
           GroupId: req.user.GroupId
         },{
           where: {
             id: messageData.senderId
           }
+        }).then(function(userData){
+          res.end();
         });
       }
     })
