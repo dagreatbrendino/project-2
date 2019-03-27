@@ -64,7 +64,7 @@ module.exports = function(app) {
       })
       db.Grocery.findAll({
         where: {
-          id: req.user.GroupId
+          GroupId: req.user.GroupId
         }
       }).then(function(groceryData){
         homeObject.grocery = groceryData;
