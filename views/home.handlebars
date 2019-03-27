@@ -1,12 +1,41 @@
-<!-- Header -->
-<header class="masthead bg-primary text-white text-center">
-  <div class="container">
-    <img class="img-fluid mb-5 mx-auto" src="/img/notepad.png" alt="logo" style="width:280px;">
-    <h1 class="text-uppercase mb-0">Pad Notes</h1>
-    <hr class="star-light">
-    <h2 class="font-weight-light mb-0">Keep your home tasks organized</h2>
-  </div>
-</header>
+<!-- NAV TABS -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link" id="bills-tab" data-toggle="tab" href="#bills" role="tab" aria-controls="bills" aria-selected="false">Bills</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="chores-tab" data-toggle="tab" href="#chores" role="tab" aria-controls="chores" aria-selected="false">Chores</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="groceries-tab" data-toggle="tab" href="#groceries" role="tab" aria-controls="groceries" aria-selected="false">Groceries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
+  </li>
+</ul>
+
+<!-- TABS CONTENT -->
+<div class="tab-content">
+  <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">...</div>
+  <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">...</div>
+  <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">...</div>
+  <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
+  <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">...</div>
+
+</div>
+
+<!-- TABS FUNCTIONALITY -->
+<script>
+  $(function () {
+    $('#myTab li:last-child a').tab('show')
+  })
+</script>
+
+
+{{!-- BRENDANS BILL INFO ---------------------------------------}}
 <script src="js/home.js"></script>
 <div id="home">
   <div class="container">
