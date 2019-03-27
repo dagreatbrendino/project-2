@@ -46,47 +46,93 @@
         <br>
         <br>
         <p>Welcome to {{group.groupName}} {{user.name}}</p>
-        <div id ='billsTab'>
+        <div id='billsTab'>
           <ul>
-                      {{#each bill}}
-          {{> bills/bill-card}}
-          {{/each}}
+            {{#each bill}}
+            {{> bills/bill-card}}
+            {{/each}}
           </ul>
-        <a href="" class = "btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
-          Add Bill
-        </a> 
+          <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
+            Add Bill
+          </a>
         </div>
-        {{!-- modal for adding bills --}}
+        <div id='groceriesTab'>
+          <ul>
+            {{#each grocery}}
+            {{> groceries/grocery-card}}
+            {{/each}}
+          </ul>
+          <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddGrocery">
+            Add Grocery
+          </a>
+        </div>
+        {{!--  modal for adding bills --}}
         <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header text-center">
-                                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form id="addBillForm">
-                                <div class="modal-body mx-3">
-                                    <div class="md-form mb-5">
-                                        <i class="fas fa-envelope prefix grey-text"></i>
-                                        <input type="text" id="bill-name" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill Name</label>
-                                        <input type="text" id="bill-amount" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill Amount</label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                            
-                                    <!-- Login Button -->
-                                    <button id="addBillButton" class="btn btn-default">Add Bill</button>
-                                </div>
-                            </form>
-                            
-                        </div>
-                    </div>
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form id="addBillForm">
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="bill-name" class="form-control validate">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                      Name</label>
+                    <input type="text" id="bill-amount" class="form-control validate">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                      Amount</label>
+                  </div>
                 </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                  <button id="addBillButton" class="btn btn-default">Add Bill</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        {{!-- modal for adding groceries --}}
+        <div class="modal fade" id="modalAddGrocery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add a Grocery</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form id="addGroeceryForm">
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="grocery-name" class="form-control validate">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
+                      Name</label>
+                    <input type="text" id="grocery-quantity" class="form-control validate">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
+                      Quantity</label>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                  <button id="addGroceryButton" class="btn btn-default">Add Grocery</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+
 
 
         <br>
