@@ -44,16 +44,24 @@ module.exports = function(app) {
       }).then(function(userData){
           homeObject.user = userData
         })
+
       db.Group.findOne({
         where: {
           id: req.user.GroupId
         }
       }).then(function(groupData){
-          homeObject.group = groupData
-          console.log(homeObject)
-          res.render("home", homeObject);
+          homeObject.group = groupData   
         })
-
+      db.Bill.findAll({
+        where: {
+          GroupId: req.user.GroupId
+        }
+      }).then(function(billData){
+        homeObject.bill = billData
+        console.log(homeObject);
+        res.render("home", homeObject);
+      })
+    
     }
     //otherwise send them to the page where they can request to join/create groups
     else{
