@@ -37,6 +37,7 @@ module.exports = function(app) {
     }
     //If the user has a group send them to the group home page
     if (req.user.GroupId){
+      //Find the user row for the logged in user
       db.User.findOne({
         where: {
           id: req.user.id
@@ -44,7 +45,7 @@ module.exports = function(app) {
       }).then(function(userData){
           homeObject.user = userData
         })
-
+      //find the group row associated with the user
       db.Group.findOne({
         where: {
           id: req.user.GroupId
@@ -52,16 +53,25 @@ module.exports = function(app) {
       }).then(function(groupData){
           homeObject.group = groupData   
         })
+      //find all bill rows associated with the group
       db.Bill.findAll({
         where: {
           GroupId: req.user.GroupId
         }
       }).then(function(billData){
         homeObject.bill = billData
-        console.log(homeObject);
-        res.render("home", homeObject);
+
       })
-    
+      db.Grocery.findAll({
+        where: {
+          id: req.user.GroupId
+        }
+      }).then(function(groceryData){
+        homeObject.grocery = groceryData;
+        console.log(homeObject);
+        //render with the home layout passing the homeObject 
+        res.render("home", homeObject);
+      })    
     }
     //otherwise send them to the page where they can request to join/create groups
     else{
@@ -72,19 +82,6 @@ module.exports = function(app) {
   app.get("/groupJoin", isAuthenticated, function(req, res){
     res.render("groupJoin");
   });
-  //route for getting messages
-  // app.get("/message", isAuthenticated, function(req, res){
-  //   //finds all messages where the recepientId matches that of the authed user
-  //   db.Message.findAll({
-  //     where: {
-  //       recepientId: req.user.id
-  //     }
-  //   }).then(function(messageData){
-  //     console.log(messageData)
-  //     res.render("messages", {messages: messageData});
-  //   })
-  // })
-
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
