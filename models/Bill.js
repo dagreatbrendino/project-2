@@ -1,21 +1,21 @@
 module.exports = function(sequelize, DataTypes){
 
     var Bill = sequelize.define("Bill", {
-        listItem: {
+        billName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [3, 50]
             }
         },
-        quantity:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-            isNumeric: true
-            }
-        },
-        totalAmount: {
+        // quantity:{
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     validate: {
+        //     isNumeric: true
+        //     }
+        // },
+        amount: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {

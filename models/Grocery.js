@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes){
 
     var Grocery = sequelize.define("Grocery", {
-        groceryItem: {
+        groceryName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -29,6 +29,12 @@ module.exports = function(sequelize, DataTypes){
             through: models.Group,
             foreignKey:{
                 allowNull: true
+            }
+        });
+
+        Grocery.belongsTo(models.Group, {
+            foreignKey:{
+                allowNull: false
             }
         });
     }
