@@ -7,7 +7,7 @@
     <h2 class="font-weight-light mb-0">Keep your home tasks organized</h2>
   </div>
 </header>
-
+<script src="js/home.js"></script>
 <div id="home">
   <div class="container">
     <div class="row">
@@ -17,6 +17,47 @@
         <br>
         <br>
         <p>Welcome to {{group.groupName}} {{user.name}}</p>
+        <div id ='billsTab'>
+          <ul>
+                      {{#each bill}}
+          {{> bills/bill-card}}
+          {{/each}}
+          </ul>
+        <a href="" class = "btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
+          Add Bill
+        </a> 
+        </div>
+        {{!-- modal for adding bills --}}
+        <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="addBillForm">
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="text" id="bill-name" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill Name</label>
+                                        <input type="text" id="bill-amount" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill Amount</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                            
+                                    <!-- Login Button -->
+                                    <button id="addBillButton" class="btn btn-default">Add Bill</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
 
 
         <br>

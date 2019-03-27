@@ -70,6 +70,7 @@ module.exports = function(app) {
       })
 
   })
+
   //this route will return all messages for a user
   app.get("/messages",isAuthenticated, function(req,res){
     var hdbsObj = {
@@ -113,6 +114,7 @@ module.exports = function(app) {
       res.end()
     })
   })
+
   //this route will return groups who's names are similar to the passed group name
   app.get("/groups/:groupName", isAuthenticated, function(req, res){
     db.Group.findAll({
@@ -132,6 +134,20 @@ module.exports = function(app) {
         res.json(groupData)
       })
   })
+
+  app.post("/bill/add", isAuthenticated, function(req,res){
+    db.Bill.create({
+      listItem: req.body.listItem,
+      quantity: 0,
+      totalAmount: req.body.totalAmount,
+      complete: false,
+      UserId: req.user.id,
+      GroupId: req.user.GroupId
+    }).then(function(data){
+      res.end();
+    })
+  })
+
   //this route provides the user the ability to accept join requests in their messages
   app.put("/request/join/accept", isAuthenticated, function(req, res){
     //first we find the message that triggered the route
