@@ -102,6 +102,28 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/bill/:creatorId/:billId", function(req, res){
+    //if the user is the creator of the bill
+    var hbsObject = {
+      bill: ""
+    }
+    var creatorId = parseInt(req.params.creatorId);
+    var billId = parseInt(req.params.billId);
+    if(req.user.id === creatorId){
+      db.Bill.findOne({
+        where: {
+          id: billId
+        }
+      }).then(function(billData){
+        hbsObject.bill = billData
+        res.render("billEdit", hbsObject);
+      });
+    }
+    else{
+      res.redirect("/home");
+    }
+  })
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

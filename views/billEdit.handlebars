@@ -1,0 +1,19 @@
+<script src="../../js/billEdit.js"></script>
+    <button id="removeBill"> Remove Bill</button>
+  <form id="editBillForm" data-creatorid={{bill.UserId}} data-billid={{bill.id}}>
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="bill-name" class="form-control validate" name="billName" value={{bill.billName}}>
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                      Name</label>
+                    <input type="text" id="bill-amount" class="form-control validate" name="amount" value="{{bill.amount}}">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                      Amount</label>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                  <input type="submit" id="editBillButton" class="btn btn-default" value="Add Bill">
+                </div>
+</form>

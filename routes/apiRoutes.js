@@ -183,11 +183,10 @@ module.exports = function(app) {
   //these routes handle bills 
     //this route allows users to add a new bill
     app.post("/bill/add", isAuthenticated, parser.single("image"), function(req,res){
-      console.log(req.body)
+      //this parses the cloudinary file url into a thumbnail for the document
       var originalUrl = req.file.url
-      console.log("original url: " ,originalUrl)
       var makeThumbUrl =  originalUrl.slice(0, (originalUrl.indexOf("upload/") + 7)) + "w_200,h_250,bo_1px_solid_black/" + originalUrl.slice((originalUrl.indexOf("upload/") + 7), -3) + "jpg";
-      console.log("thumb url: ", makeThumbUrl);
+
     db.Bill.create({
       billName: req.body.billName,
       amount: req.body.amount,
@@ -197,15 +196,38 @@ module.exports = function(app) {
       fileUrl: req.file.url,
       thumbUrl: makeThumbUrl
     }).then(function(data){
-      console.log(req.file);
       res.redirect("/home");
     })
   })
 
-  app.post("/bill/upload/document", parser.single("image"), function(req, res){
-    
-
+  app.put("/bill/edit/:creatorId/:billId", isAuthenticated, function(req, res){
+    var creatorId = parseInt(req.params.creatorId);
+    var billId = parseInt(req.params.billId);
+    if(req.user.id === creatorId){
+      db.Bill.update({
+        billName: req.body.billName,
+        amount: req.body.amount
+      },{
+        where:{
+          id: billId
+        }
+      }).then(function(data){
+        console.log("done updating bill")
+        res.end();
+      });
+    };
   });
+
+  app.delete("/bill/delete/:billId", isAuthenticated, function(req, res){
+    db.Bill.destroy({
+      where: {
+        id: req.params.billId
+      }
+    }).then(function(data){
+      res.end();
+    });
+  });
+
 
   app.post("/grocery/add", isAuthenticated, function(req,res){
     db.Grocery.create({
