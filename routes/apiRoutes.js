@@ -188,4 +188,15 @@ module.exports = function(app) {
     })
   })
 
+  app.post("/chore/add", isAuthenticated, function(req,res){
+    db.Chore.create({
+      chore: req.body.chore,
+      complete: false,
+      UserId: req.user.id,
+      GroupId: req.user.GroupId
+    }).then(function(data){
+      res.end();
+    })
+  })
+
 };

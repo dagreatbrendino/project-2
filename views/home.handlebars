@@ -34,12 +34,14 @@
   })
 </script>
 
+{{!-- BRENDANS BILL INFO ---------------------------------------}}
 <script src="js/home.js"></script>
 <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
         <p>Welcome to {{group.groupName}} {{user.name}} {{user.id}}</p>
+        
         <div class="tab-content">
           <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
             <div id='billsTab'>
@@ -53,7 +55,18 @@
               </a>
             </div>
           </div>
-          <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">...</div>
+          <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">
+               <div id='choresTab'>
+          <ul>
+            {{#each chore}}
+            {{> chores/chore-card}}
+            {{/each}}
+          </ul>
+          <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddChores">
+            Add Chores
+          </a>
+        </div>
+          </div>
           <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">
             <div id='groceriesTab'>
               <ul>
@@ -71,6 +84,7 @@
 
           </div>
      
+
 
         {{!--  modal for adding bills --}}
         <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -138,6 +152,35 @@
           </div>
         </div>
 
+{{!-- modal for adding chores --}}
+        <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add a Chore</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form id="addChoreForm">
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="chore-name" class="form-control validate">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
+                      Name</label>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                  <button id="addChoreButton" class="btn btn-default">Add Chore</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
 
 
 
