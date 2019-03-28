@@ -29,6 +29,18 @@ $(document).ready(function(){
             window.location.reload();
         });
     });
+    $("#addChoresButton").on("click", function(event){
+        event.preventDefault();
+        console.log("adding chores")
+        var chore = {
+            choreName: $("#chore-name").val().trim(),
+        };
 
+        $.post("/chore/add",{
+            choreName: chore.choreName
+        }).then(function(){
+            window.location.reload();
+        });
+    });
 
 });

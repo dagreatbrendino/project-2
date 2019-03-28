@@ -68,11 +68,21 @@ module.exports = function(app) {
         }
       }).then(function(groceryData){
         homeObject.grocery = groceryData;
+       
+      })    
+      db.Chore.findAll({
+        where: {
+          id: req.user.GroupId
+        }
+      }).then(function(choreData){
+        homeObject.chore = choreData;
         console.log(homeObject);
         //render with the home layout passing the homeObject 
         res.render("home", homeObject);
       })    
+
     }
+    
     //otherwise send them to the page where they can request to join/create groups
     else{
       res.redirect("/groupJoin")
