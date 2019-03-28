@@ -26,6 +26,18 @@ var hbsHelpers = exphbs.create({
         if (type === "join_request"){
           return true;
         }
+        else{
+          return false;
+        }
+    },
+    isUser(userId, posterId){
+      console.log(posterId)
+      if( userId === posterId){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
   },
   defaultLayout: "main",

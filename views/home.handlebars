@@ -34,7 +34,6 @@
   })
 </script>
 
-
 {{!-- BRENDANS BILL INFO ---------------------------------------}}
 <script src="js/home.js"></script>
 <div id="home">
@@ -45,11 +44,11 @@
         <form class="clearfix mb-4" action="POST"></form>
         <br>
         <br>
-        <p>Welcome to {{group.groupName}} {{user.name}}</p>
+        <p>Welcome to {{group.groupName}} {{user.name}} {{user.id}}</p>
         <div id='billsTab'>
           <ul>
             {{#each bill}}
-            {{> bills/bill-card}}
+            {{> bills/bill-card }}
             {{/each}}
           </ul>
           <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
