@@ -179,7 +179,17 @@ module.exports = function(app) {
   app.post("/grocery/add", isAuthenticated, function(req,res){
     db.Grocery.create({
       groceryName: req.body.groceryName,
-      quantity: req.body.quantity,
+      complete: false,
+      UserId: req.user.id,
+      GroupId: req.user.GroupId
+    }).then(function(data){
+      res.end();
+    })
+  })
+
+  app.post("/chore/add", isAuthenticated, function(req,res){
+    db.Chore.create({
+      chore: req.body.chore,
       complete: false,
       UserId: req.user.id,
       GroupId: req.user.GroupId
