@@ -21,7 +21,7 @@ $(document).ready(function(){
             groceryName: $("#grocery-name").val().trim(),
             quantity: $("#grocery-quantity").val().trim()
         };
-
+        console.log(grocery);
         $.post("/grocery/add",{
             groceryName: grocery.groceryName,
             quantity: grocery.quantity
@@ -29,7 +29,7 @@ $(document).ready(function(){
             window.location.reload();
         });
     });
-    $("#addChoresButton").on("click", function(event){
+    $("#addChoreButton").on("click", function(event){
         event.preventDefault();
         console.log("adding chores")
         var chore = {
@@ -37,7 +37,7 @@ $(document).ready(function(){
         };
 
         $.post("/chore/add",{
-            choreName: chore.choreName
+            chore: chore.choreName
         }).then(function(){
             window.location.reload();
         });
