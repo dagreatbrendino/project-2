@@ -1,31 +1,26 @@
 <!-- NAV TABS -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link" id="bills-tab" data-toggle="tab" href="#bills" role="tab" aria-controls="bills" aria-selected="false">Bills</a>
+    <a class="nav-link" id="bills-tab" data-toggle="tab" href="#bills" role="tab" aria-controls="bills"
+      aria-selected="false">Bills</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="chores-tab" data-toggle="tab" href="#chores" role="tab" aria-controls="chores" aria-selected="false">Chores</a>
+    <a class="nav-link" id="chores-tab" data-toggle="tab" href="#chores" role="tab" aria-controls="chores"
+      aria-selected="false">Chores</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="groceries-tab" data-toggle="tab" href="#groceries" role="tab" aria-controls="groceries" aria-selected="false">Groceries</a>
+    <a class="nav-link" id="groceries-tab" data-toggle="tab" href="#groceries" role="tab" aria-controls="groceries"
+      aria-selected="false">Groceries</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
+      aria-selected="false">Messages</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
+    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups"
+      aria-selected="false">Groups</a>
   </li>
 </ul>
-
-<!-- TABS CONTENT -->
-{{!-- <div class="tab-content">
-  <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">...</div>
-  <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">...</div>
-  <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">...</div>
-  <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
-  <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">...</div>
-
-</div> --}}
 
 <!-- TABS FUNCTIONALITY -->
 <script>
@@ -34,39 +29,49 @@
   })
 </script>
 
-{{!-- BRENDANS BILL INFO ---------------------------------------}}
+{{!-- TASK INFO---------------------------------------}}
 <script src="js/home.js"></script>
 <div id="home">
-  <div class="container">
+  <div class="todo-container">
     <div class="row">
       <div class="col-8 offset-2">
-        <p>Welcome to {{group.groupName}} {{user.name}} {{user.id}}</p>
-        
+        <br>
+        <h2 class="welcome">Your group: {{group.groupName}} {{user.name}} {{user.id}}</h2>
         <div class="tab-content">
+
+          {{!-- BILLS TAB---------------------------------------}}
           <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
             <div id='billsTab'>
               <ul>
                 {{#each bill}}
-                {{> bills/bill-card }}
+                {{> bills/bill-card}}
                 {{/each}}
               </ul>
-              <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
+              <br>
+              <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+                data-target="#modalAddBill"><i class="fa fa-plus"></i>
                 Add Bill
               </a>
             </div>
           </div>
-          <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">
-               <div id='choresTab'>
-          <ul>
-            {{#each chore}}
-            {{> chores/chore-card}}
-            {{/each}}
-          </ul>
-          <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddChores">
-            Add Chores
-          </a>
-        </div>
+
+          {{!-- CHORES TAB---------------------------------------}}
+          <div class="tab-pane fade" id="chores" role="tabpanel" aria-labelledby="chores-tab">
+            <div id='choresTab'>
+              <ul>
+                {{#each chore}}
+                {{> chores/chore-card}}
+                {{/each}}
+              </ul>
+              <br>
+              <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+                data-target="#modalAddChores"><i class="fa fa-plus"></i>
+                Add Chores
+              </a>
+            </div>
           </div>
+
+          {{!-- GROCERIES TAB---------------------------------------}}
           <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">
             <div id='groceriesTab'>
               <ul>
@@ -74,19 +79,16 @@
                 {{> groceries/grocery-card}}
                 {{/each}}
               </ul>
-              <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddGrocery">
+              <br>
+              <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+                data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
                 Add Grocery
               </a>
             </div>
           </div>
-          <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
-          <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">...</div>
+        </div>
 
-          </div>
-     
-
-
-        {{!--  modal for adding bills --}}
+        {{!--  modals for adding bills --}}
         <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -100,10 +102,12 @@
               <form id="addBillForm">
                 <div class="modal-body mx-3">
                   <div class="md-form mb-5">
-                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <i class="fas fa-file-invoice-dollar"></i>
+
                     <input type="text" id="bill-name" class="form-control validate">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Name</label>
+                    <br>
                     <input type="text" id="bill-amount" class="form-control validate">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Amount</label>
@@ -114,7 +118,6 @@
                   <button id="addBillButton" class="btn btn-default">Add Bill</button>
                 </div>
               </form>
-
             </div>
           </div>
         </div>
@@ -133,7 +136,7 @@
               <form id="addGroeceryForm">
                 <div class="modal-body mx-3">
                   <div class="md-form mb-5">
-                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <i class="fas fa-shopping-cart"></i>
                     <input type="text" id="grocery-name" class="form-control validate">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
                       Name</label>
@@ -152,7 +155,7 @@
           </div>
         </div>
 
-{{!-- modal for adding chores --}}
+        {{!-- modal for adding chores --}}
         <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -166,7 +169,7 @@
               <form id="addChoreForm">
                 <div class="modal-body mx-3">
                   <div class="md-form mb-5">
-                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <i class="fas fa-broom"></i>
                     <input type="text" id="chore-name" class="form-control validate">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
                       Name</label>
@@ -174,7 +177,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
 
-                  <button id="addChoreButton" class="btn btn-default">Add Chore</button>
+                  <button id="addChoreButton" class="btn btn-sm btn-default">Add Chore</button>
                 </div>
               </form>
 

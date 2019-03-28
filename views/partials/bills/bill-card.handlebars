@@ -1,8 +1,10 @@
-<li>
-{{billName}}
-{{amount}}
 
-{{#if (isUser @root.user.id UserId)}}
-    <button id="editBill" data-billid={{id}}>Edit Bill</button>
-{{/if}}
+<li>
+    {{billName}}
+    {{amount}}
+
+    {{#if (isUser @root.user.id UserId)}}
+    <button id="editBill" type="button" class="btn btn-sm btn-light" data-billid={{id}}>Edit Bill</button>
+    {{/if}}
 </li>
+<br>
