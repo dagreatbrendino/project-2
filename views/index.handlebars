@@ -1,7 +1,7 @@
 <!-- Header -->
 <header class="masthead bg-primary text-white text-center">
   <div class="container">
-    <img class="img-fluid mb-5 mx-auto" src="/img/notepad.png" alt="logo" style="width:280px;">
+    <img class="img-fluid mb-5 mx-auto" src="/img/notepad.png" alt="logo" style="width:242px;">
     <h1 class="text-uppercase mb-0">Pad Notes</h1>
     <hr class="star-light">
     <h2 class="font-weight-light mb-0">Keep your home tasks organized</h2>
@@ -14,34 +14,32 @@
       <div class="col-8 offset-2">
         {{!-- <h1>{{msg}}</h1> --}}
         <form class="clearfix mb-4" action="POST"></form>
-        <br>
-        <br>
         <p>Pad Notes is a mobile app that helps you manage your household chores, bills, and grocery needs.
-            Create household groups to assign chores, join exisiting groups, request payments from roommates for bills,
-            and post which groceries are needed. </p>
- 
-        <div class="login form">
-          <div class="row">
-            <div class="col-8 offset-2">
+          Create household groups to assign chores, join exisiting groups, request payments from roommates for bills,
+          and post which groceries are needed. </p>
 
-              <form id="log-in" method="post">
-                <div>
-                  <label>Email:</label>
-                  <input id="email" type="text" name="email" />
-                </div>
-                <div>
-                  <label>Password:</label>
-                  <input id="password" type="password" name="password" />
-                </div>
-                <div>
-                  <input type="submit" value="Log In" />
-                  <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="">Continue as
-                      guest</a></button>
-                  <p class="message">Not registered? <a href="/signup">Create an account</a></p>
-                </div>
-              </form>
+        <div class="form-container">
+          <div class="login form">
+            <div class="row">
+              <div class="col-8 offset-2">
+                <form id="log-in" method="post">
+                  <div>
+                    <label>Email:</label>
+                    <input id="email" type="text" name="email" />
+                  </div>
+                  <div>
+                    <label>Password:</label>
+                    <input id="password" type="password" name="password" />
+                  </div>
+                  <div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log In">Log In</button>
+                    {{!-- <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="">Continue as
+                      guest</a></button> --}}
+                    <p class="message">Not registered? <a href="/signup">Create an account</a></p>
+                  </div>
+                </form>
+              </div>
             </div>
-
             <br>
             <br>
           </div>
@@ -50,5 +48,5 @@
     </div>
   </div>
 </div>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/js/login.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/login.js"></script>

@@ -2,31 +2,38 @@
   line-height: 2.5;
 }
 
-/* ---------------NAV------------------------------- */
+/* ---------------GOOGLE FONTS------------------------------ */
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Cutive+Mono|Nova+Mono|Roboto+Condensed|Share+Tech+Mono');
 
 
 /* ---------------HEADER------------------------------ */
 
 header.masthead {
-  padding-top: calc(5rem + 72px);
+  padding-top: calc(5rem + -19px);
   padding-bottom: 5rem;
 }
 
+.html {
+  background-image: url(lined_paper.png);
+}
+
+.welcome {
+  font-size: 2rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: whitesmoke;
+}
 
 header.masthead h1 {
-  font-size: 3rem;
+  font-family: 'Amatic SC', cursive;
+  font-size: 5rem;
   line-height: 3rem;
 }
 
 header.masthead h2 {
   font-size: 1.3rem;
-  font-family: 'Lato';
+  font-family: 'Share Tech Mono', monospace;
 }
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 /* ---------------LOGIN------------------------------ */
 
@@ -42,6 +49,10 @@ header.masthead h2 {
   width: device-width;
 }
 
+.form-container { 
+  background: dodgerblue;
+  padding: 20px;
+}
 
 h1 {
   color: #FFFFFF;
@@ -50,10 +61,12 @@ h1 {
 
 p {
   color: black;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 19px;
 }
 
 a {
+  color: black;
   text-decoration: none;
   background-color: transparent;
 }
@@ -118,7 +131,8 @@ a {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: white;
+  background: green;
+  hover: 
   width: 100%;
   border: 0;
   padding: 15px;
@@ -132,13 +146,13 @@ a {
 .form button:hover,
 .form button:active,
 .form button:focus {
-  background: dodgerblue;
+  background:orange;
 }
 
 .form .message {
   margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
+  color: #black;
+  font-size: 15px;
 }
 
 .form .message a {
@@ -200,4 +214,30 @@ button.edit {
 
 .top-30 {
   margin-top: 30px;
+}
+
+/* ---------------HOME----------------------------- */
+.todo-container {
+  background: dodgerblue;
+}
+
+.tasks-container {
+ background: white;
+}
+
+.taskanchor {
+  background-color: green;
+  color: white;
+  padding: 14px 25px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+}
+
+.manage-link {
+  color: white
+}
+
+.modal-body {
+  background: dodgerblue;
 }
