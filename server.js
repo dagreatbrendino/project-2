@@ -3,6 +3,9 @@ var express = require("express");
 var session = require("express-session");
 var exphbs = require("express-handlebars");
 
+
+
+
 console.log(process.env.CLOUDINARY_URL)
 var passport = require("./config/passport");
 
@@ -19,6 +22,10 @@ app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+// app.use(multer);
+// app.use(cloudinaryStorage);
 
 // Handlebars
 var hbsHelpers = exphbs.create({

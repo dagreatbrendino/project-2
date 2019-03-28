@@ -2,7 +2,25 @@ var db = require("../models");
 var passport = require("../config/passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var op = db.sequelize.Op
+
+//These dependencies will allow users to upload files to cloudinary storage
+var multer = require("multer");
+var cloudinary = require("cloudinary");
+cloudinary.config(process.env.CLOUDINARY_URL);
+var cloudinaryStorage = require("multer-storage-cloudinary");
+
+//Configuring the way files will be uploaded to coludinary as well as limiting the types of files
+var storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "pad_notes",
+  allowedFormats: ["jpg","png", "pdf"],
+  transformation: [{ width: 500, height: 500, crop: "limit", format:"jpg"}]
+});
+var parser = multer({storage: storage});
+
 module.exports = function(app) {
+
+
   //These Routes handle user sign in/log ins
     // Route to handle login attempts. Using passport's local authentication strategy
     // user will be served content based on wether the authentication was successful or not
@@ -164,17 +182,30 @@ module.exports = function(app) {
 
   //these routes handle bills 
     //this route allows users to add a new bill
-    app.post("/bill/add", isAuthenticated, function(req,res){
+    app.post("/bill/add", isAuthenticated, parser.single("image"), function(req,res){
+      console.log(req.body)
+      var originalUrl = req.file.url
+      console.log("original url: " ,originalUrl)
+      var makeThumbUrl =  originalUrl.slice(0, (originalUrl.indexOf("upload/") + 7)) + "w_200,h_250,bo_1px_solid_black/" + originalUrl.slice((originalUrl.indexOf("upload/") + 7), -3) + "jpg";
+      console.log("thumb url: ", makeThumbUrl);
     db.Bill.create({
       billName: req.body.billName,
       amount: req.body.amount,
       complete: false,
       UserId: req.user.id,
-      GroupId: req.user.GroupId
+      GroupId: req.user.GroupId,
+      fileUrl: req.file.url,
+      thumbUrl: makeThumbUrl
     }).then(function(data){
-      res.end();
+      console.log(req.file);
+      res.redirect("/home");
     })
   })
+
+  app.post("/bill/upload/document", parser.single("image"), function(req, res){
+    
+
+  });
 
   app.post("/grocery/add", isAuthenticated, function(req,res){
     db.Grocery.create({

@@ -72,7 +72,7 @@ module.exports = function(app) {
       })    
       db.Chore.findAll({
         where: {
-          id: req.user.GroupId
+          GroupId: req.user.GroupId
         }
       }).then(function(choreData){
         homeObject.chore = choreData;

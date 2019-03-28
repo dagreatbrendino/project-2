@@ -97,21 +97,22 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form id="addBillForm">
+              <form action="/bill/add" method="POST" id="addBillForm" enctype="multipart/form-data">
                 <div class="modal-body mx-3">
                   <div class="md-form mb-5">
                     <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="text" id="bill-name" class="form-control validate">
+                    <input type="text" id="bill-name" class="form-control validate" name="billName">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Name</label>
-                    <input type="text" id="bill-amount" class="form-control validate">
+                    <input type="text" id="bill-amount" class="form-control validate" name="amount">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Amount</label>
+                    <input type='file' name='image' />
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
 
-                  <button id="addBillButton" class="btn btn-default">Add Bill</button>
+                  <input type="submit" id="addBillButton" class="btn btn-default" value="Add Bill">
                 </div>
               </form>
 
@@ -152,7 +153,7 @@
           </div>
         </div>
 
-{{!-- modal for adding chores --}}
+        {{!-- modal for adding chores --}}
         <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">

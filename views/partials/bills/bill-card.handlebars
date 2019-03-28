@@ -1,6 +1,9 @@
 <li>
 {{billName}}
 {{amount}}
+<a taget="blank" href={{fileUrl}}>
+    <img src={{thumbUrl}} alt="billThumb"/>
+</a>
 
 {{#if (isUser @root.user.id UserId)}}
     <button id="editBill" data-billid={{id}}>Edit Bill</button>
