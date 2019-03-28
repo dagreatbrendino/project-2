@@ -3,6 +3,7 @@ var express = require("express");
 var session = require("express-session");
 var exphbs = require("express-handlebars");
 
+console.log(process.env.CLOUDINARY_URL)
 var passport = require("./config/passport");
 
 var db = require("./models");
