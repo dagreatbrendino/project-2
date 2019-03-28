@@ -2,7 +2,25 @@ var db = require("../models");
 var passport = require("../config/passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var op = db.sequelize.Op
+
+//These dependencies will allow users to upload files to cloudinary storage
+var multer = require("multer");
+var cloudinary = require("cloudinary");
+cloudinary.config(process.env.CLOUDINARY_URL);
+var cloudinaryStorage = require("multer-storage-cloudinary");
+
+//Configuring the way files will be uploaded to coludinary as well as limiting the types of files
+var storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "pad_notes",
+  allowedFormats: ["jpg","png", "pdf"],
+  transformation: [{ width: 500, height: 500, crop: "limit", format:"jpg"}]
+});
+var parser = multer({storage: storage});
+
 module.exports = function(app) {
+
+
   //These Routes handle user sign in/log ins
     // Route to handle login attempts. Using passport's local authentication strategy
     // user will be served content based on wether the authentication was successful or not
@@ -164,17 +182,52 @@ module.exports = function(app) {
 
   //these routes handle bills 
     //this route allows users to add a new bill
-    app.post("/bill/add", isAuthenticated, function(req,res){
+    app.post("/bill/add", isAuthenticated, parser.single("image"), function(req,res){
+      //this parses the cloudinary file url into a thumbnail for the document
+      var originalUrl = req.file.url
+      var makeThumbUrl =  originalUrl.slice(0, (originalUrl.indexOf("upload/") + 7)) + "w_200,h_250,bo_1px_solid_black/" + originalUrl.slice((originalUrl.indexOf("upload/") + 7), -3) + "jpg";
+
     db.Bill.create({
       billName: req.body.billName,
       amount: req.body.amount,
       complete: false,
       UserId: req.user.id,
-      GroupId: req.user.GroupId
+      GroupId: req.user.GroupId,
+      fileUrl: req.file.url,
+      thumbUrl: makeThumbUrl
     }).then(function(data){
-      res.end();
+      res.redirect("/home");
     })
   })
+
+  app.put("/bill/edit/:creatorId/:billId", isAuthenticated, function(req, res){
+    var creatorId = parseInt(req.params.creatorId);
+    var billId = parseInt(req.params.billId);
+    if(req.user.id === creatorId){
+      db.Bill.update({
+        billName: req.body.billName,
+        amount: req.body.amount
+      },{
+        where:{
+          id: billId
+        }
+      }).then(function(data){
+        console.log("done updating bill")
+        res.end();
+      });
+    };
+  });
+
+  app.delete("/bill/delete/:billId", isAuthenticated, function(req, res){
+    db.Bill.destroy({
+      where: {
+        id: req.params.billId
+      }
+    }).then(function(data){
+      res.end();
+    });
+  });
+
 
   app.post("/grocery/add", isAuthenticated, function(req,res){
     db.Grocery.create({

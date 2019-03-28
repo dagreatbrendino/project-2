@@ -1,10 +1,12 @@
 
 <li>
-    {{billName}}
-    {{amount}}
+{{billName}}
+{{amount}}
 
-    {{#if (isUser @root.user.id UserId)}}
-    <button id="editBill" type="button" class="btn btn-sm btn-light" data-billid={{id}}>Edit Bill</button>
-    {{/if}}
+
+{{#if (isUser @root.user.id UserId)}}
+  <a href="/bill/{{UserId}}/{{id}}">Edit Bill</a>
+{{/if}}
 </li>
-<br>
+
+

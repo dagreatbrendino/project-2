@@ -22,6 +22,14 @@ module.exports = function(sequelize, DataTypes){
                 isNumeric: true
             }
         },
+        fileUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        thumbUrl: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         complete: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
