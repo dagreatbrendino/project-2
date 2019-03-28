@@ -18,14 +18,14 @@
 </ul>
 
 <!-- TABS CONTENT -->
-<div class="tab-content">
+{{!-- <div class="tab-content">
   <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">...</div>
   <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">...</div>
   <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">...</div>
   <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
   <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">...</div>
 
-</div>
+</div> --}}
 
 <!-- TABS FUNCTIONALITY -->
 <script>
@@ -40,32 +40,23 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        {{!-- <h1>{{msg}}</h1> --}}
-        <form class="clearfix mb-4" action="POST"></form>
-        <br>
-        <br>
         <p>Welcome to {{group.groupName}} {{user.name}} {{user.id}}</p>
-        <div id='billsTab'>
-          <ul>
-            {{#each bill}}
-            {{> bills/bill-card }}
-            {{/each}}
-          </ul>
-          <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
-            Add Bill
-          </a>
-        </div>
-        <div id='groceriesTab'>
-          <ul>
-            {{#each grocery}}
-            {{> groceries/grocery-card}}
-            {{/each}}
-          </ul>
-          <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddGrocery">
-            Add Grocery
-          </a>
-        </div>
-        <div id='choresTab'>
+        
+        <div class="tab-content">
+          <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
+            <div id='billsTab'>
+              <ul>
+                {{#each bill}}
+                {{> bills/bill-card }}
+                {{/each}}
+              </ul>
+              <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddBill">
+                Add Bill
+              </a>
+            </div>
+          </div>
+          <div class="tab-pane fade"id="chores" role="tabpanel" aria-labelledby="chores-tab">
+               <div id='choresTab'>
           <ul>
             {{#each chore}}
             {{> chores/chore-card}}
@@ -75,6 +66,26 @@
             Add Chores
           </a>
         </div>
+          </div>
+          <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">
+            <div id='groceriesTab'>
+              <ul>
+                {{#each grocery}}
+                {{> groceries/grocery-card}}
+                {{/each}}
+              </ul>
+              <a href="" class="btn btn-default btn-rounded mb-1 group-sign-btn" data-toggle="modal" data-target="#modalAddGrocery">
+                Add Grocery
+              </a>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
+          <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">...</div>
+
+          </div>
+     
+
+
         {{!--  modal for adding bills --}}
         <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">

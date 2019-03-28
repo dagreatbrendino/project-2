@@ -1,7 +1,5 @@
 <li>
     {{groceryName}}
     {{quantity}}
-    {{#if (isUser @root.user.id UserId)}}
     <button id="editGrocery" data-billid={{id}}>Edit Bill</button>
-    {{/if}}
 </li>
