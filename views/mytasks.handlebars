@@ -9,6 +9,7 @@
                 <h2 class="welcome">Your group: {{taskObject.group.groupName}} {{user.name}} {{user.id}}</h2>
                 <div class="tab-content">
 
+
                     {{!-- BILLS TAB---------------------------------------}}
                     <div id="bills">
                         <div id='billsTab'>
@@ -18,7 +19,7 @@
                                 {{/each}}
                             </ul>
                             <br>
-                            <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn"
+                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
                                 data-toggle="modal" data-target="#modalAddBill"><i class="fa fa-plus"></i>
                                 Add Bill
                             </a>
@@ -34,7 +35,7 @@
                                 {{/each}}
                             </ul>
                             <br>
-                            <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn"
+                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
                                 data-toggle="modal" data-target="#modalAddChores"><i class="fa fa-plus"></i>
                                 Add Chores
                             </a>
@@ -50,7 +51,7 @@
                                 {{/each}}
                             </ul>
                             <br>
-                            <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn"
+                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
                                 data-toggle="modal" data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
                                 Add Grocery
                             </a>
@@ -90,7 +91,7 @@
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
 
-                                    <input type="submit" id="addBillButton" class="btn btn-default" value="Add Bill">
+                                    <input type="submit" id="addBillButton" class="btn btn-md btn-primary btn-dark mb-1" value="Add Bill">
                                 </div>
                             </form>
                         </div>
@@ -124,7 +125,7 @@
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
 
-                                    <button id="addGroceryButton" class="btn btn-default">Add Grocery</button>
+                                    <button id="addGroceryButton" class="btn btn-md btn-primary btn-dark mb-1">Add Grocery</button>
                                 </div>
                             </form>
 
@@ -155,7 +156,7 @@
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
 
-                                    <button id="addChoreButton" class="btn btn-sm btn-default">Add Chore</button>
+                                    <button id="addChoreButton" class="btn btn-md btn-primary btn-dark mb-1">Add Chore</button>
                                 </div>
                             </form>
 
