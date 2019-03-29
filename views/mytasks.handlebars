@@ -1,0 +1,171 @@
+
+{{!-- TASK INFO---------------------------------------}}
+<script src="js/home.js"></script>
+<div id="home">
+    <div class="todo-container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <h2 class="welcome">Your group: {{taskObject.group.groupName}} {{user.name}} {{user.id}}</h2>
+                <div class="tab-content">
+
+
+                    {{!-- BILLS TAB---------------------------------------}}
+                    <div id="bills">
+                        <div id='billsTab'>
+                            <ul>
+                                {{#each bill}}
+                                {{> bills/bill-card}}
+                                {{/each}}
+                            </ul>
+                            <br>
+                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
+                                data-toggle="modal" data-target="#modalAddBill"><i class="fa fa-plus"></i>
+                                Add Bill
+                            </a>
+                        </div>
+                    </div>
+
+                    {{!-- CHORES TAB---------------------------------------}}
+                    <div  id="chores">
+                        <div id='choresTab'>
+                            <ul>
+                                {{#each chore}}
+                                {{> chores/chore-card}}
+                                {{/each}}
+                            </ul>
+                            <br>
+                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
+                                data-toggle="modal" data-target="#modalAddChores"><i class="fa fa-plus"></i>
+                                Add Chores
+                            </a>
+                        </div>
+                    </div>
+
+                    {{!-- GROCERIES TAB---------------------------------------}}
+                    <div id="groceries">
+                        <div id='groceriesTab'>
+                            <ul>
+                                {{#each grocery}}
+                                {{> groceries/grocery-card}}
+                                {{/each}}
+                            </ul>
+                            <br>
+                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
+                                data-toggle="modal" data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
+                                Add Grocery
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{!--  modals for adding bills --}}
+                <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/bill/add" method="POST" id="addBillForm" enctype="multipart/form-data">
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+
+                                        <i class="fas fa-file-invoice-dollar"></i>
+
+                                        <input type="text" id="bill-name" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Bill
+                                            Name</label>
+                                        <br>
+                                        <input type="text" id="bill-amount" class="form-control validate">
+
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Bill
+                                            Amount</label>
+                                        <input type='file' name='image' />
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+
+                                    <input type="submit" id="addBillButton" class="btn btn-md btn-primary btn-dark mb-1" value="Add Bill">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- modal for adding groceries --}}
+                <div class="modal fade" id="modalAddGrocery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add a Grocery</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="addGroeceryForm">
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <input type="text" id="grocery-name" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Grocery
+                                            Name</label>
+                                        <input type="text" id="grocery-quantity" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Grocery
+                                            Quantity</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+
+                                    <button id="addGroceryButton" class="btn btn-md btn-primary btn-dark mb-1">Add Grocery</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- modal for adding chores --}}
+                <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add a Chore</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="addChoreForm">
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="fas fa-broom"></i>
+                                        <input type="text" id="chore-name" class="form-control validate">
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Chore
+                                            Name</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+
+                                    <button id="addChoreButton" class="btn btn-md btn-primary btn-dark mb-1">Add Chore</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

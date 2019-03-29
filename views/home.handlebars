@@ -13,8 +13,8 @@
       aria-selected="false">Groceries</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
-      aria-selected="false">Messages</a>
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="messages"
+      aria-selected="false">Chat</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups"
@@ -36,10 +36,14 @@
     <div class="row">
       <div class="col-8 offset-2">
         <br>
-        <h2 class="welcome">Your group: {{group.groupName}} {{user.name}} {{user.id}}</h2>
+        <h2 class="welcome">Your group: {{group.groupName}} {{user.name}} {{user.user}}</h2>
+        <br>
+
         <div class="tab-content">
 
           {{!-- BILLS TAB---------------------------------------}}
+          <h2 class="category">{{msg}}</h2>
+
           <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
             <div id='billsTab'>
               <ul>
@@ -48,7 +52,7 @@
                 {{/each}}
               </ul>
               <br>
-              <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
                 data-target="#modalAddBill"><i class="fa fa-plus"></i>
                 Add Bill
               </a>
@@ -64,7 +68,7 @@
                 {{/each}}
               </ul>
               <br>
-              <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
                 data-target="#modalAddChores"><i class="fa fa-plus"></i>
                 Add Chores
               </a>
@@ -80,7 +84,7 @@
                 {{/each}}
               </ul>
               <br>
-              <a href="" class="btn btn-lg btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
                 data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
                 Add Grocery
               </a>
@@ -195,4 +199,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

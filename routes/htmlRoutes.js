@@ -43,7 +43,6 @@ module.exports = function (app) {
       }
     }).then(function (userData) {
       homeObject.user = userData;
-      console.log(userData.GroupId)
       req.user.GroupId = userData.GroupId;
       //If the user has a group send them to the group home page
       if (req.user.GroupId) {
@@ -102,14 +101,6 @@ module.exports = function (app) {
     res.render("groupJoin");
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });
 
   app.get("/bill/:creatorId/:billId", function (req, res) {
     //if the user is the creator of the bill
@@ -131,15 +122,52 @@ module.exports = function (app) {
     else {
       res.redirect("/home");
     }
+  });
+ 
+
+
+  // adding route for tasks, populate all tasks/to-dos-----------------------------------------
+  app.get("/mytasks", isAuthenticated, function (req, res) {
+    console.log("mytasks")
+    console.log(req.user);
+    var taskObject = {
+      user: "",
+      group: "",
+      bill: "",
+      chore: "",
+      grocery: ""
+    }
+    //find all bill rows associated with the group
+    db.Bill.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function (billData) {
+      taskObject.bill = billData
+
+    })
+    db.Grocery.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function (groceryData) {
+      taskObject.grocery = groceryData;
+
+    })
+    db.Chore.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function (choreData) {
+      taskObject.chore = choreData;
+      console.log(taskObject);
+      //render with the mytasks layout passing the taskObject 
+      res.render("mytasks", taskObject);
+    })
   })
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
+   // Render 404 page for any unmatched routes
+   app.get("*", function (req, res) {
     res.render("404");
   });
-  //bec adding, might need to remove
-  app.get("/tasks", function (req, res) {
-    res.render("tasks");
-  })
-
 };
