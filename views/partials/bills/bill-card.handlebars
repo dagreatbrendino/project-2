@@ -2,7 +2,9 @@
 <li>
 {{billName}}
 {{amount}}
-
+<a target="blank" href="{{fileUrl}}">
+<img src={{thumbUrl}} alt="bll-doc-thumb"/>
+</a>
 
 {{#if (isUser @root.user.id UserId)}}
   <a href="/bill/{{UserId}}/{{id}}">Edit Bill</a>
