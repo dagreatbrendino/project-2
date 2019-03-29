@@ -20,7 +20,7 @@ header.masthead {
 
 .welcome {
   font-size: 2rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Share Tech Mono', monospace;
   color: whitesmoke;
 }
 
@@ -61,6 +61,12 @@ h1 {
 
 p {
   color: black;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 19px;
+}
+
+label {
+  color: whitesmoke;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 19px;
 }
@@ -240,4 +246,27 @@ button.edit {
 
 .modal-body {
   background: dodgerblue;
+}
+
+.nav-tabs{
+  background-color:lightblue;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.nav-tabs > li > a{
+  border: medium none;
+}
+.nav-tabs > li > a:hover{
+  background-color: #303136 !important;
+    border: medium none;
+    border-radius: 0;
+    color:#fff;
+}
+
+.btn-sm {
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  float: right;
+  line-height: 1.5;
+  border-radius: .2rem;
 }
