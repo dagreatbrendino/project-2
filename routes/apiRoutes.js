@@ -182,10 +182,18 @@ module.exports = function(app) {
 
   //these routes handle bills 
     //this route allows users to add a new bill
-    app.post("/bill/add", isAuthenticated, parser.single("image"), function(req,res){
+    app.post("/bill/add", isAuthenticated, parser.single("image"), function(req, res){
       //this parses the cloudinary file url into a thumbnail for the document
-      var originalUrl = req.file.url
-      var makeThumbUrl =  originalUrl.slice(0, (originalUrl.indexOf("upload/") + 7)) + "w_200,h_250,bo_1px_solid_black/" + originalUrl.slice((originalUrl.indexOf("upload/") + 7), -3) + "jpg";
+      console.log("file ", req.file);
+      if(req.file == undefined){
+        var originalUrl = "";
+        var makeThumbUrl="";
+      }
+      else{
+        var originalUrl = req.file.url
+        var makeThumbUrl =  originalUrl.slice(0, (originalUrl.indexOf("upload/") + 7)) + "w_200,h_250,bo_1px_solid_black/" + originalUrl.slice((originalUrl.indexOf("upload/") + 7), -3) + "jpg";
+      }
+     
 
     db.Bill.create({
       billName: req.body.billName,
@@ -193,7 +201,7 @@ module.exports = function(app) {
       complete: false,
       UserId: req.user.id,
       GroupId: req.user.GroupId,
-      fileUrl: req.file.url,
+      fileUrl: originalUrl,
       thumbUrl: makeThumbUrl
     }).then(function(data){
       res.redirect("/home");
