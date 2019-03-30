@@ -294,6 +294,7 @@ module.exports = function(app) {
     db.Chore.create({
       chore: req.body.chore,
       complete: false,
+      recurDate: req.body.recurDate,
       UserId: req.user.id,
       GroupId: req.user.GroupId
     }).then(function(data){

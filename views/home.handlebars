@@ -57,6 +57,7 @@
                   <tr>
                     <th scope="col">Bill</th>
                     <th scope="col">Amount</th>
+                    <th scole="col">Owner</th>
                     <th scope="col">Document</th>
                     <th scope="col"></th>
 
@@ -177,7 +178,7 @@
                                           {{groupMembers.numMembers}} {{bill.totalBills}}
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Month</label>
                     <select name="month">
-
+                      {{log groupMembers}}
                       <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}} >Jan</option>
                       <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
                       <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
@@ -254,6 +255,16 @@
                     <input type="text" id="chore-name" class="form-control validate">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
                       Name</label>
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Recurring Day</label>
+                    <select name="day" id="chore-day">
+                      <option value="Sun" {{#if (isUser currentDay "Sun")}} selected {{/if}} >Sun</option>
+                      <option value="Mon" {{#if (isUser currentDay "Mon")}} selected {{/if}} >Mon</option>
+                      <option value="Tue" {{#if (isUser currentDay "Tue")}} selected {{/if}} >Tue</option>
+                      <option value="Wed" {{#if (isUser currentDay "Wed")}} selected {{/if}} >Wed</option>
+                      <option value="Thu" {{#if (isUser currentDay "Thu")}} selected {{/if}} >Thu</option>
+                      <option value="Fri" {{#if (isUser currentDay "Fri")}} selected {{/if}} >Fri</option>
+                      <option value="Sat" {{#if (isUser currentDay "Sat")}} selected {{/if}} >Sat</option>
+                    </select> 
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
