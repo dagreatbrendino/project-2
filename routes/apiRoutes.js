@@ -304,13 +304,13 @@ module.exports = function(app) {
 
   //Chore UPDATE
   app.put("/chore/edit/:creatorId/:choreId", isAuthenticated, function(req, res){
-    var creatorId = parseInt(req.params.creatorId);
+    console.log("updating chore");
     var choreId = parseInt(req.params.choreId);
+    var creatorId = parseInt(req.params.creatorId);
     if(req.user.id === creatorId){
       db.Chore.update({
         chore: req.body.chore,
-        complete: false,
-        assignTo: req.user.id,
+        complete: false
       },{
         where:{
           id: choreId

@@ -296,6 +296,9 @@ color: rgb(56, 55, 55);
 
   
 }
+.nav-link:active{
+  background-color: dodgerblue !important ;
+}
 
 .nav-tabs > li > a:active{
 background-color: dodgerblue;
