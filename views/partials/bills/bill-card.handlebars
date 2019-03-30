@@ -1,10 +1,18 @@
 <tr>
   <td>{{billName}}</td>
   <td>{{amount}}</td>
-  <td><a target="blank" href="{{fileUrl}}">
+
+    {{#each @root.groupMembers as |groupMember index|}}
+      {{log groupMember}}
+      {{log groupMember.dataValues.id}}
+      {{#if (isUser groupMember.dataValues.id ../UserId)}}
+      <td>{{groupMember.dataValues.name}}</td>
+      {{log "user is the name here"}}
+      {{/if}}
+    {{/each}}
+    <td><a target="blank" href="{{fileUrl}}">
       <img src={{thumbUrl}} alt="bll-doc-thumb" />
     </a></td>
-
   {{#if (isUser @root.user.id UserId)}}
 
   <td>

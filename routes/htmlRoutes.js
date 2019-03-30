@@ -41,11 +41,13 @@ module.exports = function (app) {
       grocery: "",
       chore: "",
       currentMonth: "",
-      currentYear: ""
+      currentYear: "",
+      currentDay: ""
     }
     //Find the user row for the logged in user & then assign the value of the User's GroupId from the database to the req.user object
     homeObject.currentMonth = moment().format("MMM");
     homeObject.currentYear = parseInt(moment().format("YYYY"));
+    homeObject.currentDay = moment().format("ddd")
     db.User.findOne({
       where: {
         id: req.user.id
@@ -62,7 +64,7 @@ module.exports = function (app) {
           },
           attributes: ['name', 'id']
         }).then(function (membersData) {
-          console.log(membersData);
+          console.log("members data ", membersData);
           homeObject.numMembers = membersData.count;
           homeObject.groupMembers = membersData.rows;
         });
@@ -75,7 +77,6 @@ module.exports = function (app) {
           homeObject.group = groupData
         });
         //find all bill rows associated with the group for the current month
-
         db.Bill.findAll({
           where: {
             GroupId: req.user.GroupId,
@@ -104,7 +105,8 @@ module.exports = function (app) {
         });
         db.Chore.findAll({
           where: {
-            GroupId: req.user.GroupId
+            GroupId: req.user.GroupId,
+            recurDate: homeObject.currentDay
           }
         }).then(function (choreData) {
           homeObject.chore = choreData;

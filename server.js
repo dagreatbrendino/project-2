@@ -42,7 +42,7 @@ var hbsHelpers = exphbs.create({
     //*****actually can just be used as a generic equality operator for hbs***** 
     isUser(userId, posterId){
       console.log(posterId)
-      if( userId === posterId){
+      if( userId == posterId){
         return true;
       }
       else{
@@ -65,7 +65,7 @@ var syncOptions = { force: true };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/
