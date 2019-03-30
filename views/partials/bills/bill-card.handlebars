@@ -1,16 +1,15 @@
-<ui>
-  <div class="card">
-    <div class="card-body">
-      {{billName}}
-      {{amount}}
-      <a target="blank" href="{{fileUrl}}">
-        <img src={{thumbUrl}} alt="bll-doc-thumb" />
-      </a>
+<tr>
+  <td>{{billName}}</td>
+  <td>{{amount}}</td>
+  <td><a target="blank" href="{{fileUrl}}">
+      <img src={{thumbUrl}} alt="bll-doc-thumb" />
+    </a></td>
 
-      {{#if (isUser @root.user.id UserId)}}
-      <a href="/bill/{{UserId}}/{{id}}">Edit Bill</a>
-      {{/if}}
-    </div>
-  </div>
-</ui>
-<br>
+  {{#if (isUser @root.user.id UserId)}}
+
+  <td>
+    <a href="/bill/{{UserId}}/{{id}}">Edit Bill</a>
+  </td>
+  {{/if}}
+
+</tr>

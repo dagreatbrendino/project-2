@@ -1,6 +1,6 @@
 <!-- NAV TABS -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
+  <li class="nav-item active">
     <a class="nav-link" id="bills-tab" data-toggle="tab" href="#bills" role="tab" aria-controls="bills"
       aria-selected="false">Bills</a>
   </li>
@@ -22,6 +22,8 @@
   </li>
 </ul>
 
+
+
 <!-- TABS FUNCTIONALITY -->
 <script>
   $(function () {
@@ -36,58 +38,101 @@
     <div class="row">
       <div class="col-8 offset-2">
         <br>
-        <h2 class="welcome">Your group: {{group.groupName}} {{user.name}} {{user.user}}</h2>
+        <h2 class="welcome">Group Name: {{group.groupName}} <br>
+          User Name: {{user.name}} {{user.user}}</h2>
         <br>
 
         <div class="tab-content">
+
 
           {{!-- BILLS TAB---------------------------------------}}
           <h2 class="category">{{msg}}</h2>
 
           <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
             <div id='billsTab'>
-              <ul>
-                {{#each bill}}
-                {{> bills/bill-card}}
-                {{/each}}
-              </ul>
-              <br>
-              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+              {{!-- <div class="row">
+                <div class="col-10"> --}}
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Bill</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Document</th>
+                    <th scope="col"></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each bill}}
+                  {{> bills/bill-card}}
+                  {{/each}}
+                </tbody>
+              </table>
+              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
                 data-target="#modalAddBill"><i class="fa fa-plus"></i>
                 Add Bill
               </a>
             </div>
           </div>
 
+
+
           {{!-- CHORES TAB---------------------------------------}}
+
           <div class="tab-pane fade" id="chores" role="tabpanel" aria-labelledby="chores-tab">
-            <div id='choresTab'>
-              <ul>
+            {{!-- <div id='choresTab'> --}}
+            {{!-- <div class="row">
+
+                <div class="col-10"> --}}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Chore Name</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
                 {{#each chore}}
                 {{> chores/chore-card}}
                 {{/each}}
-              </ul>
-              <br>
-              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
-                data-target="#modalAddChores"><i class="fa fa-plus"></i>
-                Add Chores
-              </a>
-            </div>
+              </tbody>
+            </table>
+
+            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
+              data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
+              Add Chore
+            </a>
           </div>
+          {{!-- </div> --}}
+
 
           {{!-- GROCERIES TAB---------------------------------------}}
           <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">
             <div id='groceriesTab'>
-              <ul>
-                {{#each grocery}}
-                {{> groceries/grocery-card}}
-                {{/each}}
-              </ul>
-              <br>
-              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" data-toggle="modal"
+              {{!-- <div class="row"> --}}
+              {{!-- <div class="col-10"> --}}
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col-4">Item</th>
+                    <th scope="col-4">Quantity</th>
+                    <th scope="col-4"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each grocery}}
+                  {{> groceries/grocery-card}}
+                  {{/each}}
+                </tbody>
+              </table>
+
+
+              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
                 data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
                 Add Grocery
               </a>
+
+
             </div>
           </div>
         </div>
@@ -117,7 +162,7 @@
 
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Amount</label>
-                    <input type='file' name='image'/>
+                    <input type='file' name='image' />
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
