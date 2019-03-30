@@ -1,4 +1,3 @@
-
 {{!-- TASK INFO---------------------------------------}}
 <script src="js/home.js"></script>
 <div id="home">
@@ -11,7 +10,7 @@
 
 
                     {{!-- BILLS TAB---------------------------------------}}
-                    <div id="bills">
+                    {{!-- <div id="bills">
                         <div id='billsTab'>
                             <ul>
                                 {{#each bill}}
@@ -24,10 +23,34 @@
                                 Add Bill
                             </a>
                         </div>
+                    </div> --}}
+
+                    <div id='billsTab'>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Bill</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Document</th>
+                                    <th scope="col"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each bill}}
+                                {{> bills/bill-card}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn"
+                            data-toggle="modal" data-target="#modalAddBill"><i class="fa fa-plus"></i>
+                            Add Bill
+                        </a>
                     </div>
 
                     {{!-- CHORES TAB---------------------------------------}}
-                    <div  id="chores">
+                    {{!-- <div  id="chores">
                         <div id='choresTab'>
                             <ul>
                                 {{#each chore}}
@@ -40,10 +63,32 @@
                                 Add Chores
                             </a>
                         </div>
+                    </div> --}}
+
+                    <br>
+                    <div class="choresTab">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Chore Name</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each chore}}
+                                {{> chores/chore-card}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+
+                        <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn"
+                            data-toggle="modal" data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
+                            Add Chore
+                        </a>
                     </div>
 
                     {{!-- GROCERIES TAB---------------------------------------}}
-                    <div id="groceries">
+                    {{!-- <div id="groceries">
                         <div id='groceriesTab'>
                             <ul>
                                 {{#each grocery}}
@@ -56,6 +101,34 @@
                                 Add Grocery
                             </a>
                         </div>
+                    </div>
+                </div> --}}
+
+                    <div id='groceriesTab'>
+                        {{!-- <div class="row"> --}}
+                        {{!-- <div class="col-10"> --}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col-4">Item</th>
+                                    <th scope="col-4">Quantity</th>
+                                    <th scope="col-4"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each grocery}}
+                                {{> groceries/grocery-card}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+
+
+                        <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn"
+                            data-toggle="modal" data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
+                            Add Grocery
+                        </a>
+
+
                     </div>
                 </div>
 
@@ -91,7 +164,8 @@
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
 
-                                    <input type="submit" id="addBillButton" class="btn btn-md btn-primary btn-dark mb-1" value="Add Bill">
+                                    <input type="submit" id="addBillButton" class="btn btn-md btn-primary btn-dark mb-1"
+                                        value="Add Bill">
                                 </div>
                             </form>
                         </div>
@@ -125,7 +199,8 @@
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
 
-                                    <button id="addGroceryButton" class="btn btn-md btn-primary btn-dark mb-1">Add Grocery</button>
+                                    <button id="addGroceryButton" class="btn btn-md btn-primary btn-dark mb-1">Add
+                                        Grocery</button>
                                 </div>
                             </form>
 
@@ -156,7 +231,8 @@
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
 
-                                    <button id="addChoreButton" class="btn btn-md btn-primary btn-dark mb-1">Add Chore</button>
+                                    <button id="addChoreButton" class="btn btn-md btn-primary btn-dark mb-1">Add
+                                        Chore</button>
                                 </div>
                             </form>
 
