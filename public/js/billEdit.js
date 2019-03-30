@@ -7,7 +7,6 @@ $(document).ready(function(){
             month: $("#bill-month").val().trim()
             
         };
-        debugger
         var creatorId = $("#editBillForm").data("creatorid");
         var billId = $("#editBillForm").data("billid");
         $.ajax({

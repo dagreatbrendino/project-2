@@ -261,11 +261,35 @@ module.exports = function(app) {
       res.end();
     })
   })
-
-
+  app.put("/grocery/edit/:groceryId", isAuthenticated, function(req, res){
+   
+    var groceryId = req.params.groceryId;
+    console.log("grocery Id ", groceryId)
+    db.Grocery.update({
+      groceryName: req.body.groceryName,
+      quantity: req.body.quantity
+      },{
+        where:{
+          id: groceryId
+        }
+    }).then(function(data){
+      res.end();
+    });
+  });
+  
+  app.delete("/grocery/delete/:groceryId", isAuthenticated, function (req, res){
+    db.Grocery.destroy({
+      where: {
+        id: req.params.groceryId
+      }
+    }).then(function(data){
+      res.end();
+    })
+  });
 
 //-----------CHORE---------------------------------------------------------------
   //Chore CREATE
+
   app.post("/chore/add", isAuthenticated, function(req,res){
     db.Chore.create({
       chore: req.body.chore,

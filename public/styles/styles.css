@@ -170,10 +170,23 @@ a {
   display: none;
 }
 
+html{
+  min-height: 100%;
+}
+
 body {
   background: white;
   font-family: "Roboto", sans-serif;
-  padding-bottom: 40px;
+  min-height: 100vh;
+  padding:0;
+  margin:0;
+
+
+  /* padding-bottom: 40px; */
+}
+
+#home{
+  min-height: 100vh;
 }
 
 /* ---------------BILLS------------------------------ */
@@ -240,6 +253,7 @@ color: rgb(56, 55, 55);
 
 .todo-container {
   background: dodgerblue;
+  height: 100vh;
 }
 
 .tasks-container {
@@ -349,3 +363,11 @@ padding: 1em;
   
 }
 
+.groupList{
+  list-style: none;
+}
+
+#myGroupTab{
+  background-color: white;
+  opacity: 0.4;
+}

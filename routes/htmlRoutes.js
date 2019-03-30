@@ -127,6 +127,9 @@ module.exports = function (app) {
 
 
   //-----------BILL--------------------------------------------------------------
+
+  //route to edit bills
+
   app.get("/bill/:creatorId/:billId", function (req, res) {
     //if the user is the creator of the bill
     var hbsObject = {
@@ -245,6 +248,27 @@ module.exports = function (app) {
         res.render("allChores", hbsObject);
       });
     } else {
+      res.redirect("/home");
+    }
+  })
+  //route to get page for editing groceries
+  app.get("/grocery/:groceryGroup/:groceryId", isAuthenticated, function(req, res){
+    var groceryGroup = parseInt(req.params.groceryGroup);
+    if (req.user.GroupId === groceryGroup){
+      var hbsObject = {
+        grocery: ""
+      }
+      var groceryId = parseInt(req.params.groceryId);
+      db.Grocery.findOne({
+        where:{
+          id: groceryId
+        }
+      }).then(function (groceryData){
+        hbsObject.grocery = groceryData;
+        res.render("groceryEdit", hbsObject);
+      })
+    }
+    else {
       res.redirect("/home");
     }
   })
