@@ -184,7 +184,9 @@ module.exports = function(app) {
   })
   
 
+  //-----------BILLS---------------------------------------------------------------
   //these routes handle bills 
+
     //this route allows users to add a new bill
     app.post("/bill/add", isAuthenticated, parser.single("image"), function(req, res){
       //this parses the cloudinary file url into a thumbnail for the document
@@ -198,7 +200,7 @@ module.exports = function(app) {
         var makeThumbUrl =  originalUrl.slice(0, (originalUrl.indexOf("upload/") + 7)) + "w_200,h_250,bo_1px_solid_black/" + originalUrl.slice((originalUrl.indexOf("upload/") + 7), -3) + "jpg";
       }
      
-
+    // Bill CREATE----------------
     db.Bill.create({
       billName: req.body.billName,
       amount: req.body.amount,
@@ -214,6 +216,7 @@ module.exports = function(app) {
     })
   })
 
+    // Bill UPDATE----------------
   app.put("/bill/edit/:creatorId/:billId", isAuthenticated, function(req, res){
     var creatorId = parseInt(req.params.creatorId);
     var billId = parseInt(req.params.billId);
@@ -233,6 +236,7 @@ module.exports = function(app) {
     };
   });
 
+  // Bill DELETE----------------
   app.delete("/bill/delete/:billId", isAuthenticated, function(req, res){
     db.Bill.destroy({
       where: {
@@ -243,6 +247,8 @@ module.exports = function(app) {
     });
   });
 
+
+  //-----------GROCERY---------------------------------------------------------------
 
   app.post("/grocery/add", isAuthenticated, function(req,res){
     db.Grocery.create({
@@ -255,7 +261,6 @@ module.exports = function(app) {
       res.end();
     })
   })
-
   app.put("/grocery/edit/:groceryId", isAuthenticated, function(req, res){
    
     var groceryId = req.params.groceryId;
@@ -282,6 +287,9 @@ module.exports = function(app) {
     })
   });
 
+//-----------CHORE---------------------------------------------------------------
+  //Chore CREATE
+
   app.post("/chore/add", isAuthenticated, function(req,res){
     db.Chore.create({
       chore: req.body.chore,
@@ -292,5 +300,38 @@ module.exports = function(app) {
       res.end();
     })
   })
+
+
+  //Chore UPDATE
+  app.put("/chore/edit/:creatorId/:choreId", isAuthenticated, function(req, res){
+    var creatorId = parseInt(req.params.creatorId);
+    var choreId = parseInt(req.params.choreId);
+    if(req.user.id === creatorId){
+      db.Chore.update({
+        chore: req.body.chore,
+        complete: false,
+        assignTo: req.user.id,
+      },{
+        where:{
+          id: choreId
+        }
+      }).then(function(data){
+        console.log("done updating chore")
+        res.end();
+      });
+    };
+  });
+
+
+  //Chore DELETE 
+  app.delete("/chore/delete/:choreId", isAuthenticated, function(req, res){
+    db.Chore.destroy({
+      where: {
+        id: req.params.choreId
+      }
+    }).then(function(data){
+      res.end();
+    });
+  });
 
 };
