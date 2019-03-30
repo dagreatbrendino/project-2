@@ -18,7 +18,7 @@ module.exports = function (app) {
     res.render("signup");
   })
 
-
+  //user login 
   app.get("/login", function (req, res) {
     if (req.user) {
       res.redirect("/home");
@@ -26,8 +26,8 @@ module.exports = function (app) {
     res.render("login");
   });
 
-  //Load home page for authenticated user
 
+  //Load home page for authenticated user
   app.get("/home", isAuthenticated, function (req, res) {
     console.log("redirected")
     console.log(req.user);
@@ -57,11 +57,11 @@ module.exports = function (app) {
       if (req.user.GroupId) {
         //find all the group members in the current user's group and return their names and ids
         db.User.findAndCountAll({
-          where:{
+          where: {
             GroupId: req.user.GroupId
           },
           attributes: ['name', 'id']
-        }).then(function (membersData){
+        }).then(function (membersData) {
           console.log(membersData);
           homeObject.numMembers = membersData.count;
           homeObject.groupMembers = membersData.rows;
@@ -75,7 +75,7 @@ module.exports = function (app) {
           homeObject.group = groupData
         });
         //find all bill rows associated with the group for the current month
-        
+
         db.Bill.findAll({
           where: {
             GroupId: req.user.GroupId,
@@ -85,14 +85,14 @@ module.exports = function (app) {
         }).then(function (billData) {
           homeObject.bill = billData
         });
-        
-        db.Bill.sum('amount', {          
+
+        db.Bill.sum('amount', {
           where: {
             GroupId: req.user.GroupId,
             month: homeObject.currentMonth,
             year: homeObject.currentYear
           }
-        }).then( function(billSum){
+        }).then(function (billSum) {
           homeObject.totalBills = billSum;
         })
         db.Grocery.findAll({
@@ -126,6 +126,7 @@ module.exports = function (app) {
   });
 
 
+  //-----------BILL--------------------------------------------------------------
   app.get("/bill/:creatorId/:billId", function (req, res) {
     //if the user is the creator of the bill
     var hbsObject = {
@@ -142,18 +143,17 @@ module.exports = function (app) {
         hbsObject.bill = billData
         res.render("billEdit", hbsObject);
       });
-    }
-    else {
+    } else {
       res.redirect("/home");
     }
   });
   //find all bills for a given group
-  app.get("/:GroupId/bills/all" , isAuthenticated, function (req, res){
+  app.get("/:GroupId/bills/all", isAuthenticated, function (req, res) {
     //make sure the groupId that is being accessed is coming from the group the user belongs to
     var urlGroup = parseInt(req.params.GroupId);
-    if (urlGroup === req.user.GroupId){
+    if (urlGroup === req.user.GroupId) {
       console.log("req uid stuff ", req.params.GroupId, " ", req.user.GroupId)
-      var hbsObject ={
+      var hbsObject = {
         bill: "",
         user: "",
         groupMembers: ""
@@ -165,13 +165,13 @@ module.exports = function (app) {
       }).then(function (userData) {
         hbsObject.user = userData;
       });
-       //find all the group members in the current user's group and return their names and ids
-       db.User.findAll({
-        where:{
+      //find all the group members in the current user's group and return their names and ids
+      db.User.findAll({
+        where: {
           GroupId: req.user.GroupId
         },
         attributes: ["name", "id"]
-      }).then(function (membersData){
+      }).then(function (membersData) {
         hbsObject.groupMembers = membersData;
       });
       db.Bill.findAll({
@@ -182,14 +182,75 @@ module.exports = function (app) {
         hbsObject.bill = billData
         res.render("allBills", hbsObject);
       });
-    }
-    else{
+    } else {
       res.redirect("/home");
     }
   })
- 
 
 
+  //-----------CHORE--------------------------------------------------------------
+  app.get("/chore/:creatorId/:choreId", function (req, res) {
+    //if the user is the creator of the chore
+    var hbsObject = {
+      chore: ""
+    }
+    var creatorId = parseInt(req.params.creatorId);
+    var choreId = parseInt(req.params.choreId);
+    if (req.user.id === creatorId) {
+      db.Chore.findOne({
+        where: {
+          id: choreId
+        }
+      }).then(function (choreData) {
+        hbsObject.chore = choreData
+        res.render("choreEdit", hbsObject);
+      });
+    } else {
+      res.redirect("/home");
+    }
+  });
+  //find all chores for a given group
+  app.get("/:GroupId/chore/all", isAuthenticated, function (req, res) {
+    //make sure the groupId that is being accessed is coming from the group the user belongs to
+    var urlGroup = parseInt(req.params.GroupId);
+    if (urlGroup === req.user.GroupId) {
+      console.log("req uid stuff ", req.params.GroupId, " ", req.user.GroupId)
+      var hbsObject = {
+        chore: "",
+        user: "",
+        groupMembers: ""
+      }
+      db.User.findOne({
+        where: {
+          id: req.user.id
+        }
+      }).then(function (userData) {
+        hbsObject.user = userData;
+      });
+      //find all the group members in the current user's group and return their names and ids
+      db.User.findAll({
+        where: {
+          GroupId: req.user.GroupId
+        },
+        attributes: ["name", "id"]
+      }).then(function (membersData) {
+        hbsObject.groupMembers = membersData;
+      });
+      db.Chore.findAll({
+        where: {
+          GroupId: req.user.GroupId
+        }
+      }).then(function (choreData) {
+        hbsObject.chore = choreData
+        res.render("allChores", hbsObject);
+      });
+    } else {
+      res.redirect("/home");
+    }
+  })
+
+
+//-----------ALL Tasks/MY Tasks---------------------------------------------------------------
   // adding route for tasks, populate all tasks/to-dos-----------------------------------------
   app.get("/mytasks", isAuthenticated, function (req, res) {
     console.log("mytasks")
@@ -230,8 +291,8 @@ module.exports = function (app) {
     })
   })
 
-   // Render 404 page for any unmatched routes
-   app.get("*", function (req, res) {
+  // Render 404 page for any unmatched routes
+  app.get("*", function (req, res) {
     res.render("404");
   });
 };
