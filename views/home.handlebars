@@ -148,6 +148,30 @@
           </div>
         </div>
 
+
+        {{!----------------------CHAT TAB---------------------------}}
+        {{!-----------------------show posted chats---------------- --}}
+        <div class="chat-container">
+          <img src="/img/placeholder.jpg" alt="Avatar" class="right">
+          <p id="chat-table">"""""""CHAT GOES HERE"""""""""</p>
+          <p id="messageBody-input" scope="col"></p>
+          <p id="groupName-input" scope="col"></p>
+          <span class="chat-time-right">11:00</span>
+        </div>
+
+        {{!-- ---------------------form for posting chats------------------}}
+        <div class="chat-card-body">
+          <form role="form">
+            <div class="form-group row">
+              <label for="messageBody-input">Message</label>
+              <input class="form-control" id="messageBody-input" type="text">
+            </div>
+            <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+          </form>
+        </div>
+        {{!-- ------------------------------------------------------------------}}
+
+
         {{!--  modals for adding bills --}}
         <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
@@ -173,12 +197,13 @@
 
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Amount</label>
-                    <input type='file' name='image'/>
-                                          {{groupMembers.numMembers}} {{bill.totalBills}}
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Month</label>
+                    <input type='file' name='image' />
+                    {{groupMembers.numMembers}} {{bill.totalBills}}
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                      for="defaultForm-email">Month</label>
                     <select name="month">
 
-                      <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}} >Jan</option>
+                      <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}}>Jan</option>
                       <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
                       <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
                       <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr</option>
@@ -190,7 +215,7 @@
                       <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct</option>
                       <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov</option>
                       <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec</option>
-                    </select> 
+                    </select>
 
                   </div>
                 </div>

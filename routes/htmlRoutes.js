@@ -26,6 +26,11 @@ module.exports = function (app) {
     res.render("login");
   });
 
+  //user chat route
+  app.get("/chat", function (req, res) {
+    res.render("chat");
+  })
+
 
   //Load home page for authenticated user
   app.get("/home", isAuthenticated, function (req, res) {
@@ -124,6 +129,8 @@ module.exports = function (app) {
   app.get("/groupJoin", isAuthenticated, function (req, res) {
     res.render("groupJoin");
   });
+
+
 
 
   //-----------BILL--------------------------------------------------------------
