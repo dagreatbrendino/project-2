@@ -125,7 +125,7 @@ module.exports = function (app) {
     res.render("groupJoin");
   });
 
-
+  //route to edit bills
   app.get("/bill/:creatorId/:billId", function (req, res) {
     //if the user is the creator of the bill
     var hbsObject = {
@@ -188,7 +188,27 @@ module.exports = function (app) {
     }
   })
  
-
+  //route to get page for editing groceries
+  app.get("/grocery/:groceryGroup/:groceryId", isAuthenticated, function(req, res){
+    var groceryGroup = parseInt(req.params.groceryGroup);
+    if (req.user.GroupId === groceryGroup){
+      var hbsObject = {
+        grocery: ""
+      }
+      var groceryId = parseInt(req.params.groceryId);
+      db.Grocery.findOne({
+        where:{
+          id: groceryId
+        }
+      }).then(function (groceryData){
+        hbsObject.grocery = groceryData;
+        res.render("groceryEdit", hbsObject);
+      })
+    }
+    else {
+      res.redirect("/home");
+    }
+  })
 
   // adding route for tasks, populate all tasks/to-dos-----------------------------------------
   app.get("/mytasks", isAuthenticated, function (req, res) {

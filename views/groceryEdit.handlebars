@@ -1,0 +1,17 @@
+<script src="../../js/groceryEdit.js"></script>
+    <button id="removeGrocery"> Remove Grocery</button>
+  <form id="editGroceryForm"  data-grocerygroup={{grocery.GroupId}} data-groceryid={{grocery.id}}>
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="grocery-name" class="form-control validate" name="billName" value={{grocery.groceryName}}>
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery Name</label>
+                    <input type="text" id="grocery-quantity" class="form-control validate" name="amount" value="{{grocery.quantity}}">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Quantity</label>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                  <input type="submit" id="editGroceryButton" class="btn btn-default" value="Update Grocery">
+                </div>
+</form>
