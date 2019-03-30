@@ -38,6 +38,8 @@ var hbsHelpers = exphbs.create({
           return false;
         }
     },
+    //is used to allow the poster of a task to edit it, also applies to group members page to make sure the user cannot send themselves a message
+    //*****actually can just be used as a generic equality operator for hbs***** 
     isUser(userId, posterId){
       console.log(posterId)
       if( userId === posterId){

@@ -17,8 +17,8 @@
       aria-selected="false">Chat</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups"
-      aria-selected="false">Groups</a>
+    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#myGroup" role="tab" aria-controls="myGroup"
+      aria-selected="false">My Group</a>
   </li>
 </ul>
 
@@ -38,8 +38,7 @@
     <div class="row">
       <div class="col-8 offset-2">
         <br>
-        <h2 class="welcome">Group Name: {{group.groupName}} <br>
-          User Name: {{user.name}} {{user.user}}</h2>
+        <h2 class="welcome">Welcome to {{group.groupName}}, {{user.name}}</h2>
         <br>
 
         <div class="tab-content">
@@ -50,6 +49,7 @@
 
           <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
             <div id='billsTab'>
+
               {{!-- <div class="row">
                 <div class="col-10"> --}}
               <table class="table">
@@ -135,6 +135,17 @@
 
             </div>
           </div>
+          {{!-- My Group Tab --}}
+          <div class="tab-pane fade" id="myGroup" role="tabpanel" aria-labelledby="myGroup-tab">
+            <div id="myGroupTab">
+              <ul>
+                {{#each groupMembers}}
+                {{> groupMembers/groupMembers-card}}
+                {{/each}}
+              </ul>
+              <br>
+            </div>
+          </div>
         </div>
 
         {{!--  modals for adding bills --}}
@@ -162,7 +173,25 @@
 
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Amount</label>
-                    <input type='file' name='image' />
+                    <input type='file' name='image'/>
+                                          {{groupMembers.numMembers}} {{bill.totalBills}}
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Month</label>
+                    <select name="month">
+
+                      <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}} >Jan</option>
+                      <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
+                      <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
+                      <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr</option>
+                      <option value="May" {{#if (isUser currentMonth "May")}} selected {{/if}}>May</option>
+                      <option value="Jun" {{#if (isUser currentMonth "Jun")}} selected {{/if}}>Jun</option>
+                      <option value="Jul" {{#if (isUser currentMonth "Jul")}} selected {{/if}}>Jul</option>
+                      <option value="Aug" {{#if (isUser currentMonth "Aug")}} selected {{/if}}>Aug</option>
+                      <option value="Sep" {{#if (isUser currentMonth "Sep")}} selected {{/if}}>Sep</option>
+                      <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct</option>
+                      <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov</option>
+                      <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec</option>
+                    </select> 
+
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">

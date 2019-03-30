@@ -9,6 +9,10 @@ var cloudinary = require("cloudinary");
 cloudinary.config(process.env.CLOUDINARY_URL);
 var cloudinaryStorage = require("multer-storage-cloudinary");
 
+//moment will be used for deciding which rows from the table to serve given the current date
+var moment = require("moment");
+var currentYear = parseInt(moment().format("YYYY"))
+
 //Configuring the way files will be uploaded to coludinary as well as limiting the types of files
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
@@ -35,8 +39,8 @@ module.exports = function(app) {
     else{
       res.json("groupJoin")
     }
-
     });
+
     //route for handling new user account creation requests. It will use the requirements and methods 
     //given in the user.js model to attempt to insert a new user record into the Users table of the database
     //if the user account is succesfully created, then the user will automatically be loged in via the 'user/login/' route
@@ -202,7 +206,9 @@ module.exports = function(app) {
       UserId: req.user.id,
       GroupId: req.user.GroupId,
       fileUrl: originalUrl,
-      thumbUrl: makeThumbUrl
+      thumbUrl: makeThumbUrl,
+      month: req.body.month,
+      year: currentYear
     }).then(function(data){
       res.redirect("/home");
     })
@@ -214,7 +220,8 @@ module.exports = function(app) {
     if(req.user.id === creatorId){
       db.Bill.update({
         billName: req.body.billName,
-        amount: req.body.amount
+        amount: req.body.amount,
+        month: req.body.month
       },{
         where:{
           id: billId

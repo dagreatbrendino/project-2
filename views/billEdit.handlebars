@@ -10,6 +10,21 @@
                     <input type="text" id="bill-amount" class="form-control validate" name="amount" value="{{bill.amount}}">
                     <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
                       Amount</label>
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Month</label>
+                    <select id="bill-month" name="month">
+                      <option value="Jan" {{#if (isUser bill.month "Jan")}} selected {{/if}} >Jan</option>
+                      <option value="Feb" {{#if (isUser bill.month "Feb")}} selected {{/if}}>Feb</option>
+                      <option value="Mar" {{#if (isUser bill.month "Mar")}} selected {{/if}}>Mar</option>
+                      <option value="Apr" {{#if (isUser bill.month "Apr")}} selected {{/if}}>Apr</option>
+                      <option value="May" {{#if (isUser bill.month "May")}} selected {{/if}}>May</option>
+                      <option value="Jun" {{#if (isUser bill.month "Jun")}} selected {{/if}}>Jun</option>
+                      <option value="Jul" {{#if (isUser bill.month "Jul")}} selected {{/if}}>Jul</option>
+                      <option value="Aug" {{#if (isUser bill.month "Aug")}} selected {{/if}}>Aug</option>
+                      <option value="Sep" {{#if (isUser bill.month "Sep")}} selected {{/if}}>Sep</option>
+                      <option value="Oct" {{#if (isUser bill.month "Oct")}} selected {{/if}}>Oct</option>
+                      <option value="Nov" {{#if (isUser bill.month "Nov")}} selected {{/if}}>Nov</option>
+                      <option value="Dec" {{#if (isUser bill.month "Dec")}} selected {{/if}}>Dec</option>
+                    </select> 
                   </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">

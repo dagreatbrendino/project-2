@@ -8,13 +8,6 @@ module.exports = function(sequelize, DataTypes){
                 len: [3, 50]
             }
         },
-        // quantity:{
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     validate: {
-        //     isNumeric: true
-        //     }
-        // },
         amount: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -29,6 +22,20 @@ module.exports = function(sequelize, DataTypes){
         thumbUrl: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        month: {
+            type: DataTypes.STRING, 
+            allowNull: false,
+            validate: {
+                len: [3]
+            }
+        },
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                len: [4]
+            }
         },
         complete: {
             type: DataTypes.BOOLEAN,
