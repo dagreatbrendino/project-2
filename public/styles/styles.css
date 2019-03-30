@@ -239,7 +239,7 @@ color: rgb(56, 55, 55);
 }
 
 .todo-container {
-  background:white;
+  background: dodgerblue;
 }
 
 .tasks-container {
@@ -258,7 +258,7 @@ color: rgb(56, 55, 55);
 }
 
 .manage-link {
-  color: white
+  color: white;
 }
 
 .modal-body {
@@ -267,19 +267,26 @@ color: rgb(56, 55, 55);
 
 .nav-tabs{
   padding-top: 1em;
-  background-color: rgba(30, 144, 255);
+  background-color: lightblue;
 
 
   font-family: 'Roboto Condensed', sans-serif;
-  border: 1px solid;
-  border-color: black;
+  /* border: 1px solid;
+  border-color: black; */
 }
 
 .nav-tabs > li > a{
-  border: 1px solid;
-  border-color: black;
+  /* border: 1px solid;
+  border-color: black; */
+  
+
   
 }
+
+.nav-tabs > li > a:active{
+background-color: dodgerblue;
+}
+
 .nav-tabs > li > a:hover{
   background-color: rgba(94, 170, 247);
     border: medium none;
