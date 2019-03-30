@@ -286,6 +286,13 @@ module.exports = function (app) {
       chore: "",
       grocery: ""
     }
+    db.User.findOne({
+      where: {
+        id: req.user.id
+      }
+    }).then(function(userData){
+      taskObject.user = userData
+    });
     //find all bill rows associated with the group
     db.Bill.findAll({
       where: {
