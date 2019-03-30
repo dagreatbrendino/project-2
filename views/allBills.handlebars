@@ -1,0 +1,11 @@
+ <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <br>
+            <div id='billsTab'>
+              <ul>
+                {{#each bill}}
+                {{> bills/bill-card}}
+                {{/each}}
+              </ul>
+            </div>

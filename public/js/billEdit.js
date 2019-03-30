@@ -3,8 +3,11 @@ $(document).ready(function(){
         event.preventDefault();
         var bill = {
             billName: $("#bill-name").val().trim(),
-            amount: $("#bill-amount").val().trim()
+            amount: $("#bill-amount").val().trim(),
+            month: $("#bill-month").val().trim()
+            
         };
+        debugger
         var creatorId = $("#editBillForm").data("creatorid");
         var billId = $("#editBillForm").data("billid");
         $.ajax({
@@ -12,7 +15,8 @@ $(document).ready(function(){
             url: "/bill/edit/" + creatorId + "/" + billId,
             data: {
                 billName: bill.billName,
-                amount: bill.amount
+                amount: bill.amount,
+                month: bill.month
             }
         }).then(function(data){
             window.location.replace("/home")
@@ -28,5 +32,5 @@ $(document).ready(function(){
         }).then(function (data) { 
             window.location.replace("/home");
         })
-    })
+    });
 })

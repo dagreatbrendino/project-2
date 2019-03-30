@@ -4,6 +4,9 @@ var path = require("path");
 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
+var moment = require("moment");
+console.log(moment().format("MMM"));
+
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
@@ -32,11 +35,17 @@ module.exports = function (app) {
       user: "",
       group: "",
       groupMembers: "",
+      numMembers: "",
       bill: "",
+      totalBills: "",
       grocery: "",
-      chore: ""
+      chore: "",
+      currentMonth: "",
+      currentYear: ""
     }
     //Find the user row for the logged in user & then assign the value of the User's GroupId from the database to the req.user object
+    homeObject.currentMonth = moment().format("MMM");
+    homeObject.currentYear = parseInt(moment().format("YYYY"));
     db.User.findOne({
       where: {
         id: req.user.id
@@ -47,13 +56,15 @@ module.exports = function (app) {
       //If the user has a group send them to the group home page
       if (req.user.GroupId) {
         //find all the group members in the current user's group and return their names and ids
-        db.User.findAll({
+        db.User.findAndCountAll({
           where:{
             GroupId: req.user.GroupId
           },
-          attributes: ["name", "id"]
+          attributes: ['name', 'id']
         }).then(function (membersData){
-          homeObject.groupMembers = membersData;
+          console.log(membersData);
+          homeObject.numMembers = membersData.count;
+          homeObject.groupMembers = membersData.rows;
         });
         //find the group row associated with the user
         db.Group.findOne({
@@ -63,14 +74,27 @@ module.exports = function (app) {
         }).then(function (groupData) {
           homeObject.group = groupData
         });
-        //find all bill rows associated with the group
+        //find all bill rows associated with the group for the current month
+        
         db.Bill.findAll({
           where: {
-            GroupId: req.user.GroupId
+            GroupId: req.user.GroupId,
+            month: homeObject.currentMonth,
+            year: homeObject.currentYear
           }
         }).then(function (billData) {
           homeObject.bill = billData
         });
+        
+        db.Bill.sum('amount', {          
+          where: {
+            GroupId: req.user.GroupId,
+            month: homeObject.currentMonth,
+            year: homeObject.currentYear
+          }
+        }).then( function(billSum){
+          homeObject.totalBills = billSum;
+        })
         db.Grocery.findAll({
           where: {
             GroupId: req.user.GroupId
@@ -123,6 +147,46 @@ module.exports = function (app) {
       res.redirect("/home");
     }
   });
+  //find all bills for a given group
+  app.get("/:GroupId/bills/all" , isAuthenticated, function (req, res){
+    //make sure the groupId that is being accessed is coming from the group the user belongs to
+    var urlGroup = parseInt(req.params.GroupId);
+    if (urlGroup === req.user.GroupId){
+      console.log("req uid stuff ", req.params.GroupId, " ", req.user.GroupId)
+      var hbsObject ={
+        bill: "",
+        user: "",
+        groupMembers: ""
+      }
+      db.User.findOne({
+        where: {
+          id: req.user.id
+        }
+      }).then(function (userData) {
+        hbsObject.user = userData;
+      });
+       //find all the group members in the current user's group and return their names and ids
+       db.User.findAll({
+        where:{
+          GroupId: req.user.GroupId
+        },
+        attributes: ["name", "id"]
+      }).then(function (membersData){
+        hbsObject.groupMembers = membersData;
+      });
+      db.Bill.findAll({
+        where: {
+          GroupId: req.user.GroupId
+        }
+      }).then(function (billData) {
+        hbsObject.bill = billData
+        res.render("allBills", hbsObject);
+      });
+    }
+    else{
+      res.redirect("/home");
+    }
+  })
  
 
 
