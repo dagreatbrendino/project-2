@@ -8,6 +8,12 @@ module.exports = function(sequelize, DataTypes){
                 len: [5, 150]
             }
         },
+        recurDate: {
+            type: DataTypes.STRING,
+            validate:{
+                len: [3]
+            }
+        },
         complete: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

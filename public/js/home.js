@@ -34,10 +34,12 @@ $(document).ready(function(){
         console.log("adding chores")
         var chore = {
             choreName: $("#chore-name").val().trim(),
+            recurDate: $("#chore-day").val().trim()
         };
 
         $.post("/chore/add",{
-            chore: chore.choreName
+            chore: chore.choreName,
+            recurDate: chore.recurDate
         }).then(function(){
             window.location.reload();
         });

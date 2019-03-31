@@ -10,20 +10,6 @@
 
 
                     {{!-- BILLS TAB---------------------------------------}}
-                    {{!-- <div id="bills">
-                        <div id='billsTab'>
-                            <ul>
-                                {{#each bill}}
-                                {{> bills/bill-card}}
-                                {{/each}}
-                            </ul>
-                            <br>
-                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
-                                data-toggle="modal" data-target="#modalAddBill"><i class="fa fa-plus"></i>
-                                Add Bill
-                            </a>
-                        </div>
-                    </div> --}}
 
                     <div id='billsTab'>
 
@@ -50,20 +36,6 @@
                     </div>
 
                     {{!-- CHORES TAB---------------------------------------}}
-                    {{!-- <div  id="chores">
-                        <div id='choresTab'>
-                            <ul>
-                                {{#each chore}}
-                                {{> chores/chore-card}}
-                                {{/each}}
-                            </ul>
-                            <br>
-                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
-                                data-toggle="modal" data-target="#modalAddChores"><i class="fa fa-plus"></i>
-                                Add Chores
-                            </a>
-                        </div>
-                    </div> --}}
 
                     <br>
                     <div class="choresTab">
@@ -88,25 +60,8 @@
                     </div>
 
                     {{!-- GROCERIES TAB---------------------------------------}}
-                    {{!-- <div id="groceries">
-                        <div id='groceriesTab'>
-                            <ul>
-                                {{#each grocery}}
-                                {{> groceries/grocery-card}}
-                                {{/each}}
-                            </ul>
-                            <br>
-                            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn"
-                                data-toggle="modal" data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
-                                Add Grocery
-                            </a>
-                        </div>
-                    </div>
-                </div> --}}
-
+                    <br>
                     <div id='groceriesTab'>
-                        {{!-- <div class="row"> --}}
-                        {{!-- <div class="col-10"> --}}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -134,43 +89,58 @@
 
                 {{!--  modals for adding bills --}}
                 <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header text-center">
-                                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="/bill/add" method="POST" id="addBillForm" enctype="multipart/form-data">
-                                <div class="modal-body mx-3">
-                                    <div class="md-form mb-5">
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form action="/bill/add" method="POST" id="addBillForm" enctype="multipart/form-data">
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">
 
-                                        <i class="fas fa-file-invoice-dollar"></i>
+                    <i class="fas fa-file-invoice-dollar"></i>
 
-                                        <input type="text" id="bill-name" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
-                                            for="defaultForm-email">Bill
-                                            Name</label>
-                                        <br>
-                                        <input type="text" id="bill-amount" class="form-control validate">
+                    <input type="text" id="bill-name" class="form-control validate" name="billName">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                      Name</label>
+                    <br>
+                    <input type="text" id="bill-amount" class="form-control validate" name="amount">
 
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
-                                            for="defaultForm-email">Bill
-                                            Amount</label>
-                                        <input type='file' name='image' />
-                                    </div>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                      Amount</label>
+                    <input type='file' name='image'/>
+                                          {{groupMembers.numMembers}} {{bill.totalBills}}
+                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Month</label>
+                    <select name="month">
 
-                                    <input type="submit" id="addBillButton" class="btn btn-md btn-primary btn-dark mb-1"
-                                        value="Add Bill">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                      <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}} >Jan</option>
+                      <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
+                      <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
+                      <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr</option>
+                      <option value="May" {{#if (isUser currentMonth "May")}} selected {{/if}}>May</option>
+                      <option value="Jun" {{#if (isUser currentMonth "Jun")}} selected {{/if}}>Jun</option>
+                      <option value="Jul" {{#if (isUser currentMonth "Jul")}} selected {{/if}}>Jul</option>
+                      <option value="Aug" {{#if (isUser currentMonth "Aug")}} selected {{/if}}>Aug</option>
+                      <option value="Sep" {{#if (isUser currentMonth "Sep")}} selected {{/if}}>Sep</option>
+                      <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct</option>
+                      <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov</option>
+                      <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec</option>
+                    </select> 
+
+                  </div>
                 </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                  <input type="submit" id="addBillButton" class="btn btn-default" value="Add Bill">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
                 {{!-- modal for adding groceries --}}
                 <div class="modal fade" id="modalAddGrocery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
