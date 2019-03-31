@@ -1,4 +1,25 @@
 
-    <script src="https://unpkg.com/@pusher/chatkit-client@1/dist/web/chatkit.js"></script>
-    <script></script>
   
+  <!-- JavaScript -->
+<script src="../../js/chat.js"></script>
+  
+  {{!-- ---------------------show posted chats---------------- --}}
+  <div class="chat-container">
+    <!-- <img src="/placeholder.jpg" alt="Avatar" class="right"> -->
+    <p id="chat-table">"""""""CHAT GOES HERE"""""""""</p>
+    <p id="messageBody-input" scope="col"></p>
+    <p id="groupName-input" scope="col"></p>
+    <span class="chat-time-right">11:00</span>
+  </div>
+
+  {{!-- ---------------------form for posting chats------------------}}
+      <div class="chat-card-body">
+        <form role="form">
+          <div class="form-group row">
+            <label for="messageBody-input">Message</label>
+            <input class="form-control" id="messageBody-input" type="text">
+          </div>
+          <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+        </form>
+      </div>
+  {{!-- ------------------------------------------------------------------}}

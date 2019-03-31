@@ -373,3 +373,69 @@ padding: 1em;
 #myGroupTab{
   background-color: white;
 }
+
+
+/* -----------------------CHAT----------------------------------------- */
+
+/* Chat containers */
+.chat-container {
+	border: 2px solid #dedede;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+  }
+  
+  /* Darker chat container */
+  .darker-chat {
+	border-color: #ccc;
+	background-color: #ddd;
+  }
+  
+  /* Clear floats */
+  .chat-container::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+  
+  /* Style images */
+  .chat-container img {
+	float: left;
+	max-width: 60px;
+	width: 100%;
+	margin-right: 20px;
+	border-radius: 50%;
+  }
+  
+  /* Style the right image */
+  .chat-container img.right {
+	float: right;
+	margin-left: 20px;
+	margin-right:0;
+  }
+  
+  /* Style time text */
+  .chat-time-right {
+	float: right;
+	color: #aaa;
+  }
+  
+  /* Style time text */
+  .chat-time-left {
+	float: left;
+	color: #999;
+	}
+	
+	.chat-jumbotron {
+		padding: 4rem 2rem;
+		background-color: slategray;
+		color: white;
+	}
+	
+	.chat-card-header:first-child {
+		border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+		color: white;
+		background-color: royalblue;
+	}
+	
