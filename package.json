@@ -18,6 +18,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "firebase": "^5.9.2",
     "moment": "^2.24.0",
     "multer": "^1.4.1",
     "multer-storage-cloudinary": "^2.2.1",

@@ -49,7 +49,7 @@ header.masthead h2 {
   width: device-width;
 }
 
-.form-container { 
+.form-container {
   background: dodgerblue;
   padding: 20px;
 }
@@ -138,8 +138,8 @@ a {
   text-transform: uppercase;
   outline: 0;
   background: green;
-  hover: 
-  width: 100%;
+  hover:
+    width: 100%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -152,7 +152,7 @@ a {
 .form button:hover,
 .form button:active,
 .form button:focus {
-  background:orange;
+  background: orange;
 }
 
 .form .message {
@@ -170,22 +170,22 @@ a {
   display: none;
 }
 
-html{
+html {
   min-height: 100%;
 }
 
 body {
-  background: dodgerblue;
+  /* background: dodgerblue; */
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 
 
   /* padding-bottom: 40px; */
 }
 
-#home{
+#home {
   min-height: 100vh;
 }
 
@@ -208,10 +208,12 @@ button.edit {
   float: right;
   margin: 5px;
 }
-.card{
+
+.card {
   margin: 0 auto;
-  
+
 }
+
 .bill-container {
   margin-top: 50px;
 }
@@ -240,14 +242,14 @@ button.edit {
 
 /* ---------------HOME----------------------------- */
 
-h2{
-text-align: center;
-color: rgb(56, 55, 55);
+h2 {
+  text-align: center;
+  color: rgb(56, 55, 55);
 }
 
-.tab-content{
+.tab-content {
   background-color: rgba(30, 144, 255);
-  
+
 
 }
 
@@ -257,16 +259,16 @@ color: rgb(56, 55, 55);
 }
 
 .tasks-container {
- background: green;
- 
+  background: green;
+
 }
 
 .taskanchor {
-  
+
   background-color: green;
   color: white;
   padding: 14px 25px;
-  text-align: center; 
+  text-align: center;
   text-decoration: none;
   display: inline-block;
 }
@@ -279,42 +281,40 @@ color: rgb(56, 55, 55);
   background: dodgerblue;
 }
 
-.nav-tabs{
+
+.nav-item.show .nav-link,
+.nav-link.active {
+  color: white;
+  background-color: dodgerblue;
+  border-color: none
+}
+
+.nav-tabs {
   padding-top: 1em;
   background-color: lightblue;
-
-
   font-family: 'Roboto Condensed', sans-serif;
-  /* border: 1px solid;
-  border-color: black; */
-}
-
-.nav-tabs > li > a{
-  /* border: 1px solid;
-  border-color: black; */
-  
-
-  
-}
-.nav-link:active{
-  background-color: dodgerblue !important ;
-}
-
-.nav-tabs > li > a:active{
-background-color: dodgerblue;
-}
-
-.nav-tabs > li > a:hover{
-  background-color: rgba(94, 170, 247);
-    border: medium none;
-    border-radius: 0;
-    color:#fff;
 }
 
 
+.nav-link.active {
+  background-color: dodgerblue !important;
+  color: white !important;
+  border-color: none !important;
+}
 
+.nav-tabs>li>a:hover {
+  background-color: black;
+  border: medium none;
+  border-radius: 0;
+  color: #fff;
+  border-color: none;
+}
 
-
+.nav-tabs .nav-link {
+  border: none;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
 
 
 .btn-sm {
@@ -326,51 +326,40 @@ background-color: dodgerblue;
 }
 
 
-table{
+table {
   border-color: lightgray;
   margin: 0 auto;
+  width: 100%;
+  background: lightgrey;
+  margin-bottom: 1rem;
+  color: #212529;
 }
-tbody{
-  background-color:white;
- 
+
+tbody {
+  background-color: white;
+
 
 }
 
 
-
-tr:hover{
+tr:hover {
   background-color: rgba(204, 204, 204);
   color: white;
-  
+
 
 }
 
-/* .col-10{
-  list-style: none;
- background-color: white;
- margin: 0 auto;
-margin-top: 1em;
-padding: 1em;
-  
 
-} */
-
-/* ul{
-  text-align: left;
-  margin: 0 auto;
-
-} */
-
-#add-btn{
+#add-btn {
   margin-left: 1em;
-  
+
 }
 
-.groupList{
+.groupList {
   list-style: none;
 }
 
-#myGroupTab{
+#myGroupTab {
   background-color: white;
 }
 
@@ -379,63 +368,62 @@ padding: 1em;
 
 /* Chat containers */
 .chat-container {
-	border: 2px solid #dedede;
-	background-color: #f1f1f1;
-	border-radius: 5px;
-	padding: 10px;
-	margin: 10px 0;
-  }
-  
-  /* Darker chat container */
-  .darker-chat {
-	border-color: #ccc;
-	background-color: #ddd;
-  }
-  
-  /* Clear floats */
-  .chat-container::after {
-	content: "";
-	clear: both;
-	display: table;
-  }
-  
-  /* Style images */
-  .chat-container img {
-	float: left;
-	max-width: 60px;
-	width: 100%;
-	margin-right: 20px;
-	border-radius: 50%;
-  }
-  
-  /* Style the right image */
-  .chat-container img.right {
-	float: right;
-	margin-left: 20px;
-	margin-right:0;
-  }
-  
-  /* Style time text */
-  .chat-time-right {
-	float: right;
-	color: #aaa;
-  }
-  
-  /* Style time text */
-  .chat-time-left {
-	float: left;
-	color: #999;
-	}
-	
-	.chat-jumbotron {
-		padding: 4rem 2rem;
-		background-color: slategray;
-		color: white;
-	}
-	
-	.chat-card-header:first-child {
-		border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-		color: white;
-		background-color: royalblue;
-	}
-	
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker-chat {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.chat-container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.chat-container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.chat-container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+/* Style time text */
+.chat-time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.chat-time-left {
+  float: left;
+  color: #999;
+}
+
+.chat-jumbotron {
+  padding: 4rem 2rem;
+  background-color: slategray;
+  color: white;
+}
+
+.chat-card-header:first-child {
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  color: white;
+  background-color: royalblue;
+}
