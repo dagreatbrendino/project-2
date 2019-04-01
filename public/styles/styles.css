@@ -200,8 +200,9 @@ body {
 
 /* ---------------BILLS------------------------------ */
 
-.row{
+#myTaskRow{
   overflow: scroll;
+  background-color: #cde0ec;
 }
 
 button.submit {
