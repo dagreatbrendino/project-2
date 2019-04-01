@@ -1,6 +1,7 @@
 //--------------------------------------------------------------------------------------------
 // Initialize Firebase
 
+
 var config = {
     apiKey: "AIzaSyAdhk8dTAIiaELTSvdmIoJlIkrXYffnX_4",
     authDomain: "pad-notes.firebaseapp.com",
@@ -21,7 +22,7 @@ var groupName = "";
 var messageBody = "";
 
 // Capture Button Click
-$("#add-user").on("click", function (event) {
+$(document).on("click", "#add-user", function (event) {
     event.preventDefault();
 
     // Grabs values from text-boxes
@@ -42,7 +43,6 @@ $("#add-user").on("click", function (event) {
 
 // Firebase watcher + initial loader-- this code behaves similarly to .on("value")
 dataRef.ref().on("child_added", function (childSnapshot) {
-
     var groupName = childSnapshot.val().groupName;
     var messageBody = childSnapshot.val().messageBody;
     var messageAdded = childSnapshot.val().messageAdded;
@@ -53,16 +53,19 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val().messageAdded);
 
     // Create the new row for chat
-    var newRow = $("<p>").append(
-        $("<p>").text(groupName),
-        $("<p>").text(messageBody),
-        $("<span>").text(messageAdded),
+    var newMessage = $("#chat-table").append(
+        $("#groupName-input").text(groupName),
+        $("#messageBody-input").text(messageBody),
+        $("#chat-time-right").text(messageAdded),
       );
       // Append the new row to the table
-      $("#chat-table").append(newRow);
+      $("#chat-table").append(newMessage);
+
+      
 
     // Handle the errors
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
+
 
