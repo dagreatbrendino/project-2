@@ -145,12 +145,12 @@
               {{!-- ---------------------show posted chats---------------- --}}
               <div class="chat-container">
                 <img src="/img/placeholder.jpg" alt="Avatar" class="right">
-                <span id="chat-container">
-                  <p id="messageBody-input" scope="col"></p>
-                  <p id="groupName-input" scope="col"></p>
-                </span>
-                <span class="chat-time-right">{{messsageAdded}}</span>
+                <p id="chat-table">"""""""CHAT GOES HERE"""""""""</p>
+                <p id="messageBody-input" scope="col"></p>
+                <p id="groupName-input" scope="col"></p>
+                <span class="time-right"></span>
               </div>
+            </div>
 
               {{!-- ---------------------form for posting chats------------------}}
               <div class="chat-card-body">
@@ -163,149 +163,150 @@
                 </form>
               </div>
               {{!-- ------------------------------------------------------------------}}
-            </div>
           </div>
         </div>
-
-
-
-
-        {{!--  modals for adding bills --}}
-        <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <form action="/bill/add" method="POST" id="addBillForm" enctype="multipart/form-data">
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-5">
-
-                    <i class="fas fa-file-invoice-dollar"></i>
-
-                    <input type="text" id="bill-name" class="form-control validate" name="billName">
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
-                      Name</label>
-                    <br>
-                    <input type="text" id="bill-amount" class="form-control validate" name="amount">
-
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
-                      Amount</label>
-                    <input type='file' name='image' />
-                    {{groupMembers.numMembers}} {{bill.totalBills}}
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right"
-                      for="defaultForm-email">Month</label>
-                    <select name="month">
-                      <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}}>Jan</option>
-                      <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
-                      <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
-                      <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr</option>
-                      <option value="May" {{#if (isUser currentMonth "May")}} selected {{/if}}>May</option>
-                      <option value="Jun" {{#if (isUser currentMonth "Jun")}} selected {{/if}}>Jun</option>
-                      <option value="Jul" {{#if (isUser currentMonth "Jul")}} selected {{/if}}>Jul</option>
-                      <option value="Aug" {{#if (isUser currentMonth "Aug")}} selected {{/if}}>Aug</option>
-                      <option value="Sep" {{#if (isUser currentMonth "Sep")}} selected {{/if}}>Sep</option>
-                      <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct</option>
-                      <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov</option>
-                      <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec</option>
-                    </select>
-
-                  </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-
-                  <input type="submit" id="addBillButton" class="btn btn-sm btn-dark" value="Add Bill">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        {{!-- modal for adding groceries --}}
-        <div class="modal fade" id="modalAddGrocery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Add a Grocery</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <form id="addGroeceryForm">
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-5">
-                    <i class="fas fa-shopping-cart"></i>
-                    <input type="text" id="grocery-name" class="form-control validate">
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
-                      Name</label>
-                    <input type="text" id="grocery-quantity" class="form-control validate">
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
-                      Quantity</label>
-                  </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-
-                  <button id="addGroceryButton" class="btn btn-sm btn-dark">Add Grocery</button>
-                </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-
-        {{!-- modal for adding chores --}}
-        <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Add a Chore</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <form id="addChoreForm">
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-5">
-                    <i class="fas fa-broom"></i>
-                    <input type="text" id="chore-name" class="form-control validate">
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
-                      Name</label>
-                    <label id="groupCreateLabel" data-error="wrong" data-success="right"
-                      for="defaultForm-email">Recurring Day</label>
-                    <select name="day" id="chore-day">
-                      <option value="Sun" {{#if (isUser currentDay "Sun")}} selected {{/if}}>Sun</option>
-                      <option value="Mon" {{#if (isUser currentDay "Mon")}} selected {{/if}}>Mon</option>
-                      <option value="Tue" {{#if (isUser currentDay "Tue")}} selected {{/if}}>Tue</option>
-                      <option value="Wed" {{#if (isUser currentDay "Wed")}} selected {{/if}}>Wed</option>
-                      <option value="Thu" {{#if (isUser currentDay "Thu")}} selected {{/if}}>Thu</option>
-                      <option value="Fri" {{#if (isUser currentDay "Fri")}} selected {{/if}}>Fri</option>
-                      <option value="Sat" {{#if (isUser currentDay "Sat")}} selected {{/if}}>Sat</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-
-                  <button id="addChoreButton" class="btn btn-sm btn-dark">Add Chore</button>
-                </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-
-
-
-        <br>
-        <br>
       </div>
+
+
+
+
+
+      {{!--  modals for adding bills --}}
+      <div class="modal fade" id="modalAddBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add a Bill</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/bill/add" method="POST" id="addBillForm" enctype="multipart/form-data">
+              <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+
+                  <i class="fas fa-file-invoice-dollar"></i>
+
+                  <input type="text" id="bill-name" class="form-control validate" name="billName">
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                    Name</label>
+                  <br>
+                  <input type="text" id="bill-amount" class="form-control validate" name="amount">
+
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                    Amount</label>
+                  <input type='file' name='image' />
+                  {{groupMembers.numMembers}} {{bill.totalBills}}
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                    for="defaultForm-email">Month</label>
+                  <select name="month">
+                    <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}}>Jan</option>
+                    <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
+                    <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
+                    <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr</option>
+                    <option value="May" {{#if (isUser currentMonth "May")}} selected {{/if}}>May</option>
+                    <option value="Jun" {{#if (isUser currentMonth "Jun")}} selected {{/if}}>Jun</option>
+                    <option value="Jul" {{#if (isUser currentMonth "Jul")}} selected {{/if}}>Jul</option>
+                    <option value="Aug" {{#if (isUser currentMonth "Aug")}} selected {{/if}}>Aug</option>
+                    <option value="Sep" {{#if (isUser currentMonth "Sep")}} selected {{/if}}>Sep</option>
+                    <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct</option>
+                    <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov</option>
+                    <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec</option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+
+                <input type="submit" id="addBillButton" class="btn btn-sm btn-dark" value="Add Bill">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {{!-- modal for adding groceries --}}
+      <div class="modal fade" id="modalAddGrocery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add a Grocery</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="addGroeceryForm">
+              <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                  <i class="fas fa-shopping-cart"></i>
+                  <input type="text" id="grocery-name" class="form-control validate">
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
+                    Name</label>
+                  <input type="text" id="grocery-quantity" class="form-control validate">
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
+                    Quantity</label>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+
+                <button id="addGroceryButton" class="btn btn-sm btn-dark">Add Grocery</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+      {{!-- modal for adding chores --}}
+      <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add a Chore</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="addChoreForm">
+              <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                  <i class="fas fa-broom"></i>
+                  <input type="text" id="chore-name" class="form-control validate">
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
+                    Name</label>
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Recurring
+                    Day</label>
+                  <select name="day" id="chore-day">
+                    <option value="Sun" {{#if (isUser currentDay "Sun")}} selected {{/if}}>Sun</option>
+                    <option value="Mon" {{#if (isUser currentDay "Mon")}} selected {{/if}}>Mon</option>
+                    <option value="Tue" {{#if (isUser currentDay "Tue")}} selected {{/if}}>Tue</option>
+                    <option value="Wed" {{#if (isUser currentDay "Wed")}} selected {{/if}}>Wed</option>
+                    <option value="Thu" {{#if (isUser currentDay "Thu")}} selected {{/if}}>Thu</option>
+                    <option value="Fri" {{#if (isUser currentDay "Fri")}} selected {{/if}}>Fri</option>
+                    <option value="Sat" {{#if (isUser currentDay "Sat")}} selected {{/if}}>Sat</option>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+
+                <button id="addChoreButton" class="btn btn-sm btn-dark">Add Chore</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <br>
+      <br>
     </div>
   </div>
+</div>
 </div>
 </div>
 </div>
