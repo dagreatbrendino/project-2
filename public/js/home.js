@@ -183,8 +183,12 @@ $(document).on("click", ".removeChoreButton", function(){
 })
 
 // -------------------------FIREBASE CHAT---------------------------------------------------------------
+// Initial Values
+var groupName = "";
+var messageBody = "";
+var timestamp;
 
-// Initialize Firebase
+var reference;
 
 var config = {
     apiKey: "AIzaSyAdhk8dTAIiaELTSvdmIoJlIkrXYffnX_4",
@@ -193,17 +197,13 @@ var config = {
     projectId: "pad-notes",
     storageBucket: "pad-notes.appspot.com",
     messagingSenderId: "857111139984"
-};
-firebase.initializeApp(config);
-console.log("initialize firebase");
+  };
+  firebase.initializeApp(config);
+  
+  var database = firebase.database();
 
 // Create a variable to reference the database.
 var dataRef = firebase.database();
-console.log("connected to firebase");
-
-// Initial Values
-var groupName = "";
-var messageBody = "";
 
 // Capture Button Click
 $(document).on("click", "#add-user", function (event) {
@@ -219,31 +219,32 @@ $(document).on("click", "#add-user", function (event) {
         //hold values we want to pass in 
         groupName: groupName,
         messageBody: messageBody,
-        messageAdded: firebase.database.ServerValue.TIMESTAMP
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+
     });
 
 });
 
 // Firebase watcher + initial loader-- this code behaves similarly to .on("value")
 dataRef.ref().on("child_added", function (childSnapshot) {
+
     var groupName = childSnapshot.val().groupName;
     var messageBody = childSnapshot.val().messageBody;
-    var messageAdded = childSnapshot.val().messageAdded;
-
+    var timestamp = childSnapshot.val().timestamp;
+   
     // Log everything that's coming out of snapshot
     console.log(childSnapshot.val().groupName);
     console.log(childSnapshot.val().messageBody);
-    console.log(childSnapshot.val().messageAdded);
+    console.log(childSnapshot.val().timestamp);
 
-    // Create the new row for chat
-    var newMessage = $("#chat-container").append(
+    // Create the new row
+    var newRow = $("<p>").append(
         $("<p>").text(groupName),
         $("<p>").text(messageBody),
-        $("<span>").text(messageAdded),
-    );
-    // Append the new chat to the container
-    $(".chat-container").append(newMessage);
-
+        $("<span>").text(timestamp),
+      );
+      // Append the new row to the table
+      $("#chat-table").append(newRow);
 
     // Handle the errors
 }, function (errorObject) {

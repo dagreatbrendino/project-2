@@ -4,7 +4,7 @@
 
 ## GitHub repo: https://github.com/dagreatbrendino/project-2 
 
-### About
+## About
 Pad Notes is a web application that helps users manage chores, bills, and grocery inventory in their households. Users are able to create household groups to assign chores, request payments for bills, post bill documets, and post which groceries are needed. 
 
 ## Why Pad Notes Is Useful
@@ -12,7 +12,7 @@ Users can manage tasks with their roommates so that they can improve communciati
 
 Users can also assign chores to kids so the house is clean when parents get home from work, leading to ultimate household happiness. 
 
-### Technology Used
+## Technology Used
 HTML, CSS, JavaScript, Bootstrap, Express, Node JS, Firebase, Moment JS, Passport JS, Multer (used for uploading files), Cloudinary (pdf storage)
 
 ## How Users Can Get Started with Pad Notes

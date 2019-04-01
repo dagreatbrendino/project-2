@@ -4,7 +4,6 @@
         <input type="text" class="choreNameEdit hideThis" value="{{chore}}">
     </td>
     {{#each @root.groupMembers as |groupMember index|}}
-
       {{#if (isUser groupMember.dataValues.id ../UserId)}}
       <td>{{groupMember.dataValues.name}}</td>
       {{/if}}
