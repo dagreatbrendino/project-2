@@ -140,7 +140,10 @@ a {
   box-sizing: border-box;
   font-size: 14px;
 }
-
+.nav-con{
+  width: 100%;
+  background-color: #98C1D9
+}
 .hideThis{
   display: none;
 }
@@ -154,6 +157,13 @@ a {
   cursor: pointer;
   height: 0;
   width: 0;
+}
+.null-padding{
+  padding: 0;
+}
+.taskOwner{
+  text-align: center;
+  background-color: #3d5a80;
 }
 .checkmark {
   display: inline-block;
