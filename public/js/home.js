@@ -169,6 +169,17 @@ $(document).on("click", ".choreComplete", function(){
     var currentlyEditingParent = $(this).parent().parent().parent();
     console.log(currentlyEditingParent)
     updateChore(currentlyEditingParent);
+});
+$(document).on("click", ".removeChoreButton", function(){
+    var choreRow = $(this).parent().parent();
+    // console.log(billRow)
+    var choreId = choreRow.data("choreid");
+    $.ajax({
+        method: "DELETE",
+        url: "/chore/delete/" + choreId
+    }).then(function (data){
+        choreRow.remove();
+    })
 })
 
 // -------------------------FIREBASE CHAT---------------------------------------------------------------
