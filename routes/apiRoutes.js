@@ -318,7 +318,7 @@ module.exports = function(app) {
     if(req.user.id === creatorId){
       db.Chore.update({
         chore: req.body.chore,
-        complete: false
+        complete: req.body.complete
       },{
         where:{
           id: choreId

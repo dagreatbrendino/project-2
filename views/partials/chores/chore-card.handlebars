@@ -10,7 +10,11 @@
       {{/if}}
     {{/each}}
     <td>
-        <span "choreComplete">incomplete</span>
+        <label class="choreCompleteContainer">
+            <input type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
+            <span class="checkmark"></span>
+        </label>
+        
     </td>
   {{#if (isUser @root.user.id UserId)}}
   <td>

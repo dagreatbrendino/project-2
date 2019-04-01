@@ -147,7 +147,7 @@ var updateChore = function(currentlyEditingRow){
     //get all of the inputs from the row being updated
     var chore = {
         chore: currentlyEditingRow.find(".choreNameEdit").val(),
-        complete: false
+        complete: currentlyEditingRow.find(".choreComplete").is(":checked")
     }
     //update the bill with route defined in the apiRoutes
     $.ajax({
@@ -163,6 +163,13 @@ var updateChore = function(currentlyEditingRow){
         currentlyEditingRow.find(".choreComplete").text(data.complete);
     })
 }
+
+$(document).on("click", ".choreComplete", function(){
+    console.log($(this).is(":checked"));
+    var currentlyEditingParent = $(this).parent().parent().parent();
+    console.log(currentlyEditingParent)
+    updateChore(currentlyEditingParent);
+})
 
 // -------------------------FIREBASE CHAT---------------------------------------------------------------
 
