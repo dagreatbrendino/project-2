@@ -1,15 +1,31 @@
-<tr>
-    <td>{{chore}}</td>
+<tr class="choreRow" data-creatorid={{UserId}} data-choreid={{id}}>
+    <td class="choreColumn">
+        <span class="choreName">{{chore}}</span>
+        <input type="text" class="choreNameEdit hideThis" value="{{chore}}">
+    </td>
     {{#each @root.groupMembers as |groupMember index|}}
-      {{log groupMember}}
-      {{log groupMember.dataValues.id}}
       {{#if (isUser groupMember.dataValues.id ../UserId)}}
       <td>{{groupMember.dataValues.name}}</td>
-      {{log "user is the name here"}}
       {{/if}}
     {{/each}}
-
+    <td>{{recurDate}}</td>
     <td>
-        <a class="btn btn-sm btn-dark" href="/chore/{{UserId}}/{{id}}">Edit Chore</a>
+        {{#if (isUser @root.user.id UserId)}}
+        <label class="choreCompleteContainer">
+            <input type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
+            <span class="checkmark"></span>
+        </label>
+        {{else}}
+            <label class="choreCompleteContainer">
+            <input disabled type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
+            <span class="checkmark"></span>
+        </label>
+        {{/if}}
     </td>
+  {{#if (isUser @root.user.id UserId)}}
+  <td>
+    <button class="removeChoreButton">X</button>
+  </td>
+  {{/if}}
+
 </tr>

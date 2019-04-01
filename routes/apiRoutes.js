@@ -231,14 +231,22 @@ module.exports = function (app) {
         billName: req.body.billName,
         amount: req.body.amount,
         month: req.body.month
-      }, {
+
+      },{
+        where:{
+          id: billId
+        }
+      }).then(function(data){
+        db.Bill.findOne({
           where: {
             id: billId
           }
-        }).then(function (data) {
+        }).then(function(updatedBillData){
           console.log("done updating bill")
-          res.end();
+          console.log(data);
+          res.json(updatedBillData);
         });
+      });
     };
   });
 
@@ -317,16 +325,22 @@ module.exports = function (app) {
     if (req.user.id === creatorId) {
       db.Chore.update({
         chore: req.body.chore,
-        complete: false
-      }, {
+        complete: req.body.complete
+      },{
+        where:{
+          id: choreId
+        }
+      }).then(function(data){
+        db.Chore.findOne({
           where: {
             id: choreId
           }
-        }).then(function (data) {
-          console.log("done updating chore")
-          res.end();
-        });
-    };
+        }).then(function(updatedChore){
+          res.json(updatedChore);
+        })
+      });
+    }
+
   });
 
 

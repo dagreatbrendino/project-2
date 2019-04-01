@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-8 offset-2">
         <br>
-        <h2 class="welcome">Welcome to {{group.groupName}}, {{user.name}}</h2>
+        <h2 class="welcome" data-loggeduserid={{user.id}}>Welcome to {{group.groupName}}, {{user.name}}</h2>
         <br>
 
         <div class="tab-content">
@@ -53,10 +53,11 @@
                 <thead>
                   <tr>
                     <th scope="col">Bill</th>
+                    <th scope="col">Month</th>
                     <th scope="col">Amount</th>
                     <th scole="col">Owner</th>
                     <th scope="col">Document</th>
-                    <th scope="col"></th>
+                    <th scope="col">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -80,9 +81,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Chore Name</th>
-                  <th scole="col">Owner</th>
-                  <th scope="col"></th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Owner</th>
+                  <th scope="col">Day</th>
+                  <th scole="col">Complete</th>
+                  <th scope="col">Remove</th>
                 </tr>
               </thead>
               <tbody>
