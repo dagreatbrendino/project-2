@@ -1,6 +1,14 @@
 <tr>
     <td>{{groceryName}} </td>
     <td>{{quantity}}</td>
+    {{#each @root.groupMembers as |groupMember index|}}
+      {{log groupMember}}
+      {{log groupMember.dataValues.id}}
+      {{#if (isUser groupMember.dataValues.id ../UserId)}}
+      <td>{{groupMember.dataValues.name}}</td>
+      {{log "user is the name here"}}
+      {{/if}}
+    {{/each}}
     <td>
         <a class="btn btn-sm btn-dark" href="/grocery/{{GroupId}}/{{id}}">Edit Grocery</a>
     </td>
