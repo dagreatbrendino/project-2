@@ -293,7 +293,8 @@ module.exports = function (app) {
       group: "",
       bill: "",
       chore: "",
-      grocery: ""
+      grocery: "",
+      groupMembers: ""
     }
     db.User.findOne({
       where: {
@@ -301,6 +302,22 @@ module.exports = function (app) {
       }
     }).then(function(userData){
       taskObject.user = userData
+    });
+    //find the group
+    db.Group.findOne({
+      where: {
+        id: req.user.GroupId
+      }
+    }).then(function(groupData){
+      taskObject.group = groupData
+    })
+    db.User.findAll({
+      where: {
+        GroupId: req.user.GroupId
+      },
+      attributes: ["name", "id"]
+    }).then(function (membersData) {
+      taskObject.groupMembers = membersData;
     });
     //find all bill rows associated with the group
     db.Bill.findAll({
