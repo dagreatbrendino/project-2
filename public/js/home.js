@@ -71,7 +71,7 @@ var config = {
 var dataRef = firebase.database();
 
 // Capture Button Click
-$("#add-user").on("click", function (event) {
+$(document).on("click", "#add-user", function (event) {
     event.preventDefault();
 
     // Grabs values from text-boxes
