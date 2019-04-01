@@ -46,7 +46,74 @@ $(document).ready(function () {
     });
 
 });
+//the element that is currently being edited
+var currentlyEditing;
+//when a bill column is clicked
+$(document).on("click", ".billColumn", function(event){
+    event.preventDefault();
+    //find the row element the column belongs to assign it to a variable
+    var currentlyEditingParent = $(this).parent();
+    //get the logged in user id
+    var userId = $(".welcome").data("loggeduserid");
+    //if the user is the creator of the bill, then switch the column to an input field
+    if(userId === currentlyEditingParent.data("creatorid")){
+        $(this).find("input").removeClass("hideThis");
+        $(this).find("select").removeClass("hideThis");
+        $(this).find("span").addClass("hideThis");
+        $(this).find("input").focus();
+        $(this).find("select").focus();
+        //assign the column being updated to the currentlyEditing variable
+        currentlyEditing = $(this);   
+    }
+})
+//when a billColumn output loses focus
+$(document).on("focusout", ".billColumn", function(){
+    //change the column back to plain text
+    $(this).find("input").addClass("hideThis");
+    $(this).find("select").addClass("hideThis");
+    $(this).find("span").removeClass("hideThis");
+    //call the updateBill function
+    updateBill( $(this).parent())
 
+})
+//updateBill function
+var updateBill = function(currentlyEditingRow){
+    var creatorId = currentlyEditingRow.data("creatorid");
+    var billId = currentlyEditingRow.data("billid");
+    //get all of the inputs from the row being updated
+    var bill = {
+        billName: currentlyEditingRow.find(".billNameEdit").val(),
+        amount: currentlyEditingRow.find(".billAmountEdit").val(),
+        month: currentlyEditingRow.find(".billMonthEdit").val()
+    }
+    //update the bill with route defined in the apiRoutes
+    $.ajax({
+        method: "PUT",
+        url: "/bill/edit/" + creatorId + "/" + billId,
+        data: {
+            billName: bill.billName,
+            amount: bill.amount,
+            month: bill.month
+        }
+    }).then( function(data){
+        console.log(data);
+        currentlyEditingRow.find(".billName").text(data.billName);
+        currentlyEditingRow.find(".billAmount").text(data.amount);
+        currentlyEditingRow.find(".billMonth").text(data.month);
+    })
+}
+
+$(document).on("click", ".removeBillButton", function(){
+    var billRow = $(this).parent().parent();
+    console.log(billRow)
+    var billId = billRow.data("billid");
+    $.ajax({
+        method: "DELETE",
+        url: "/bill/delete/" + billId
+    }).then(function (data){
+        billRow.remove();
+    })
+})
 // -------------------------FIREBASE CHAT---------------------------------------------------------------
 
 // Initialize Firebase

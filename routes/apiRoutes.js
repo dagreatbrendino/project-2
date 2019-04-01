@@ -230,8 +230,15 @@ module.exports = function(app) {
           id: billId
         }
       }).then(function(data){
-        console.log("done updating bill")
-        res.end();
+        db.Bill.findOne({
+          where: {
+            id: billId
+          }
+        }).then(function(updatedBillData){
+          console.log("done updating bill")
+          console.log(data);
+          res.json(updatedBillData);
+        });
       });
     };
   });

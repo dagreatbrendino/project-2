@@ -1,10 +1,32 @@
-<tr>
-  <td>{{billName}}</td>
-  <td>{{amount}}</td>
+<tr class="billRow" data-creatorid={{UserId}} data-billid={{id}}>
+  <td class="billColumn">
+    <span class="billName">{{billName}}</span>
+    <input type="text" class="billNameEdit hideThis" value="{{billName}}" >
+  </td>
+  <td class="billColumn">
+    <span class="billMonth">{{month}}</span>
+    <select id="bill-month" class="billMonthEdit hideThis" name="month">
+        <option value="Jan" {{#if (isUser month "Jan")}} selected {{/if}} >Jan</option>
+        <option value="Feb" {{#if (isUser month "Feb")}} selected {{/if}}>Feb</option>
+        <option value="Mar" {{#if (isUser month "Mar")}} selected {{/if}}>Mar</option>
+        <option value="Apr" {{#if (isUser month "Apr")}} selected {{/if}}>Apr</option>
+        <option value="May" {{#if (isUser month "May")}} selected {{/if}}>May</option>
+        <option value="Jun" {{#if (isUser month "Jun")}} selected {{/if}}>Jun</option>
+        <option value="Jul" {{#if (isUser month "Jul")}} selected {{/if}}>Jul</option>
+        <option value="Aug" {{#if (isUser month "Aug")}} selected {{/if}}>Aug</option>
+        <option value="Sep" {{#if (isUser month "Sep")}} selected {{/if}}>Sep</option>
+        <option value="Oct" {{#if (isUser month "Oct")}} selected {{/if}}>Oct</option>
+        <option value="Nov" {{#if (isUser month "Nov")}} selected {{/if}}>Nov</option>
+        <option value="Dec" {{#if (isUser month "Dec")}} selected {{/if}}>Dec</option>
+    </select> 
+  </td>
+  <td class="billColumn">
+    <span class="billAmount">{{amount}}</span>
+    <input type="text" class="billAmountEdit hideThis" value="{{amount}}" >
+  </td>
 
     {{#each @root.groupMembers as |groupMember index|}}
-      {{log groupMember}}
-      {{log groupMember.dataValues.id}}
+
       {{#if (isUser groupMember.dataValues.id ../UserId)}}
       <td>{{groupMember.dataValues.name}}</td>
       {{log "user is the name here"}}
@@ -13,10 +35,10 @@
     <td><a target="blank" href="{{fileUrl}}">
       <img src={{thumbUrl}} alt="bll-doc-thumb" />
     </a></td>
-  {{#if (isUser @root.user.id UserId)}}
 
+  {{#if (isUser @root.user.id UserId)}}
   <td>
-    <a class="btn btn-sm btn-dark" href="/bill/{{UserId}}/{{id}}">Edit Bill</a>
+    <button class="removeBillButton">X</button>
   </td>
   {{/if}}
 
