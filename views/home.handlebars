@@ -1,5 +1,8 @@
 <!-- NAV TABS -->
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<div class="nav-con">
+<div class="container null-padding">
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item active">
     <a class="nav-link" id="bills-tab" data-toggle="tab" href="#bills" role="tab" aria-controls="bills"
       aria-selected="false">Bills</a>
@@ -22,6 +25,11 @@
   </li>
 </ul>
 
+</div>
+
+</div>
+
+
 
 
 <!-- TABS FUNCTIONALITY -->
@@ -34,9 +42,9 @@
 {{!-- TASK INFO---------------------------------------}}
 <script src="js/home.js"></script>
 <div id="home">
-  <div class="todo-container">
-    <div class="row">
-      <div class="col-8 offset-2">
+  <div class="todo-container container">
+    <div class="row justify-content-center">
+      <div class="col-sm-9 col-12 ">
         <br>
         <h2 class="welcome" data-loggeduserid={{user.id}}>Welcome to {{group.groupName}}, {{user.name}}</h2>
         <br>
@@ -48,21 +56,32 @@
           <h2 class="category">{{msg}}</h2>
 
           <div class="tab-pane fade" id="bills" role="tabpanel" aria-labelledby="bills-tab">
-            <div id='billsTab'>
+            <div id='billsTab' class="table-responsive-sm">
               <table class="table">
                 <thead>
                   <tr>
+                    <th scope="col" colspan="3" class="taskOwner">Bills for {{currentMonth}}</th>
+                  </tr>
+                  <tr>
                     <th scope="col">Bill</th>
-                    <th scope="col">Month</th>
+                    {{!-- <th scope="col">Month</th> --}}
                     <th scope="col">Amount</th>
-                    <th scole="col">Owner</th>
+                    {{!-- <th scole="col">Owner</th> --}}
                     <th scope="col">Document</th>
-                    <th scope="col">Remove</th>
+                    {{!-- <th scope="col">Remove</th> --}}
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each bill}}
-                  {{> bills/bill-card}}
+                  {{#each groupMembers}}
+                  <tr>
+                    <th scope="col" colspan="3" class="taskOwner">{{name}}</th>
+                  </tr>
+                    {{#each ../bill}}
+                    {{log ../id}}
+                      {{#if (isUser ../id UserId)}}
+                      {{> bills/bill-card}}
+                      {{/if}}
+                    {{/each}}
                   {{/each}}
                 </tbody>
               </table>
@@ -77,7 +96,7 @@
 
           {{!-- CHORES TAB---------------------------------------}}
 
-          <div class="tab-pane fade" id="chores" role="tabpanel" aria-labelledby="chores-tab">
+          <div class="tab-pane fade table table-responsive" id="chores" role="tabpanel" aria-labelledby="chores-tab">
             <table class="table">
               <thead>
                 <tr>
