@@ -1,7 +1,21 @@
-<tr>
-    <td>{{chore}}</td>
-
-    <td>
-        <a class="btn btn-sm btn-dark" href="/chore/{{UserId}}/{{id}}">Edit Chore</a>
+<tr class="choreRow" data-creatorid={{UserId}} data-choreid={{id}}>
+    <td class="choreColumn">
+        <span class="choreName">{{chore}}</span>
+        <input type="text" class="choreNameEdit hideThis" value="{{chore}}">
     </td>
+    {{#each @root.groupMembers as |groupMember index|}}
+
+      {{#if (isUser groupMember.dataValues.id ../UserId)}}
+      <td>{{groupMember.dataValues.name}}</td>
+      {{/if}}
+    {{/each}}
+    <td>
+        <span "choreComplete">incomplete</span>
+    </td>
+  {{#if (isUser @root.user.id UserId)}}
+  <td>
+    <button class="removeChoreButton">X</button>
+  </td>
+  {{/if}}
+
 </tr>

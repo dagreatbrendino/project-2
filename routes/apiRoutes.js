@@ -324,10 +324,15 @@ module.exports = function(app) {
           id: choreId
         }
       }).then(function(data){
-        console.log("done updating chore")
-        res.end();
+        db.Chore.findOne({
+          where: {
+            id: choreId
+          }
+        }).then(function(updatedChore){
+          res.json(updatedChore);
+        })
       });
-    };
+    }
   });
 
 
