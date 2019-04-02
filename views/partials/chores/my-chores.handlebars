@@ -1,7 +1,6 @@
 <tr class="choreRow" data-creatorid={{UserId}} data-choreid={{id}}>
     <td class="choreColumn">
-      <span class="choreName">{{chore}}</span>
-      <input type="text" class="choreNameEdit hideThis" value="{{chore}}">
+      <span>{{chore}}</span>
       
     </td>
     {{!-- {{#each @root.groupMembers as |groupMember index|}}
@@ -10,9 +9,11 @@
       {{/if}}
     {{/each}} --}}
    
-    {{!-- <td>{{recurDate}}
-    <td> --}}
-      <td>
+     <td class=>{{recurDate}}</td> 
+      {{!-- <span>{{recurDate}}</span>
+      <input type="text" class="dateEdit hideThis" value="{{recurDate}}" >
+      </td>  --}} 
+    <td>
         {{#if (isUser @root.user.id UserId)}}
         <label class="choreCompleteContainer">
             <input type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
@@ -25,10 +26,10 @@
         </label>
         {{/if}}
     </td>
-  {{#if (isUser @root.user.id UserId)}}
+  {{!-- {{#if (isUser @root.user.id UserId)}}
   <td>
     <button class="removeChoreButton">X</button>
   </td>
-  {{/if}}
+  {{/if}} --}}
 
 </tr>
