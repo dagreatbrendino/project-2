@@ -219,7 +219,7 @@ var updateGrocery = function(currentlyEditingRow){
 
 $(document).on("click", ".removeGroceryButton", function(){
     var groceryRow = $(this).parent().parent();
-    console.log(goceryRow)
+    console.log(groceryRow)
     var groceryId = groceryRow.data("groceryid");
     $.ajax({
         method: "DELETE",
