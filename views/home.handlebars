@@ -54,6 +54,7 @@
                   <tr>
                     {{#each groupMembers}}
                     <th scope="col" colspan="3" class="taskOwner">{{name}}</th>
+                    {{/each}}
                   </tr>
                   <tr>
                     <th scope="col">Bill</th>
@@ -66,11 +67,10 @@
                   
                 </thead>
                 <tbody>
-                  {{!-- {{#each groupMembers}}
-                  <tr>
-
+                  {{#each groupMembers}}
+                  {{!-- <tr>
                     <th scope="col" colspan="3" class="billOwner" data-userid={{id}}>{{name}}<span class="billTotal" id="user{{id}}BillTotal"></span></th>
-                  </tr>
+                  </tr> --}}
                     {{#each ../bill}}
                       {{#if (isUser ../id UserId)}}
                       {{> bills/bill-card}}
