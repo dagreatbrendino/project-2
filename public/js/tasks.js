@@ -8,7 +8,6 @@ $(function() {
         type: "DELETE"
       }).then(
         function() {
-          console.log("deleted id ", id);
           // Reload the page to get the updated task list
           location.reload();
         }
@@ -30,7 +29,6 @@ $(function() {
         data: newtask
       }).then(
         function() {
-          console.log("created new task");
           // Reload the page to get the updated list
           location.reload();
         }
@@ -54,7 +52,6 @@ $(function() {
         data: updatedtask
       }).then(
         function() {
-          console.log("updated task");
           // Reload the page to get the updated list
           location.assign("/");
         }

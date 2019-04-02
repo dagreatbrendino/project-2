@@ -12,14 +12,12 @@ $(document).ready(function(){
             return;
         }
         //if there is a valid email and password, sign up the user 
-        console.log(newUser.email);
         $.post("/new-user/signup", {
             email: newUser.email,
             password: newUser.password,
             name: newUser.name
         })
         .then(function(data){
-            console.log("changing location")
             window.location.assign("/home");
         }).catch(handleLoginErr)
     });

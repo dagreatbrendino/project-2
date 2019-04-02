@@ -5,7 +5,6 @@ var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 var moment = require("moment");
-console.log(moment().format("MMM"));
 
 module.exports = function (app) {
   // Load index page
@@ -34,8 +33,6 @@ module.exports = function (app) {
 
   //Load home page for authenticated user
   app.get("/home", isAuthenticated, function (req, res) {
-    console.log("redirected")
-    console.log(req.user);
     var homeObject = {
       user: "",
       group: "",
@@ -69,7 +66,6 @@ module.exports = function (app) {
           },
           attributes: ['name', 'id']
         }).then(function (membersData) {
-          console.log("members data ", membersData);
           homeObject.numMembers = membersData.count;
           homeObject.groupMembers = membersData.rows;
         });
@@ -115,7 +111,6 @@ module.exports = function (app) {
           }
         }).then(function (choreData) {
           homeObject.chore = choreData;
-          console.log(homeObject);
           //render with the home layout passing the homeObject 
           res.render("home", homeObject);
         });
@@ -164,7 +159,6 @@ module.exports = function (app) {
     //make sure the groupId that is being accessed is coming from the group the user belongs to
     var urlGroup = parseInt(req.params.GroupId);
     if (urlGroup === req.user.GroupId) {
-      console.log("req uid stuff ", req.params.GroupId, " ", req.user.GroupId)
       var hbsObject = {
         bill: "",
         user: "",
@@ -226,7 +220,6 @@ module.exports = function (app) {
     //make sure the groupId that is being accessed is coming from the group the user belongs to
     var urlGroup = parseInt(req.params.GroupId);
     if (urlGroup === req.user.GroupId) {
-      console.log("req uid stuff ", req.params.GroupId, " ", req.user.GroupId)
       var hbsObject = {
         chore: "",
         user: "",
@@ -286,8 +279,6 @@ module.exports = function (app) {
 //-----------ALL Tasks/MY Tasks---------------------------------------------------------------
   // adding route for tasks, populate all tasks/to-dos-----------------------------------------
   app.get("/mytasks", isAuthenticated, function (req, res) {
-    console.log("mytasks")
-    console.log(req.user);
     var taskObject = {
       user: "",
       group: "",
@@ -341,8 +332,7 @@ module.exports = function (app) {
         UserId: req.user.id
       }
     }).then(function (choreData) {
-      taskObject.chore = choreData;
-      console.log(taskObject);
+      taskObject.chore = choreData;;
       //render with the mytasks layout passing the taskObject 
       res.render("mytasks", taskObject);
     })

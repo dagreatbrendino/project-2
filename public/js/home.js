@@ -1,27 +1,10 @@
 $(document).ready(function () {
-    // $("#addBillButton").on("click", function(event){
-    //     event.preventDefault();
-    //     console.log("adding bill")
-    //     var bill = {
-    //         billName: $("#bill-name").val().trim(),
-    //         amount: $("#bill-amount").val().trim()
-    //     };
-
-    //     $.post("/bill/add",{
-    //         billName: bill.billName,
-    //         amount: bill.amount
-    //     }).then(function(){
-    //         window.location.reload();
-    //     });
-    // });
     $("#addGroceryButton").on("click", function (event) {
         event.preventDefault();
-        console.log("adding grocery")
         var grocery = {
             groceryName: $("#grocery-name").val().trim(),
             quantity: $("#grocery-quantity").val().trim()
         };
-        console.log(grocery);
         $.post("/grocery/add", {
             groceryName: grocery.groceryName,
             quantity: grocery.quantity
@@ -31,7 +14,6 @@ $(document).ready(function () {
     });
     $("#addChoreButton").on("click", function (event) {
         event.preventDefault();
-        console.log("adding chores")
         var chore = {
             choreName: $("#chore-name").val().trim(),
             recurDate: $("#chore-day").val().trim()
@@ -54,7 +36,6 @@ $(document).ready(function () {
                 userTotal += $(this).data("billamount");
             }
         })
-        console.log(userTotal)
         $("#user" + userId + "BillTotal").text("     $" + userTotal);
     })
 });
@@ -110,7 +91,6 @@ var updateBill = function(currentlyEditingRow){
             month: bill.month
         }
     }).then( function(data){
-        console.log(data);
         currentlyEditingRow.find(".billName").text(data.billName);
         currentlyEditingRow.find(".billAmount").text(data.amount);
         currentlyEditingRow.find(".billMonth").text(data.month);
@@ -119,7 +99,6 @@ var updateBill = function(currentlyEditingRow){
 //function to remove bill
 $(document).on("click", ".removeBillButton", function(){
     var billRow = $(this).parent().parent();
-    console.log(billRow)
     var billId = billRow.data("billid");
     $.ajax({
         method: "DELETE",
@@ -170,21 +149,17 @@ var updateChore = function(currentlyEditingRow){
             complete: chore.complete
         }
     }).then( function(data){
-        console.log(data);
         currentlyEditingRow.find(".choreName").text(data.chore);
         currentlyEditingRow.find(".choreComplete").text(data.complete);
     })
 }
 
 $(document).on("click", ".choreComplete", function(){
-    console.log($(this).is(":checked"));
     var currentlyEditingParent = $(this).parent().parent().parent();
-    console.log(currentlyEditingParent)
     updateChore(currentlyEditingParent);
 });
 $(document).on("click", ".removeChoreButton", function(){
     var choreRow = $(this).parent().parent();
-    // console.log(billRow)
     var choreId = choreRow.data("choreid");
     $.ajax({
         method: "DELETE",
@@ -236,21 +211,17 @@ var updateGrocery = function(currentlyEditingRow){
             complete: chore.complete
         }
     }).then( function(data){
-        console.log(data);
         currentlyEditingRow.find(".choreName").text(data.chore);
         currentlyEditingRow.find(".choreComplete").text(data.complete);
     })
 }
 
 $(document).on("click", ".choreComplete", function(){
-    console.log($(this).is(":checked"));
     var currentlyEditingParent = $(this).parent().parent().parent();
-    console.log(currentlyEditingParent)
     updateChore(currentlyEditingParent);
 });
 $(document).on("click", ".removeChoreButton", function(){
     var choreRow = $(this).parent().parent();
-    // console.log(billRow)
     var choreId = choreRow.data("choreid");
     $.ajax({
         method: "DELETE",
