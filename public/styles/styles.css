@@ -14,7 +14,6 @@
 header.masthead {
   padding-top: calc(5rem + -19px);
   padding-bottom: 5rem;
-  /* background-color: #cde0ec!important; */
   background-color: #3d5a80 !important;
 
 }
@@ -26,7 +25,6 @@ header.masthead {
 .welcome {
   font-size: 2rem;
   font-family: 'Oswald', sans-serif;
-  /* color: whitesmoke; */
   color: #293241;
 }
 
@@ -56,7 +54,6 @@ header.masthead h2 {
 }
 
 .form-container {
-  /* background: #a8becc; */
   background: #3d5a80;
   padding: 20px;
 }
@@ -84,7 +81,6 @@ label {
 }
 
 a {
-  /* color: black; */
   color: #293241;
   text-decoration: none;
   background-color: transparent;
@@ -249,7 +245,7 @@ a {
   outline: 0;
   background: green;
   hover:
-    width: 100%;
+  width: 100%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -379,7 +375,7 @@ h2 {
 .todo-container {
   /* background: dodgerblue; */
   background-color: #cde0ec;
-  height: 100vh;
+  
 }
 
 .tasks-container {
