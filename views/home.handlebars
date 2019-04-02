@@ -42,37 +42,36 @@
 
 
           {{!-- BILLS TAB---------------------------------------}}
-          <h2 class="category">{{msg}}</h2>
-
           <div class="tab-pane fade in active show" id="bills" role="tabpanel" aria-labelledby="bills-tab">
+            {{!-- div for all bills content --}}
             <div id='billsTab' class="table-responsive-sm">
+
               <table class="table">
+                {{!-- top of table --}}
                 <thead>
                   <tr>
                     <th scope="col" colspan="3" class="billHeader">Bills for {{currentMonth}} Total: ${{totalBills}}</th>
                   </tr>
-                  <tr>
-                    {{#each groupMembers}}
-                    <th scope="col" colspan="3" class="taskOwner">{{name}}</th>
-                    {{/each}}
-                  </tr>
-                  <tr>
-                    <th scope="col">Bill</th>
-                    {{!-- <th scope="col">Month</th> --}}
-                    <th scope="col">Amount</th>
-                    {{!-- <th scole="col">Owner</th> --}}
-                    <th scope="col">Document</th>
-                    {{!-- <th scope="col">Remove</th> --}}
-                  </tr>
-                  
                 </thead>
+
                 <tbody>
+                  {{!-- for every group member --}}
                   {{#each groupMembers}}
-                  {{!-- <tr>
-                    <th scope="col" colspan="3" class="billOwner" data-userid={{id}}>{{name}}<span class="billTotal" id="user{{id}}BillTotal"></span></th>
-                  </tr> --}}
+                    {{!-- create a row that has their name and billTotal  --}}
+                    <tr>
+                      <th scope="col" colspan="3" class="billOwner" data-userid={{id}}>{{name}}<span class="billTotal" id="user{{id}}BillTotal"></span></th>
+                    </tr>
+                    {{!-- create a row for the Bill, amount, document header --}}
+                    <tr>
+                      <th scope="col">Bill</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Document</th>
+                    </tr>
+                    {{!-- for every bill --}}
                     {{#each ../bill}}
+                      {{!-- if the id of the current group member is equal to the id of the bill creator --}}
                       {{#if (isUser ../id UserId)}}
+                        {{!-- render the bill with the bill card--}}
                       {{> bills/bill-card}}
                       {{/if}}
                     {{/each}}
