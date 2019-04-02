@@ -10,4 +10,20 @@
     <span class="groceryQuantity">{{quantity}}</span>
     <input type="text" class="groceryQuantEdit hideThis" value="{{quantity}}">
     </td>
-</tr>
+  {{!-- {{#each @root.groupMembers as |groupMember index|}}
+  {{log groupMember}}
+  {{log groupMember.dataValues.id}}
+  {{#if (isUser groupMember.dataValues.id ../UserId)}}
+  <td>{{groupMember.dataValues.name}}</td>
+  {{log "user is the name here"}}
+  {{/if}}
+  {{/each}} --}}
+  {{#if (isUser @root.user.id UserId)}}
+  <td>
+    <button class="removeGroceryButton">X</button>
+  </td>
+  {{/if}}
+
+  {{!-- <td>
+        <a class="btn btn-sm btn-dark" href="/grocery/{{GroupId}}/{{id}}">Edit Grocery</a>
+    </td> --}}
