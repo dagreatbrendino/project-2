@@ -5,6 +5,8 @@
 /* ---------------GOOGLE FONTS------------------------------ */
 
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Cutive+Mono|Nova+Mono|Roboto+Condensed|Share+Tech+Mono');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 
 
 /* ---------------HEADER------------------------------ */
@@ -12,7 +14,9 @@
 header.masthead {
   padding-top: calc(5rem + -19px);
   padding-bottom: 5rem;
-  background-color: #cde0ec!important;
+  /* background-color: #cde0ec!important; */
+  background-color: #3d5a80 !important;
+
 }
 
 .html {
@@ -21,9 +25,9 @@ header.masthead {
 
 .welcome {
   font-size: 2rem;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Oswald', sans-serif;
   /* color: whitesmoke; */
-  color:#293241;
+  color: #293241;
 }
 
 header.masthead h1 {
@@ -34,7 +38,7 @@ header.masthead h1 {
 
 header.masthead h2 {
   font-size: 1.3rem;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Oswald', sans-serif;
 }
 
 /* ---------------LOGIN------------------------------ */
@@ -52,7 +56,8 @@ header.masthead h2 {
 }
 
 .form-container {
-  background:#a8becc;
+  /* background: #a8becc; */
+  background: #3d5a80;
   padding: 20px;
 }
 
@@ -67,7 +72,7 @@ p {
   font-size: 19px;
 }
 
-.introPara{
+.introPara {
   text-align: center;
   color: #1a1f29;
 }
@@ -80,7 +85,7 @@ label {
 
 a {
   /* color: black; */
-  color:#293241;
+  color: #293241;
   text-decoration: none;
   background-color: transparent;
 }
@@ -91,7 +96,7 @@ a {
   background: dodgerblue;
   color: white margin: 0 auto;
   padding: 45px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)
 }
 
 .form-signin .form-signin-heading,
@@ -140,31 +145,38 @@ a {
   box-sizing: border-box;
   font-size: 14px;
 }
-.nav-con{
+
+.nav-con {
   width: 100%;
   background-color: #98C1D9
 }
-.hideThis{
+
+.hideThis {
   display: none;
 }
-.choreCompleteContainer{
+
+.choreCompleteContainer {
   display: block;
   margin: 0 42%;
 }
-.choreCompleteContainer input{
+
+.choreCompleteContainer input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
 }
-.null-padding{
+
+.null-padding {
   padding: 0;
 }
-.taskOwner{
+
+.taskOwner {
   text-align: center;
   background-color: #3d5a80;
 }
+
 .checkmark {
   display: inline-block;
   margin: 0px auto;
@@ -172,12 +184,13 @@ a {
   width: 25px;
   background-color: rgb(145, 143, 143);
 }
-.choreCompleteContainer:hover input ~ .checkmark {
-  background-color:  rgb(145, 143, 143);
+
+.choreCompleteContainer:hover input~.checkmark {
+  background-color: rgb(145, 143, 143);
 }
 
 /* When the checkbox is checked, add a blue background */
-.choreCompleteContainer input:checked ~ .checkmark {
+.choreCompleteContainer input:checked~.checkmark {
   background-color: #2196F3;
 }
 
@@ -189,7 +202,7 @@ a {
 }
 
 /* Show the checkmark when checked */
-.choreCompleteContainer input:checked ~ .checkmark:after {
+.choreCompleteContainer input:checked~.checkmark:after {
   display: block;
 }
 
@@ -205,6 +218,7 @@ a {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
 .form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -218,7 +232,7 @@ a {
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
-  cursor: pointer;
+  cursor: pointer
 }
 
 .form button:hover,
@@ -229,8 +243,8 @@ a {
 
 .form .message {
   margin: 15px 0 0;
-  color: #black;
-  font-size: 15px;
+  color: black;
+  font-size: 15px
 }
 
 .form .message a {
@@ -259,12 +273,15 @@ body {
 
 #home {
   min-height: 100vh;
-  background-color:#3d5a80 ;
+  /* background-color:#3d5a80 ; */
+  /* background-color: #cde0ec; */
+  background-color: #98c1d9;
+
 }
 
 /* ---------------BILLS------------------------------ */
 
-#myTaskRow{
+#myTaskRow {
   overflow: scroll;
   background-color: #cde0ec;
 }
@@ -327,7 +344,7 @@ h2 {
 
 .tab-content {
   /* background-color: rgba(30, 144, 255); */
-  background-color:  #cde0ec;
+  background-color: #cde0ec;
 
 
 }
@@ -357,7 +374,7 @@ h2 {
   color: white;
 }
 
-.modal-content{
+.modal-content {
   background-color: rgb(69, 95, 129);
 }
 
@@ -365,20 +382,23 @@ h2 {
   /* background: dodgerblue; */
   background-color: rgb(150, 163, 180);
 }
-.modal-title{
+
+.modal-title {
   color: white;
 }
-.modal-header{
+
+.modal-header {
   border-bottom: solid #ee6c4d;
 }
-.modal-footer{
+
+.modal-footer {
   border-top: solid rgb(69, 95, 129);
 }
 
-.navbar{
-  background-color: #293241!important;
+.navbar {
+  background-color: #293241 !important;
   border-bottom-style: solid;
-  border-bottom-color:#ee6c4d; 
+  border-bottom-color: #ee6c4d;
 }
 
 .nav-item.show .nav-link,
@@ -393,16 +413,15 @@ h2 {
   /* background-color: lightblue; */
   background-color: #98c1d9;
   font-family: 'Roboto Condensed', sans-serif;
-  border-top-style: solid;
   border-top-color: #ee6c4d;
 }
 
 
 .nav-link.active {
   /* background-color: dodgerblue !important; */
-  background-color: #cde0ec!important;
+  background-color: #cde0ec !important;
   /* color: white !important; */
-  color: #3d5a80!important;
+  color: #3d5a80 !important;
   border-color: none !important;
 }
 
@@ -440,7 +459,7 @@ table {
   color: #212529;
 }
 
-thead{
+thead {
   background-color: rgb(69, 95, 129);
   border-bottom-style: solid;
   border-bottom-color: #293241;
@@ -458,7 +477,7 @@ tr:hover {
   /* background-color: rgba(204, 204, 204); */
   background-color: rgb(136, 152, 173);
   color: white;
-  
+
 
 
 }
@@ -502,7 +521,7 @@ tr:hover {
 }
 
 /* Message input container*/
-#messageBody-input{
+#messageBody-input {
   border-bottom: solid 0.5mm #293241;
   border-right: solid 0.5mm #293241;
 }
@@ -554,6 +573,6 @@ tr:hover {
   background-color: royalblue;
 }
 
-.chatLabel{
+.chatLabel {
   color: #293241;
 }
