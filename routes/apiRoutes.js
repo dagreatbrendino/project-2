@@ -275,21 +275,37 @@ module.exports = function (app) {
       res.end();
     })
   })
-  app.put("/grocery/edit/:groceryId", isAuthenticated, function (req, res) {
 
-    var groceryId = req.params.groceryId;
-    console.log("grocery Id ", groceryId)
-    db.Grocery.update({
-      groceryName: req.body.groceryName,
-      quantity: req.body.quantity
-    }, {
-        where: {
+  //grocery update
+  app.put("/grocery/edit/:creatorId/:groceryId", isAuthenticated, function (req, res) {
+    var creatorId = parseInt(req.params.creatorId);
+    var groceryId = parseInt(req.params.groceryId);
+    if (req.user.id === creatorId) {
+      db.Grocery.update({
+        groceryName: req.body.groceryName,
+        quantity: req.body.quantoty
+
+      },{
+        where:{
           id: groceryId
         }
-      }).then(function (data) {
-        res.end();
+      }).then(function(data) {
+        db.Grocery.findOne({
+          where: {
+            id: groceryId
+          }
+        }).then(function(updatedGroceryData) {
+          console.log("done updating grocery")
+          console.log(data);
+          res.json(updatedGroceryData);
+        })
       });
+    }
   });
+
+
+     
+  
 
   app.delete("/grocery/delete/:groceryId", isAuthenticated, function (req, res) {
     db.Grocery.destroy({
@@ -298,8 +314,9 @@ module.exports = function (app) {
       }
     }).then(function (data) {
       res.end();
-    })
+    });
   });
+
 
   //-----------CHORE---------------------------------------------------------------
   //Chore CREATE

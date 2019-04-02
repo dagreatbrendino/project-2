@@ -1,9 +1,12 @@
-<tr class="groceryRow" data-creatorid={{UserId}} data-choreid={{id}}>
+<tr class="groceryRow" data-creatorid={{UserId}} data-groceryid={{id}}>
   <td class="groceryColumn">
     <span>{{groceryName}}</span>
     <input type="text" class="groceryNameEdit hideThis" value="{{groceryName}}">
      </td>
-  <td>{{quantity}}</td>
+  <td class="groceryColumn">
+    <span class="groceryQuantity">{{quantity}}</span>
+    <input type="text" class="groceryQuantEdit hideThis" value="{{quantity}}">
+    </td>
   {{!-- {{#each @root.groupMembers as |groupMember index|}}
   {{log groupMember}}
   {{log groupMember.dataValues.id}}
