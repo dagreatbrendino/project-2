@@ -1,9 +1,16 @@
 <tr class="billRow" data-creatorid={{UserId}} data-billid={{id}}>
   <td class="billColumn">
+    {{#if (isUser @root.user.id UserId)}}
+      <button class="removeBillButton hideThis removeButton btn btn-sm btn-primary btn-danger mb-1">X</button>
+    {{/if}}
     <span class="billName">{{billName}}</span>
     <input type="text" class="billNameEdit hideThis" value="{{billName}}" >
   </td>
-  {{!-- <td class="billColumn">
+  <td class="billColumn">
+    <span class="billAmount">{{amount}}</span>
+    <input type="text" class="billAmountEdit hideThis" value="{{amount}}" >
+  </td> 
+  <td class="billColumn">
     <span class="billMonth">{{month}}</span>
     <select id="bill-month" class="billMonthEdit hideThis" name="month">
         <option value="Jan" {{#if (isUser month "Jan")}} selected {{/if}} >Jan</option>
@@ -19,27 +26,5 @@
         <option value="Nov" {{#if (isUser month "Nov")}} selected {{/if}}>Nov</option>
         <option value="Dec" {{#if (isUser month "Dec")}} selected {{/if}}>Dec</option>
     </select> 
-  </td> --}}
-  <td class="billColumn">
-    <span class="billAmount">{{amount}}</span>
-    <input type="text" class="billAmountEdit hideThis" value="{{amount}}" >
-  </td> 
-
-    {{!-- {{#each @root.groupMembers as |groupMember index|}}
-
-      {{#if (isUser groupMember.dataValues.id ../UserId)}}
-      <td>{{groupMember.dataValues.name}}</td>
-      {{log "user is the name here"}}
-      {{/if}}
-    {{/each}} --}}
-    {{!-- <td><a target="blank" href="{{fileUrl}}">
-      <img src={{thumbUrl}} alt="bll-doc-thumb" />
-    </a></td> --}}
-
-  {{#if (isUser @root.user.id UserId)}}
-  <td>
-    <button class="removeBillButton">X</button>
   </td>
-  {{/if}}
-
 </tr>

@@ -1,36 +1,23 @@
 <tr class="choreRow" data-creatorid={{UserId}} data-choreid={{id}}>
     <td class="choreColumn">
+      {{#if (isUser @root.user.id UserId)}}
+        <button class="removeChoreButton hideThis removeButton btn btn-sm btn-primary btn-danger mb-1">X</button>
+      {{/if}}
       <span class="choreName">{{chore}}</span>
        <input type="text" class="choreNameEdit hideThis" value="{{chore}}">
-      
     </td>
-    {{!-- {{#each @root.groupMembers as |groupMember index|}}
-      {{#if (isUser groupMember.dataValues.id ../UserId)}}
-      <td>{{groupMember.dataValues.name}}</td>
-      {{/if}}
-    {{/each}} --}}
-   
-     <td class=>{{recurDate}}</td> 
-      {{!-- <span>{{recurDate}}</span>
-      <input type="text" class="dateEdit hideThis" value="{{recurDate}}" >
-      </td>  --}} 
-    <td>
-        {{#if (isUser @root.user.id UserId)}}
-        <label class="choreCompleteContainer">
-            <input type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
-            <span class="checkmark"></span>
-        </label>
-        {{else}}
-            <label class="choreCompleteContainer">
-            <input disabled type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
-            <span class="checkmark"></span>
-        </label>
-        {{/if}}
-    </td>
-  {{!-- {{#if (isUser @root.user.id UserId)}}
-  <td>
-    <button class="removeChoreButton">X</button>
-  </td>
-  {{/if}} --}}
 
+    <td class="choreColumn">
+      <span class="choreDay">{{recurDate}}</span>
+      <select name="day" class="choreDayEdit hideThis" id="chore-day">
+                    <option value="Sun" {{#if (isUser recurDate "Sun")}} selected {{/if}}>Sun</option>
+                    <option value="Mon" {{#if (isUser recurDate "Mon")}} selected {{/if}}>Mon</option>
+                    <option value="Tue" {{#if (isUser recurDate "Tue")}} selected {{/if}}>Tue</option>
+                    <option value="Wed" {{#if (isUser recurDate "Wed")}} selected {{/if}}>Wed</option>
+                    <option value="Thu" {{#if (isUser recurDate "Thu")}} selected {{/if}}>Thu</option>
+                    <option value="Fri" {{#if (isUser recurDate "Fri")}} selected {{/if}}>Fri</option>
+                    <option value="Sat" {{#if (isUser recurDate "Sat")}} selected {{/if}}>Sat</option>
+                  </select>
+    </td>  
+    <input class="hideThis" type="checkbox" class="choreComplete" {{#if complete}}checked{{/if}}>
 </tr>

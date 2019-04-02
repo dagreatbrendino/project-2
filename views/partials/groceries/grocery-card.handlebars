@@ -1,6 +1,9 @@
 <tr class="groceryRow" data-creatorid={{UserId}} data-groceryid={{id}}>
   <td class="groceryColumn">
-    <span>{{groceryName}}</span>
+        {{#if (isUser @root.user.id UserId)}}
+        <button class="removeGroceryButton hideThis removeButton btn btn-sm btn-primary btn-danger mb-1">X</button>
+    {{/if}}
+    <span class="groceryName">{{groceryName}}</span>
     <input type="text" class="groceryNameEdit hideThis" value="{{groceryName}}">
      </td>
   <td class="groceryColumn">
@@ -24,4 +27,3 @@
   {{!-- <td>
         <a class="btn btn-sm btn-dark" href="/grocery/{{GroupId}}/{{id}}">Edit Grocery</a>
     </td> --}}
-</tr>

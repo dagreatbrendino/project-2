@@ -1,11 +1,8 @@
 <tr class="billRow" data-creatorid={{UserId}} data-billid={{id}} data-billamount={{amount}}>
-      {{!-- {{#each @root.groupMembers as |groupMember index|}}
-        {{#if (isUser groupMember.dataValues.id ../UserId)}}
-          <th scope="row" rowspan="1">{{groupMember.dataValues.name}}</th>
-        {{/if}}
-      {{/each}} --}}
-
   <td class="billColumn">
+    {{#if (isUser @root.user.id UserId)}}
+    <button class="removeBillButton hideThis removeButton btn btn-sm btn-primary btn-danger mb-1">X</button>
+    {{/if}}
     <span class="billName">{{billName}}</span>
     <input type="text" class="billNameEdit hideThis" value="{{billName}}" >
   </td>
@@ -35,11 +32,4 @@
     <td><a target="blank" href="{{fileUrl}}">
       <img src={{thumbUrl}} alt="bll-doc-thumb" />
     </a></td>
-
-  {{!-- {{#if (isUser @root.user.id UserId)}}
-  <td>
-    <button class="removeBillButton">X</button>
-  </td>
-  {{/if}} --}}
-
 </tr>

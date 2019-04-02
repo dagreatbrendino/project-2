@@ -270,11 +270,10 @@ module.exports = function (app) {
   app.put("/grocery/edit/:creatorId/:groceryId", isAuthenticated, function (req, res) {
     var creatorId = parseInt(req.params.creatorId);
     var groceryId = parseInt(req.params.groceryId);
-    if (req.user.id === creatorId) {
+   
       db.Grocery.update({
         groceryName: req.body.groceryName,
-        quantity: req.body.quantoty
-
+        quantity: req.body.quantity
       },{
         where:{
           id: groceryId
@@ -290,13 +289,8 @@ module.exports = function (app) {
           res.json(updatedGroceryData);
         })
       });
-    }
+    
   });
-
-
-     
-  
-
   app.delete("/grocery/delete/:groceryId", isAuthenticated, function (req, res) {
     db.Grocery.destroy({
       where: {
@@ -331,6 +325,7 @@ module.exports = function (app) {
     if (req.user.id === creatorId) {
       db.Chore.update({
         chore: req.body.chore,
+        recurDate: req.body.recurDate,
         complete: req.body.complete
       },{
         where:{
