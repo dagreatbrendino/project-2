@@ -15,14 +15,14 @@
     <a class="nav-link" id="groceries-tab" data-toggle="tab" href="#groceries" role="tab" aria-controls="groceries"
       aria-selected="false">Groceries</a>
   </li>
-  <li class="nav-item">
+  {{!-- <li class="nav-item">
     <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat"
       aria-selected="false">Chat</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="groups-tab" data-toggle="tab" href="#myGroup" role="tab" aria-controls="myGroup"
       aria-selected="false">My Group</a>
-  </li>
+  </li> --}}
 </ul>
 
 </div>
@@ -51,6 +51,9 @@
                 <thead>
                   <tr>
                     <th scope="col" colspan="3" class="billHeader">Bills for {{currentMonth}} Total: ${{totalBills}}</th>
+                     <button class="editButton btn btn-sm btn-primary btn-success mb-1">Edit</button>
+                    <br>
+                    <div class="editMessage hideThis">Click on a field to edit it!</div>
                   </tr>
                 </thead>
 
@@ -93,25 +96,29 @@
             <table class="table">
               <thead>
                 <tr>
-                    {{#each groupMembers}}
-                    <th scope="col" colspan="4" class="taskOwner">{{name}}</th>
-                    {{/each}}
+                  <th scope="col" colspan="3" class="billHeader">Chores for {{currentDay}}</th>
                   </tr>
+                  <button class="editButton btn btn-sm btn-primary btn-success mb-1">Edit</button>
+                  <br>
+                  <div class="editMessage hideThis">Clickon a field to edit it!</div>
+                  </thead>
+                  <tbody>
+                {{#each groupMembers}}
                 <tr>
-                  {{!-- <th scope="col" colspan="4" class="taskowner">Name</th> --}}
-                  {{!-- <th scope="col">Owner</th> --}}
-                  <th scope="col">Chore</th>
-                  {{!-- <th scole="col">Day</th> --}}
-                  <th scope="col">Complete</th>
-                  <th scope="col">Remove</th>
+                  <th scope="col" colspan="4" class="billOwner">{{name}}</th>
                 </tr>
-              </thead>
-              <tbody>
-                {{#each chore}}
-                {{> chores/chore-card}}
+                <tr>
+                  <th scope="col">Chore</th>
+                  <th scope="col">Complete</th>
+                </tr>
+                  {{#each ../chore}}
+                    {{#if (isUser ../id UserId)}}
+                      {{> chores/chore-card}}
+                    {{/if}}
+                  {{/each}}
                 {{/each}}
               </tbody>
-            </table>
+              </table>
 
             <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
               data-target="#modalAddChores"><i class="fa fa-plus"></i>
@@ -124,21 +131,29 @@
               <table class="table">
                 <thead>
                   <tr>
-                    {{#each groupMembers}}
-                    <th scope="col" colspan="3" class="taskOwner">{{name}}</th>
-                    {{/each}}
+                    <th scope="col" colspan="3">Groceries</th>
+                     <button class="editButton btn btn-sm btn-primary btn-success mb-1">Edit</button>
+                    <br>
+                    <div class="editMessage hideThis">Click on a field to edit it!</div>
+                  </tr>
+                  
+                </thead>
+                <tbody>
+                  {{#each groupMembers}}
+                  <tr>
+                    <th scope="col" colspan="3" class="billOwner">{{name}}</th>
                   </tr>
                   <tr>
                     <th scope="col">Item</th>
                     <th scope="col">Quantity</th>
-                    <th scole="col">Remove</th>
-                    {{!-- <th scope="col"></th> --}}
                   </tr>
-                </thead>
-                <tbody>
-                  {{#each grocery}}
-                  {{> groceries/grocery-card}}
+                    {{#each ../grocery}}
+                        {{#if (isUser ../id UserId)}}
+                          {{> groceries/grocery-card}}
+                        {{/if}}
+                    {{/each}}
                   {{/each}}
+
                 </tbody>
               </table>
 
@@ -151,7 +166,7 @@
 
 
           {{!-- My Group Tab --}}
-          <div class="tab-pane fade" id="myGroup" role="tabpanel" aria-labelledby="myGroup-tab">
+          {{!-- <div class="tab-pane fade" id="myGroup" role="tabpanel" aria-labelledby="myGroup-tab">
             <div id="myGroupTab">
               <ul>
                 {{#each groupMembers}}
@@ -160,25 +175,25 @@
               </ul>
               <br>
             </div>
-          </div>
+          </div> --}}
 
 
           {{!----------------------CHAT TAB---------------------------}}
 
-          <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-            <div id="chat">
+          {{!-- <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+            <div id="chat"> --}}
               {{!-- ---------------------show posted chats---------------- --}}
-              <div class="chat-container">
+              {{!-- <div class="chat-container">
                 <img src="/img/placeholder.jpg" alt="Avatar" class="right">
                 <p id="chat-table">"Chat with your group"</p>
                 <p id="messageBody-input" scope="col"></p>
                 <p id="groupName-input" scope="col"></p>
                 <span class="time-right"></span>
               </div>
-            </div>
+            </div> --}}
 
               {{!-- ---------------------form for posting chats------------------}}
-              <div class="chat-card-body">
+              {{!-- <div class="chat-card-body">
                 <form role="form">
                   <div class="form-group row">
                     <label class="chatLabel" for="messageBody-form-input">Message</label>
@@ -186,7 +201,7 @@
                   </div>
                   <button class="btn btn-sm btn-dark" data-group-id={{group.id}} id="add-user" type="submit">Chat!</button>
                 </form>
-              </div>
+              </div> --}}
               {{!-- ------------------------------------------------------------------}}
           </div>
         </div>

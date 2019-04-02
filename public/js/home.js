@@ -41,6 +41,7 @@ $(document).ready(function () {
 });
 //UPDATE OPERATIONS
 var currentlyEditing;
+var editing = false;
 //BILLS
 //the element that is currently being edited
 //when a bill column is clicked
@@ -51,7 +52,7 @@ $(document).on("click", ".billColumn", function(event){
     //get the logged in user id
     var userId = $(".welcome").data("loggeduserid");
     //if the user is the creator of the bill, then switch the column to an input field
-    if(userId === currentlyEditingParent.data("creatorid")){
+    if(userId === currentlyEditingParent.data("creatorid") && editing){
         $(this).find("input").removeClass("hideThis");
         $(this).find("select").removeClass("hideThis");
         $(this).find("span").addClass("hideThis");
@@ -115,10 +116,12 @@ $(document).on("click", ".choreColumn", function(event){
 
     var userId = $(".welcome").data("loggeduserid");
 
-    if(userId === currentlyEditingParent.data("creatorid")){
+    if(userId === currentlyEditingParent.data("creatorid") && editing){
         $(this).find("input").removeClass("hideThis");
+        $(this).find("select").removeClass("hideThis")
         $(this).find("span").addClass("hideThis");
         $(this).find("input").focus();
+        $(this).find("select").focus();
         //assign the column being updated to the currentlyEditing variable
         currentlyEditing = $(this);   
     }
@@ -128,6 +131,7 @@ $(document).on("focusout", ".choreColumn", function(){
     //change the column back to plain text
     $(this).find("input").addClass("hideThis");
     $(this).find("span").removeClass("hideThis");
+    $(this).find("select").addClass("hideThis");
     //call the updateChore function
     updateChore( $(this).parent())
 })
@@ -138,6 +142,7 @@ var updateChore = function(currentlyEditingRow){
     //get all of the inputs from the row being updated
     var chore = {
         chore: currentlyEditingRow.find(".choreNameEdit").val(),
+        recurDate: currentlyEditingRow.find(".choreDayEdit").val(),
         complete: currentlyEditingRow.find(".choreComplete").is(":checked")
     }
     //update the bill with route defined in the apiRoutes
@@ -146,11 +151,13 @@ var updateChore = function(currentlyEditingRow){
         url: "/chore/edit/" + creatorId + "/" + choreId,
         data: {
             chore: chore.chore,
+            recurDate: chore.recurDate,
             complete: chore.complete
         }
     }).then( function(data){
         currentlyEditingRow.find(".choreName").text(data.chore);
         currentlyEditingRow.find(".choreComplete").text(data.complete);
+        currentlyEditingRow.find(".choreDay").text(data.recurDate)
     })
 }
 
@@ -177,13 +184,13 @@ $(document).on("click", ".groceryColumn", function(event){
 
     var userId = $(".welcome").data("loggeduserid");
 
-    if(userId === currentlyEditingParent.data("creatorid")){
-        $(this).find("input").removeClass("hideThis");
-        $(this).find("span").addClass("hideThis");
-        $(this).find("input").focus();
-        //assign the column being updated to the currentlyEditing variable
-        currentlyEditing = $(this);   
-    }
+        if(editing){
+            $(this).find("input").removeClass("hideThis");
+            $(this).find("span").addClass("hideThis");
+            $(this).find("input").focus();
+            //assign the column being updated to the currentlyEditing variable
+            currentlyEditing = $(this);   
+        }
 })
 
 $(document).on("focusout", ".groceryColumn", function(){
@@ -202,6 +209,7 @@ var updateGrocery = function(currentlyEditingRow){
         groceryName: currentlyEditingRow.find(".groceryNameEdit").val(),
         quantity: currentlyEditingRow.find(".groceryQuantEdit").val()
     }
+    console.log(grocery)
     //update the bill with route defined in the apiRoutes
     $.ajax({
         method: "PUT",
@@ -216,10 +224,28 @@ var updateGrocery = function(currentlyEditingRow){
         currentlyEditingRow.find(".groceryQuantity").text(data.quantity);
     })
 }
+$(document).on("click", ".editButton", function(){
+    //if we aren't already editing
+    if (!editing){
+        editing = true;
+        $(".editMessage").removeClass("hideThis");
+        $(".removeButton").removeClass("hideThis")
+        $(".editButton").text("Stop Editing")
+        $(".editButton").addClass("btn-danger")
+        $(".editButton").removeClass("btn-success")
+    }
+    else{
+        editing=false;
+        $(".editMessage").addClass("hideThis");
+        $(".removeButton").addClass("hideThis")
+        $(".editButton").text("Edit")
+        $(".editButton").removeClass("btn-danger")
+        $(".editButton").addClass("btn-success")
+    }
+})
 
 $(document).on("click", ".removeGroceryButton", function(){
     var groceryRow = $(this).parent().parent();
-    console.log(goceryRow)
     var groceryId = groceryRow.data("groceryid");
     $.ajax({
         method: "DELETE",
