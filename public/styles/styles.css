@@ -327,6 +327,9 @@ button.edit {
   float: right;
   margin: 5px;
 }
+.editButton{
+  float: right !important;
+}
 
 .card {
   margin: 0 auto;
@@ -464,7 +467,9 @@ h2 {
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
 }
-
+.removeButton{
+  float: left !important;
+}
 
 .btn-sm {
   padding: .25rem .5rem;

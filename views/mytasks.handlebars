@@ -16,11 +16,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Bill</th>
-                                    {{!-- <th scope="col">Month</th> --}}
                                     <th scope="col">Amount</th>
-                                    {{!-- <th scole="col">Owner</th> --}}
-                                    {{!-- <th scope="col">Document</th> --}}
-                                    <th scope="col"></th>
+                                    <th scope="col">Month</th>
+                                    <button class="editButton btn btn-sm btn-primary btn-success mb-1">Edit</button>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,10 +41,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Chore</th>
-                                    {{!-- <th scope="col">Owner</th> --}}
                                     <th scope="col">Day</th>
-                                    <th scole="col">Complete</th>
-                                    {{!-- <th scope="col">Remove</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,7 +65,6 @@
                                 <tr>
                                     <th scope="col-4">Grocery</th>
                                     <th scope="col-4">Quantity</th>
-                                    <th scope="col-4"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -195,36 +189,45 @@
                 </div>
 
                 {{!-- modal for adding chores --}}
-                <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header text-center">
-                                <h4 class="modal-title w-100 font-weight-bold">Add a Chore</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form id="addChoreForm">
-                                <div class="modal-body mx-3">
-                                    <div class="md-form mb-5">
-                                        <i class="fas fa-broom"></i>
-                                        <input type="text" id="chore-name" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
-                                            for="defaultForm-email">Chore
-                                            Name</label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-
-                                    <button id="addChoreButton" class="btn btn-md btn-primary btn-dark mb-1">Add
-                                        Chore</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
+                      <div class="modal fade" id="modalAddChores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add a Chore</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="addChoreForm">
+              <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                  <i class="fas fa-broom"></i>
+                  <input type="text" id="chore-name" class="form-control validate">
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
+                    Name</label>
+                  <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Recurring
+                    Day</label>
+                  <select name="day" id="chore-day">
+                    <option value="Sun" {{#if (isUser currentDay "Sun")}} selected {{/if}}>Sun</option>
+                    <option value="Mon" {{#if (isUser currentDay "Mon")}} selected {{/if}}>Mon</option>
+                    <option value="Tue" {{#if (isUser currentDay "Tue")}} selected {{/if}}>Tue</option>
+                    <option value="Wed" {{#if (isUser currentDay "Wed")}} selected {{/if}}>Wed</option>
+                    <option value="Thu" {{#if (isUser currentDay "Thu")}} selected {{/if}}>Thu</option>
+                    <option value="Fri" {{#if (isUser currentDay "Fri")}} selected {{/if}}>Fri</option>
+                    <option value="Sat" {{#if (isUser currentDay "Sat")}} selected {{/if}}>Sat</option>
+                  </select>
                 </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+
+                <button id="addChoreButton" class="btn btn-sm btn-dark">Add Chore</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
                 <br>
                 <br>
             </div>
