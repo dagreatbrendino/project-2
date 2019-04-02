@@ -1,6 +1,10 @@
 <li class="message-item">
     {{#if (isJoinRequest type)}}
-        <div>Group join request from {{senderName}} <button  class="acceptJoinRequest " type="button" class="btn btn-md btn-primary btn-success" data-messageId="{{id}}">Accept</button><button class="ignoreJoinRequest" type="button" class="btn btn-lg btn-primary btn-success" data-messageId="{{id}}">Ignore</button></div>
+        <div class=>
+            Group join request from {{senderName}} 
+            <button  class="acceptJoinRequest btn btn-md btn-primary btn-success mb-1 group-sign-btn" type="button" data-messageId="{{id}}">Accept</button>
+            <button class="ignoreJoinRequest btn btn-md btn-primary btn-danger mb-1 group-sign-btn" type="button" class="btn btn-lg btn-primary btn-success" data-messageId="{{id}}">Ignore</button>
+        </div>
     {{/if}}
 </li>
 

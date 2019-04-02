@@ -6,7 +6,6 @@ $(document).ready(function(){
             quantity: $("#grocery-quantity").val().trim()
         };
         var groceryId = $("#editGroceryForm").data("groceryid");
-        console.log(groceryId);
         var groceryGroup = $("#editGroceryForm").data("grocerygroup")
         $.ajax({
             method: "PUT",

@@ -145,7 +145,25 @@ a {
   box-sizing: border-box;
   font-size: 14px;
 }
-
+.message-con{
+  margin-top: 60px;
+  background-color: #CDE0EC;
+  padding: 0;
+}
+.message-list{
+  padding: 0;
+  list-style-type: none;
+  background-color: #3D5A80;
+}
+.messages-head{
+  background-color: #3D5A80;
+  text-align: center
+}
+.message-item{
+  background-color: white;
+  padding: 2px 15px;
+  border: 1px solid black
+}
 .nav-con {
   width: 100%;
   background-color: #98C1D9
