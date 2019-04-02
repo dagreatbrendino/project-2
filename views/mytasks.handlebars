@@ -5,85 +5,85 @@
         <div class="row" id="myTaskRow">
             <div class="col-8 offset-2">
                 <br>
-                 <h2 class="welcome" data-loggeduserid={{user.id}}>Welcome to {{group.groupName}}, {{user.name}}</h2>
+                <h2 class="welcome" data-loggeduserid={{user.id}}>Welcome to {{group.groupName}}, {{user.name}}</h2>
                 <div class="tab-content">
 
 
                     {{!-- BILLS TAB---------------------------------------}}
 
                     <div id='billsTab'>
- <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Bill</th>
-                    <th scope="col">Month</th>
-                    <th scope="col">Amount</th>
-                    <th scole="col">Owner</th>
-                    <th scope="col">Document</th>
-                    <th scope="col">Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each bill}}
-                  {{> bills/my-bill}}
-                  {{/each}}
-                </tbody>
-              </table>
-              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
-                data-target="#modalAddBill"><i class="fa fa-plus"></i>
-                Add Bill
-              </a>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Bill</th>
+                                    {{!-- <th scope="col">Month</th> --}}
+                                    <th scope="col">Amount</th>
+                                    {{!-- <th scole="col">Owner</th> --}}
+                                    {{!-- <th scope="col">Document</th> --}}
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each bill}}
+                                {{> bills/my-bill}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn"
+                            data-toggle="modal" data-target="#modalAddBill"><i class="fa fa-plus"></i>
+                            Add Bill
+                        </a>
                     </div>
 
                     {{!-- CHORES TAB---------------------------------------}}
 
                     <br>
                     <div class="choresTab">
-                         <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Owner</th>
-                  <th scope="col">Day</th>
-                  <th scole="col">Complete</th>
-                  <th scope="col">Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each chore}}
-                {{> chores/chore-card}}
-                {{/each}}
-              </tbody>
-            </table>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Chore</th>
+                                    {{!-- <th scope="col">Owner</th> --}}
+                                    <th scope="col">Day</th>
+                                    <th scole="col">Complete</th>
+                                    {{!-- <th scope="col">Remove</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each chore}}
+                                {{> chores/my-chores}}
+                                {{/each}}
+                            </tbody>
+                        </table>
 
-            <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
-              data-target="#modalAddChores"><i class="fa fa-plus"></i>
-              Add Chore
-            </a>
+                        <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn"
+                            data-toggle="modal" data-target="#modalAddChores"><i class="fa fa-plus"></i>
+                            Add Chore
+                        </a>
                     </div>
 
                     {{!-- GROCERIES TAB---------------------------------------}}
                     <br>
                     <div id='groceriesTab'>
-                       <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col-4">Item</th>
-                    <th scope="col-4">Quantity</th>
-                    <th scope="col-4"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each grocery}}
-                  {{> groceries/grocery-card}}
-                  {{/each}}
-                </tbody>
-              </table>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col-4">Grocery</th>
+                                    <th scope="col-4">Quantity</th>
+                                    <th scope="col-4">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each grocery}}
+                                {{> groceries/grocery-card}}
+                                {{/each}}
+                            </tbody>
+                        </table>
 
-              <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn" data-toggle="modal"
-                data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
-                Add Grocery
-              </a>
+                        <a href="" class="btn btn-md btn-primary btn-success mb-1 group-sign-btn" id="add-btn"
+                            data-toggle="modal" data-target="#modalAddGrocery"><i class="fa fa-plus"></i>
+                            Add Grocery
+                        </a>
 
                     </div>
                 </div>
@@ -106,30 +106,45 @@
                                         <i class="fas fa-file-invoice-dollar"></i>
 
                                         <input type="text" id="bill-name" class="form-control validate" name="billName">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Bill
                                             Name</label>
                                         <br>
                                         <input type="text" id="bill-amount" class="form-control validate" name="amount">
 
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Bill
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Bill
                                             Amount</label>
                                         <input type='file' name='image' />
                                         {{groupMembers.numMembers}} {{bill.totalBills}}
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Month</label>
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Month</label>
                                         <select name="month">
 
-                                            <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}}>Jan</option>
-                                            <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb</option>
-                                            <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar</option>
-                                            <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr</option>
-                                            <option value="May" {{#if (isUser currentMonth "May")}} selected {{/if}}>May</option>
-                                            <option value="Jun" {{#if (isUser currentMonth "Jun")}} selected {{/if}}>Jun</option>
-                                            <option value="Jul" {{#if (isUser currentMonth "Jul")}} selected {{/if}}>Jul</option>
-                                            <option value="Aug" {{#if (isUser currentMonth "Aug")}} selected {{/if}}>Aug</option>
-                                            <option value="Sep" {{#if (isUser currentMonth "Sep")}} selected {{/if}}>Sep</option>
-                                            <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct</option>
-                                            <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov</option>
-                                            <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec</option>
+                                            <option value="Jan" {{#if (isUser currentMonth "Jan")}} selected {{/if}}>Jan
+                                            </option>
+                                            <option value="Feb" {{#if (isUser currentMonth "Feb")}} selected {{/if}}>Feb
+                                            </option>
+                                            <option value="Mar" {{#if (isUser currentMonth "Mar")}} selected {{/if}}>Mar
+                                            </option>
+                                            <option value="Apr" {{#if (isUser currentMonth "Apr")}} selected {{/if}}>Apr
+                                            </option>
+                                            <option value="May" {{#if (isUser currentMonth "May")}} selected {{/if}}>May
+                                            </option>
+                                            <option value="Jun" {{#if (isUser currentMonth "Jun")}} selected {{/if}}>Jun
+                                            </option>
+                                            <option value="Jul" {{#if (isUser currentMonth "Jul")}} selected {{/if}}>Jul
+                                            </option>
+                                            <option value="Aug" {{#if (isUser currentMonth "Aug")}} selected {{/if}}>Aug
+                                            </option>
+                                            <option value="Sep" {{#if (isUser currentMonth "Sep")}} selected {{/if}}>Sep
+                                            </option>
+                                            <option value="Oct" {{#if (isUser currentMonth "Oct")}} selected {{/if}}>Oct
+                                            </option>
+                                            <option value="Nov" {{#if (isUser currentMonth "Nov")}} selected {{/if}}>Nov
+                                            </option>
+                                            <option value="Dec" {{#if (isUser currentMonth "Dec")}} selected {{/if}}>Dec
+                                            </option>
                                         </select>
 
                                     </div>
@@ -159,10 +174,12 @@
                                     <div class="md-form mb-5">
                                         <i class="fas fa-shopping-cart"></i>
                                         <input type="text" id="grocery-name" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Grocery
                                             Name</label>
                                         <input type="text" id="grocery-quantity" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Grocery
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Grocery
                                             Quantity</label>
                                     </div>
                                 </div>
@@ -193,7 +210,8 @@
                                     <div class="md-form mb-5">
                                         <i class="fas fa-broom"></i>
                                         <input type="text" id="chore-name" class="form-control validate">
-                                        <label id="groupCreateLabel" data-error="wrong" data-success="right" for="defaultForm-email">Chore
+                                        <label id="groupCreateLabel" data-error="wrong" data-success="right"
+                                            for="defaultForm-email">Chore
                                             Name</label>
                                     </div>
                                 </div>

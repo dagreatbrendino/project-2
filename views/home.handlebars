@@ -52,6 +52,10 @@
                     <th scope="col" colspan="3" class="billHeader">Bills for {{currentMonth}} Total: ${{totalBills}}</th>
                   </tr>
                   <tr>
+                    {{#each groupMembers}}
+                    <th scope="col" colspan="3" class="taskOwner">{{name}}</th>
+                  </tr>
+                  <tr>
                     <th scope="col">Bill</th>
                     {{!-- <th scope="col">Month</th> --}}
                     <th scope="col">Amount</th>
@@ -59,10 +63,12 @@
                     <th scope="col">Document</th>
                     {{!-- <th scope="col">Remove</th> --}}
                   </tr>
+                  
                 </thead>
                 <tbody>
-                  {{#each groupMembers}}
+                  {{!-- {{#each groupMembers}}
                   <tr>
+
                     <th scope="col" colspan="3" class="billOwner" data-userid={{id}}>{{name}}<span class="billTotal" id="user{{id}}BillTotal"></span></th>
                   </tr>
                     {{#each ../bill}}
@@ -84,14 +90,20 @@
 
           {{!-- CHORES TAB---------------------------------------}}
 
-          <div class="tab-pane fade table table-responsive" id="chores" role="tabpanel" aria-labelledby="chores-tab">
+          <div class="tab-pane fade table table-responsive-sm" id="chores" role="tabpanel" aria-labelledby="chores-tab">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Owner</th>
-                  <th scope="col">Day</th>
-                  <th scole="col">Complete</th>
+                    {{#each groupMembers}}
+                    <th scope="col" colspan="4" class="taskOwner">{{name}}</th>
+                    {{/each}}
+                  </tr>
+                <tr>
+                  {{!-- <th scope="col" colspan="4" class="taskowner">Name</th> --}}
+                  {{!-- <th scope="col">Owner</th> --}}
+                  <th scope="col">Chore</th>
+                  {{!-- <th scole="col">Day</th> --}}
+                  <th scope="col">Complete</th>
                   <th scope="col">Remove</th>
                 </tr>
               </thead>
@@ -110,14 +122,18 @@
 
           {{!-- GROCERIES TAB---------------------------------------}}
           <div class="tab-pane fade" id="groceries" role="tabpanel" aria-labelledby="groceries-tab">
-            <div id='groceriesTab'>
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col-4">Item</th>
-                    <th scope="col-4">Quantity</th>
-                    <th scole="col">Owner</th>
-                    <th scope="col-4"></th>
+                    {{#each groupMembers}}
+                    <th scope="col" colspan="3" class="taskOwner">{{name}}</th>
+                    {{/each}}
+                  </tr>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scole="col">Remove</th>
+                    {{!-- <th scope="col"></th> --}}
                   </tr>
                 </thead>
                 <tbody>
@@ -132,7 +148,7 @@
                 Add Grocery
               </a>
             </div>
-          </div>
+          
 
 
           {{!-- My Group Tab --}}
@@ -316,7 +332,6 @@
       <br>
     </div>
   </div>
-</div>
 </div>
 </div>
 </div>

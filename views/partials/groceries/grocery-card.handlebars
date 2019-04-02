@@ -1,15 +1,24 @@
-<tr>
-    <td>{{groceryName}} </td>
-    <td>{{quantity}}</td>
-    {{#each @root.groupMembers as |groupMember index|}}
-      {{log groupMember}}
-      {{log groupMember.dataValues.id}}
-      {{#if (isUser groupMember.dataValues.id ../UserId)}}
-      <td>{{groupMember.dataValues.name}}</td>
-      {{log "user is the name here"}}
-      {{/if}}
-    {{/each}}
-    <td>
+<tr class="groceryRow" data-creatorid={{UserId}} data-choreid={{id}}>
+  <td class="groceryColumn">
+    <span>{{groceryName}}</span>
+    <input type="text" class="groceryNameEdit hideThis" value="{{groceryName}}">
+     </td>
+  <td>{{quantity}}</td>
+  {{!-- {{#each @root.groupMembers as |groupMember index|}}
+  {{log groupMember}}
+  {{log groupMember.dataValues.id}}
+  {{#if (isUser groupMember.dataValues.id ../UserId)}}
+  <td>{{groupMember.dataValues.name}}</td>
+  {{log "user is the name here"}}
+  {{/if}}
+  {{/each}} --}}
+  {{#if (isUser @root.user.id UserId)}}
+  <td>
+    <button class="removeChoreButton">X</button>
+  </td>
+  {{/if}}
+
+  {{!-- <td>
         <a class="btn btn-sm btn-dark" href="/grocery/{{GroupId}}/{{id}}">Edit Grocery</a>
-    </td>
+    </td> --}}
 </tr>

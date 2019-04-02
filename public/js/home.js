@@ -194,3 +194,68 @@ $(document).on("click", ".removeChoreButton", function(){
     })
 })
 
+//Grocery
+$(document).on("click", ".groceryColumn", function(event){
+    event.preventDefault();
+
+    var currentlyEditingParent = $(this).parent();
+
+    var userId = $(".welcome").data("loggeduserid");
+
+    if(userId === currentlyEditingParent.data("creatorid")){
+        $(this).find("input").removeClass("hideThis");
+        $(this).find("span").addClass("hideThis");
+        $(this).find("input").focus();
+        //assign the column being updated to the currentlyEditing variable
+        currentlyEditing = $(this);   
+    }
+})
+
+$(document).on("focusout", ".choreColumn", function(){
+    //change the column back to plain text
+    $(this).find("input").addClass("hideThis");
+    $(this).find("span").removeClass("hideThis");
+    //call the updateChore function
+    updateChore( $(this).parent())
+})
+
+var updateGrocery = function(currentlyEditingRow){
+    var creatorId = currentlyEditingRow.data("creatorid");
+    var groceryId = currentlyEditingRow.data("groceryid");
+    //get all of the inputs from the row being updated
+    var grocery = {
+        groceryName: currentlyEditingRow.find(".choreNameEdit").val(),
+        complete: currentlyEditingRow.find(".choreComplete").is(":checked")
+    }
+    //update the bill with route defined in the apiRoutes
+    $.ajax({
+        method: "PUT",
+        url: "/chore/edit/" + creatorId + "/" + choreId,
+        data: {
+            chore: chore.chore,
+            complete: chore.complete
+        }
+    }).then( function(data){
+        console.log(data);
+        currentlyEditingRow.find(".choreName").text(data.chore);
+        currentlyEditingRow.find(".choreComplete").text(data.complete);
+    })
+}
+
+$(document).on("click", ".choreComplete", function(){
+    console.log($(this).is(":checked"));
+    var currentlyEditingParent = $(this).parent().parent().parent();
+    console.log(currentlyEditingParent)
+    updateChore(currentlyEditingParent);
+});
+$(document).on("click", ".removeChoreButton", function(){
+    var choreRow = $(this).parent().parent();
+    // console.log(billRow)
+    var choreId = choreRow.data("choreid");
+    $.ajax({
+        method: "DELETE",
+        url: "/chore/delete/" + choreId
+    }).then(function (data){
+        choreRow.remove();
+    })
+})
