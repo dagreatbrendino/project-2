@@ -471,10 +471,12 @@ thead {
   border-bottom-style: solid;
   border-bottom-color: #293241;
   color: white;
+  text-align: center;
 }
 
 tbody {
   background-color: white;
+  text-align: center;
 
 
 }
