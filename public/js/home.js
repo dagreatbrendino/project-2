@@ -45,6 +45,18 @@ $(document).ready(function () {
         });
     });
 
+    $(".billOwner").each(function(index){
+        var userTotal = 0;
+        var userId = $(this).data("userid");
+        $(".billRow").each(function(ind){
+            var billOwnerId = $(this).data("creatorid");
+            if (userId === billOwnerId){
+                userTotal += $(this).data("billamount");
+            }
+        })
+        console.log(userTotal)
+        $("#user" + userId + "BillTotal").text("     $" + userTotal);
+    })
 });
 //UPDATE OPERATIONS
 var currentlyEditing;
