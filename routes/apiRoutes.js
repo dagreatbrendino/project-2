@@ -331,14 +331,26 @@ module.exports = function (app) {
           id: choreId
         }
       }).then(function(data){
-        db.Chore.findOne({
+        db.Chore.update({
+          complete: false
+        },{
           where: {
-            id: choreId
+            recurDate:{
+              [op.ne]: moment().format("ddd")
+            }
+          
           }
-        }).then(function(updatedChore){
-          res.json(updatedChore);
-        })
-      });
+        }).then(function(data){
+          db.Chore.findOne({
+            where: {
+              id: choreId
+            }
+          }).then(function(updatedChore){
+            res.json(updatedChore);
+          })
+        });
+      })
+
     }
 
   });
