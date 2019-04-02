@@ -19,7 +19,6 @@ $(document).ready(function() {
             window.location.replace(data);
             // If there's an error, log the error
           }).catch(function(err) {
-            console.log(err);
           });
     })
 })

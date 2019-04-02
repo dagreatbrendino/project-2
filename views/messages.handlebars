@@ -1,12 +1,9 @@
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        {{!-- <h1>{{msg}}</h1> --}}
-        <form class="clearfix mb-4" action="POST"></form>
-        <br>
-        <br>
-        <ul class=" text-center">
+      <div class="col-8 offset-2 message-con">
+        <h1 class="messages-head">System Messages</h1>
+        <ul class="text-center message-list">
           {{#each messages}}
           {{> messages/message-card}}
           {{/each}}
