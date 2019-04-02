@@ -172,11 +172,17 @@ a {
   padding: 0;
 }
 
-.taskOwner {
+.billOwner{
   text-align: center;
   background-color: #3d5a80;
 }
-
+.billHeader{
+  text-align: center;
+  background-color: #3d5a80;
+}
+.billTotal{
+  text-align: right;
+}
 .checkmark {
   display: inline-block;
   margin: 0px auto;
@@ -413,7 +419,9 @@ h2 {
   /* background-color: lightblue; */
   background-color: #98c1d9;
   font-family: 'Roboto Condensed', sans-serif;
-  border-top-color: #ee6c4d;
+
+  /* border-top-style: solid; */
+  /* border-top-color: #ee6c4d; */
 }
 
 
