@@ -1,6 +1,7 @@
 <tr class="choreRow" data-creatorid={{UserId}} data-choreid={{id}}>
     <td class="choreColumn">
-      <span>{{chore}}</span>
+      <span class="choreName">{{chore}}</span>
+       <input type="text" class="choreNameEdit hideThis" value="{{chore}}">
       
     </td>
     {{!-- {{#each @root.groupMembers as |groupMember index|}}

@@ -253,6 +253,8 @@ module.exports = function (app) {
       res.redirect("/home");
     }
   })
+
+  
   //route to get page for editing groceries
   app.get("/grocery/:groceryGroup/:groceryId", isAuthenticated, function(req, res){
     var groceryGroup = parseInt(req.params.groceryGroup);
